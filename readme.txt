@@ -13,3 +13,13 @@ Login (Logout Functionality)
 Results Page per Run (results of run, placed in leaderboard of others on that track)
 	
 Rankings Page (results chart, can sort by tracks, scores etc)	
+
+TASKS:
+
+Pablo - Trec/Models
+
+Aigars - Styling
+
+Shaun/Maria - Views/Templates/Forms
+Shaun - home + ranking + results
+Maria - registration + login/out + profile + edit
