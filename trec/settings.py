@@ -12,7 +12,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 
-TEMPLATE_PATH=os.path.join(BASE_DIR, "templates")
+TEMPLATE_PATH = os.path.join(BASE_DIR, "templates")
 
 TEMPLATE_DIRS = (TEMPLATE_PATH,)
 
@@ -41,6 +41,8 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
     'registration',
     'main',
+    'captcha',
+    'parsley',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -92,3 +94,6 @@ ACCOUNT_ACTIVATION_DAYS = 7
 REGISTRATION_AUTO_LOGIN = True
 LOGIN_URL='/accounts/login/'
 LOGIN_REDIRECT_URL='/' # TODO
+
+CAPTCHA_IMAGE_SIZE=(200,90)
+CAPTCHA_FONT_SIZE=60

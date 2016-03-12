@@ -29,7 +29,7 @@ class Track(models.Model):
     title = models.CharField(max_length = 64, unique=True)
     track_url = models.URLField(max_length=200)
     description = models.CharField(max_length=400)
-    genre = models.CharField(max_length=2, choiches = Genre_choices)
+    genre = models.CharField(max_length=2, choices = Genre_choices)
 
 class Task(models.Model):
     track = models.OneToOneField(
@@ -82,7 +82,7 @@ class Run(models.Model):
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     name = models.CharField(max_length=64, unique=False)
     description = models.CharField(max_length=400, unique=False)
-    result_file = models.CharField(max_length=64, unique=True)
+    result_file = models.FileField(upload_to='uploads/%Y/%m/%d/')
     run_type = models.CharField(max_length=2, choices=Run_type_choices)
     query_type = models.CharField(max_length=2, choices=Query_type_choices)
     feedback_type = models.CharField(max_length=2, choices=Feedback_type_choices)
