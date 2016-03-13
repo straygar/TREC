@@ -78,7 +78,49 @@ def register(request):
         'main/register.html',
         context_dict,
         context)
+@login_required
+def edit_profile(request):
+     # Request the context.
+    context = RequestContext(request)
+    context_dict = {}
 
+    # If HTTP POST, we wish to process form data and create an account.
+    if request.method == 'POST':
+        profile_form = UserProfileForm(data=request.POST)
+
+        # Two valid forms?
+        if profile_form.is_valid():
+
+            # Now we can sort out the UserProfile instance.
+            # We'll be setting values for the instance ourselves, so commit=False prevents Django from saving the instance automatically.
+            profile = profile_form.save(commit=False)
+            profile.user = request.user
+
+            # Profile picture supplied? If so, we put it in the new UserProfile.
+            if 'profile_picture' in request.FILES:
+                profile.profile_picture = request.FILES['profile_picture']
+
+            # Now we save the model instance!
+            profile.save()
+
+            return HttpResponseRedirect('/main/profile/')
+
+
+        # Invalid form(s) - just print errors to the terminal.
+        else:
+            print profile_form.errors
+
+    # Not a HTTP POST, so we render the two ModelForms to allow a user to input their data.
+    else:
+        profile_form = UserProfileForm()
+
+    context_dict['profile_form']= profile_form
+
+    # Render and return!
+    return render_to_response(
+        'main/edit_profile.html',
+        context_dict,
+        context)
 
 def user_login(request):
     # Obtain our request's context.
