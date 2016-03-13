@@ -78,6 +78,8 @@ def register(request):
         'main/register.html',
         context_dict,
         context)
+
+
 @login_required
 def edit_profile(request):
      # Request the context.
@@ -91,7 +93,6 @@ def edit_profile(request):
         # Two valid forms?
         if profile_form.is_valid():
 
-            # Now we can sort out the UserProfile instance.
             # We'll be setting values for the instance ourselves, so commit=False prevents Django from saving the instance automatically.
             profile = profile_form.save(commit=False)
             profile.user = request.user
@@ -184,3 +185,6 @@ def index(request):
 
     response=render(request,"main/index.html")
     return response
+
+def about(request):
+    return render(request,'main/about.html')
