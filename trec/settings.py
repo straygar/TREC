@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration',
     'main',
     'captcha',
     'parsley',
@@ -88,12 +87,6 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-
-REGISTRATION_OPEN= True
-ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_AUTO_LOGIN = True
-LOGIN_URL='/accounts/login/'
-LOGIN_REDIRECT_URL='/' # TODO
 
 CAPTCHA_IMAGE_SIZE=(200,90)
 CAPTCHA_FONT_SIZE=60
