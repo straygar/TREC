@@ -85,6 +85,7 @@ def edit_profile(request):
      # Request the context.
     context = RequestContext(request)
     context_dict = {}
+    old_profile=Researcher.objects.get(user=request.user)
 
     # If HTTP POST, we wish to process form data and create an account.
     if request.method == 'POST':
@@ -113,7 +114,7 @@ def edit_profile(request):
 
     # Not a HTTP POST, so we render the two ModelForms to allow a user to input their data.
     else:
-        profile_form = UserProfileForm()
+        profile_form = UserProfileForm(instance=old_profile)
 
     context_dict['profile_form']= profile_form
 
