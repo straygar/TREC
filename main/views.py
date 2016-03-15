@@ -9,6 +9,9 @@ from django.template import RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 
+def home(request):
+    return render(request, 'main/home.html')
+
 @login_required
 def uploadRun(request):
     contextDict = {}
