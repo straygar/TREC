@@ -1,5 +1,8 @@
 from django.db import models
+from django.conf import settings
+from django.db.models.signals import post_save
 from django.contrib.auth.models import User
+from registration.signals import user_registered
 
 class Researcher(models.Model):
     user = models.OneToOneField(
@@ -7,7 +10,7 @@ class Researcher(models.Model):
         on_delete = models.CASCADE,
         primary_key = True
     )
-    profile_picture = models.CharField(max_length=64, unique=True)
+    profile_picture = models.CharField(max_length=64, unique=False)
     website = models.CharField(max_length=64, unique=False)
     display_name = models.CharField(max_length=128, unique=False)
     organization = models.CharField(max_length=128, unique=False)

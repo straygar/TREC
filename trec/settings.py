@@ -39,7 +39,6 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'registration',
     'main',
     'captcha',
     'parsley',
@@ -92,12 +91,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
-
-REGISTRATION_OPEN= True
-ACCOUNT_ACTIVATION_DAYS = 7
-REGISTRATION_AUTO_LOGIN = True
-LOGIN_URL='/accounts/login/'
-LOGIN_REDIRECT_URL='/' # TODO
 
 CAPTCHA_IMAGE_SIZE=(200,90)
 CAPTCHA_FONT_SIZE=60
