@@ -5,7 +5,7 @@
 {% block title %}Home{% endblock %}
 
 {% block body_block %}
-<form id="upload_run" method="post" action="{% url 'new_run' %}" data-parsley-validate>
+<form id="upload_run" method="post" action="{% url 'new_run' %}" enctype="multipart/form-data" data-parsley-validate>
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" name="submit" value="Submit run">

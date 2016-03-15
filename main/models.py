@@ -32,6 +32,9 @@ class Track(models.Model):
     genre = models.CharField(max_length=2, choices = Genre_choices)
 
 class Task(models.Model):
+    def __unicode__(self):
+        return u'{0}'.format(self.title)
+
     track = models.OneToOneField(
         Track,
         on_delete = models.CASCADE,
@@ -78,11 +81,11 @@ class Run(models.Model):
         (FT_Other, "Other"),
     )
 
-    researcher = models.ForeignKey(Researcher, on_delete=models.CASCADE)
+    researcher = models.ForeignKey(User, on_delete=models.CASCADE)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     name = models.CharField(max_length=64, unique=False)
     description = models.CharField(max_length=400, unique=False)
-    result_file = models.FileField(upload_to='uploads/%Y/%m/%d/')
+    result_file = models.FileField(upload_to='trec_upload/%Y/%m/%d/')
     run_type = models.CharField(max_length=2, choices=Run_type_choices)
     query_type = models.CharField(max_length=2, choices=Query_type_choices)
     feedback_type = models.CharField(max_length=2, choices=Feedback_type_choices)
