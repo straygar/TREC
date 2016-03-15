@@ -10,4 +10,5 @@ urlpatterns = patterns('',
     url(r'^edit_profile/$',views.edit_profile,name='edit_profile'),
     url(r'^about/$',views.about,name='about'),
     url(r'^uploadRun/$', views.uploadRun, name='uploadRun'),
+    url(r'^browse/$', views.browse, name='browse'),
     )
