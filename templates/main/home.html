@@ -5,10 +5,16 @@
 {% block title %}Home<{% endblock %}
 
 {% block body_block %}
-
-  <!-- if authenticated, show profile/logout button, else, show login/register buttons
-       Logo bar, links to About, Rankings, Search Bar
-       Panel to upload trec runs
+  <!-- Panel to upload trec runs
        graph of recent runs and top runs -->
+        <a href="/main/uploadRun/">Upload Run</a>
+
+    <!-- test to see if datasets work, if they do then export data sets to add
+    to scrollable tables with keys for top scores and recent -->
+    {% if runs %}
+        {% for run in runs %}
+        <li><h1>{{ run.name }}</h1></li>
+        {% endfor %}
+    {% endif %}
 
 {% endblock %}

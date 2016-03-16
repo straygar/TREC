@@ -22,6 +22,21 @@ from trec import roles
 def home(request):
     return render(request, 'main/home.html')
 
+def browse(request):
+    return render(request, 'main/browse.html')
+#
+# def search(request):
+#     query = request.GET.get('q')
+#     if query:
+#         # There was a query entered.
+#         results = SomeModel.objects.filter(somefield=query)
+#     else:
+#         # If no query was entered, simply return all objects
+#         results = SomeModel.objects.all()
+#     return render(request, 'search_result.html', {'results': results})
+
+
+
 @login_required
 def uploadRun(request):
     contextDict = {}
@@ -251,3 +266,4 @@ def index(request):
 
 def about(request):
     return render(request,'main/about.html')
+

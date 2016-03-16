@@ -13,4 +13,5 @@ urlpatterns = patterns('',
     url(r'^task/new/', views.uploadTask, name="new_task"),
     url(r'^track/new/', views.uploadTrack, name="new_track"),
     url(r'^genre/new/', views.uploadGenre, name="new_genre"),
+    url(r'^browse/$', views.browse, name='browse'),
     )
