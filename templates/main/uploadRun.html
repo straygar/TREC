@@ -1,14 +1,19 @@
 {% extends "main/base.html" %}
 
 {% load staticfiles %}
+{% load permission_tags %}
 
-{% block title %}Home{% endblock %}
+{% block title %}New run{% endblock %}
 
 {% block body_block %}
 <form id="upload_run" method="post" action="{% url 'new_run' %}" enctype="multipart/form-data" data-parsley-validate>
     {% csrf_token %}
+    {{ form_file.as_p }}
     {{ form.as_p }}
     <input type="submit" name="submit" value="Submit run">
+    {% if can_edit_tracks %}
+    <p>Want to add a new task? <a href="{% url 'new_task' %}">Click here</a></p>
+    {% endif %}
 </form>
 
 {% endblock %}

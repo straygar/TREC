@@ -1,16 +1,23 @@
 from django.shortcuts import render, render_to_response, redirect
 from django.contrib.auth.decorators import login_required
 
+from rolepermissions.decorators import has_permission_decorator
+
 from main.forms import RunForm
 from main.models import Task
-from main.forms import RunForm, UserForm, UserProfileForm
+from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm, TaskForm, TrackForm, GenreForm, ReturnUrlForm
 
 from django.contrib.auth.models import User
-from .models import Researcher
 from django.template import RequestContext
 
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
+
+from util import trec
+
+from main.models import Researcher
+
+from trec import roles
 
 def home(request):
     return render(request, 'main/home.html')
@@ -20,66 +27,111 @@ def uploadRun(request):
     contextDict = {}
     if request.method == "GET":
         upl_form = RunForm()
+        upl_file_form = RunFileForm()
     else:
-        upl_form = RunForm(request.POST, request.FILES)
-        if upl_form.is_valid():
+        upl_form = RunForm(request.POST)
+        upl_file_form = RunFileForm(request.POST, request.FILES)
+        if upl_file_form.is_valid() and upl_form.is_valid():
+            file_upload = upl_file_form.save(commit=True)
             temp_data = upl_form.save(commit=False)
-            temp_data.result_file = request.FILES["result_file"]
+            temp_data.result_file = file_upload
             temp_data.researcher = request.user
-            temp_data.task = Task.objects.all()[0]
-            temp_data.map = 2
-            temp_data.p10 = 1
-            temp_data.p20 = 4
+            temp_data.task = upl_form.cleaned_data["task"]
+            results = trec.getRating(file_upload.file.path)
+            temp_data.p10 = results["p10"]
+            temp_data.p20 = results["p20"]
+            temp_data.map = results["map"]
             temp_data.save()
-        else:
-            print upl_form.errors
     contextDict["form"] = upl_form
+    contextDict["form_file"] = upl_file_form
     return render(request, "main/uploadRun.html", contextDict)
 
+@has_permission_decorator("edit_tracks")
+def uploadGenre(request):
+    contextDict = {}
+    posted = False
+    retUrl = ""
+    if request.method == "GET":
+        upl_form = GenreForm()
+        retForm = ReturnUrlForm(initial={"url":request.META.get("HTTP_REFERER")})
+    else:
+        upl_form = GenreForm(data=request.POST)
+        if upl_form.is_valid():
+            upl_form.save(commit=True)
+            posted = True
+        retForm = ReturnUrlForm(data=request.POST)
+        if retForm.is_valid():
+            retUrl = retForm.cleaned_data["url"]
+    contextDict["form"] = upl_form
+    contextDict["posted"] = posted
+    contextDict["retUrl"] = retUrl
+    contextDict["retForm"] = retForm
+    return render(request, "main/uploadGenre.html", contextDict)
+
+@has_permission_decorator("edit_tracks")
+def uploadTask(request):
+    contextDict = {}
+    retUrl = ""
+    if request.method == "GET":
+        upl_form = TaskForm()
+        retForm = ReturnUrlForm(initial={"url":request.META.get("HTTP_REFERER")})
+    else:
+        upl_form = TaskForm(request.POST, request.FILES)
+        if upl_form.is_valid():
+            temp_data = upl_form.save(commit=False)
+            temp_data.track = upl_form.cleaned_data["track"]
+            temp_data.save()
+        retForm = ReturnUrlForm(data=request.POST)
+        if retForm.is_valid():
+            retUrl = retForm.cleaned_data["url"]
+    contextDict["form"] = upl_form
+    contextDict["retUrl"] = retUrl
+    contextDict["retForm"] = retForm
+    return render(request, "main/uploadTask.html", contextDict)
+
+@has_permission_decorator("edit_tracks")
+def uploadTrack(request):
+    contextDict = {}
+    retUrl = ""
+    if request.method == "GET":
+        upl_form = TrackForm()
+        retForm = ReturnUrlForm(initial={"url":request.META.get("HTTP_REFERER")})
+    else:
+        upl_form = TrackForm(data=request.POST)
+        if upl_form.is_valid():
+            temp_data = upl_form.save(commit=False)
+            temp_data.genre = upl_form.cleaned_data["genre"]
+            temp_data.save()
+        retForm = ReturnUrlForm(data=request.POST)
+        if retForm.is_valid():
+            retUrl = retForm.cleaned_data["url"]
+    contextDict["form"] = upl_form
+    contextDict["retUrl"] = retUrl
+    contextDict["retForm"] = retForm
+    return render(request, "main/uploadTrack.html", contextDict)
+
 def register(request):
-    # Request the context.
-    context = RequestContext(request)
     context_dict = {}
-    # Boolean telling us whether registration was successful or not.
-    # Initially False; presume it was a failure until proven otherwise!
     registered = False
 
-    # If HTTP POST, we wish to process form data and create an account.
     if request.method == 'POST':
-        # Grab raw form data - making use of both FormModels.
         user_form = UserForm(data=request.POST)
-        profile_form = UserProfileForm(data=request.POST)
-
-        # Two valid forms?
+        profile_form = UserProfileForm(request.POST, request.FILES)
         if user_form.is_valid() and profile_form.is_valid():
-            # Save the user's form data. That one is easy.
             user = user_form.save()
-
-            # Now a user account exists, we hash the password with the set_password() method.
-            # Then we can update the account with .save().
             user.set_password(user.password)
+            roles.Researcher.assign_role_to_user(user)
             user.save()
 
-            # Now we can sort out the UserProfile instance.
-            # We'll be setting values for the instance ourselves, so commit=False prevents Django from saving the instance automatically.
             profile = profile_form.save(commit=False)
             profile.user = user
 
-            # Profile picture supplied? If so, we put it in the new UserProfile.
             if 'profile_picture' in request.FILES:
                 profile.profile_picture = request.FILES['profile_picture']
 
-            # Now we save the model instance!
             profile.save()
-
-            # We can say registration was successful.
             registered = True
 
-        # Invalid form(s) - just print errors to the terminal.
-        else:
-            print user_form.errors, profile_form.errors
-
-    # Not a HTTP POST, so we render the two ModelForms to allow a user to input their data.
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
@@ -88,11 +140,7 @@ def register(request):
     context_dict['profile_form']= profile_form
     context_dict['registered'] = registered
 
-    # Render and return!
-    return render_to_response(
-        'main/register.html',
-        context_dict,
-        context)
+    return render(request,'main/register.html',context_dict)
 
 
 @login_required
@@ -174,10 +222,8 @@ def user_login(request):
 
 
 def user_logout(request):
-    # As we can assume the user is logged in, we can just log them out.
     logout(request)
 
-    # Take the user back to the homepage.
     return HttpResponseRedirect('/main/')
 
 
@@ -189,8 +235,9 @@ def profile(request):
     u = User.objects.get(username=request.user)
     try:
         up = Researcher.objects.get(user=u)
+        print up
     except:
-        up = None
+        raise
 
     context_dict['user'] = u
     context_dict['userprofile'] = up

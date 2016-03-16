@@ -1,5 +1,5 @@
 from django import forms
-from main.models import Task, Track, Run, Researcher
+from main.models import Task, Track, Run, Researcher, RunFile, Genre
 from captcha.fields import CaptchaField
 from parsley.decorators import parsleyfy
 from django.contrib.auth.models import User
@@ -8,11 +8,15 @@ from django.contrib.auth.models import User
 class RunForm(forms.ModelForm):
     task = forms.ModelChoiceField(queryset=Task.objects.all())
     captcha = CaptchaField(required=True, label="Verify you are not a robot")
-    result_file = forms.FileField(label="Select run file")
     class Meta:
         model = Run
-        fields = ('name', 'description', 'result_file', 'run_type', 'query_type', 'feedback_type',)
+        fields = ('name', 'description', 'run_type', 'query_type', 'feedback_type',)
 
+class RunFileForm(forms.ModelForm):
+    result_file = forms.FileField(label="Select run file")
+    class Meta:
+        model = RunFile
+        fields = ('result_file',)
 
 class UserForm(forms.ModelForm):
     username = forms.CharField(help_text="Please enter a username.")
@@ -33,3 +37,25 @@ class UserProfileForm(forms.ModelForm):
     class Meta:
         model = Researcher
         fields = ('website', 'profile_picture','display_name','organization')
+
+class TaskForm(forms.ModelForm):
+    track = forms.ModelChoiceField(queryset=Track.objects.all())
+    judgement_file = forms.FileField(label="Select a qrels file")
+
+    class Meta:
+        model = Task
+        fields = ('track', 'title', 'description', 'task_url', 'year', 'judgement_file',)
+
+class TrackForm(forms.ModelForm):
+
+    class Meta:
+        model = Track
+        fields = ('title', 'track_url', 'description', 'genre',)
+
+class GenreForm(forms.ModelForm):
+    class Meta:
+        model = Genre
+        fields = ('title',)
+
+class ReturnUrlForm(forms.Form):
+    url = forms.URLField(max_length=300, widget=forms.HiddenInput(), required=False)

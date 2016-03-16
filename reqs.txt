@@ -1,6 +1,8 @@
 Django==1.7
+django-discover-runner==1.0
 django-parsley==0.6
 django-registration-redux==1.4
+django-role-permissions==1.0
 django-simple-captcha==0.5.1
 Pillow==3.1.1
 six==1.10.0

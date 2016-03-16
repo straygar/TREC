@@ -1,5 +1,6 @@
-{% extends 'base.html' %}
+{% extends 'main/base.html' %}
 
+{% load staticfiles %}
 {% block title %}Profile{% endblock %}
 
 {% block body_block %}
@@ -10,7 +11,7 @@
         <p>Name: {{ userprofile.display_name }}</p>
         <p>Organization: {{ userprofile.organization }}</p>
         {% if userprofile.profile_picture %}
-        <img src="{{ userprofile.profile_picture.url }}"  />
-	   {% endif %}
+        <img src="{{ userprofile.profile_picture.url }}" alt="User profile picture" />
+        {% endif %}
     </div>
 {% endblock %}

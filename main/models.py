@@ -4,35 +4,34 @@ from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from registration.signals import user_registered
 
+def upload_profile(instance, filename):
+    return "profile/%s/%s" % (instance.user.username,filename)
+
 class Researcher(models.Model):
     user = models.OneToOneField(
         User,
         on_delete = models.CASCADE,
         primary_key = True
     )
-    profile_picture = models.CharField(max_length=64, unique=False)
-    website = models.CharField(max_length=64, unique=False)
+    profile_picture = models.ImageField(upload_to=upload_profile, blank=False)
+    website = models.CharField(max_length=64, unique=False, blank=True)
     display_name = models.CharField(max_length=128, unique=False)
-    organization = models.CharField(max_length=128, unique=False)
+    organization = models.CharField(max_length=128, unique=False, blank=True)
+
+class Genre(models.Model):
+    def __unicode__(self):
+        return u'{0}'.format(self.title)
+    title = models.CharField(max_length=64, unique=True)
 
 class Track(models.Model):
-    # Genre enums
-    GE_News = "NE"
-    GE_Web = "WE"
-    GE_Blog = "BL"
-    GE_Medical = "ME"
-    GE_Legal = "LE"
-    Genre_choices = (
-        (GE_News, "News"),
-        (GE_Web, "Web"),
-        (GE_Blog, "Blog"),
-        (GE_Medical, "Medical"),
-        (GE_Legal, "Legal"),
-    )
+    def __unicode__(self):
+        return u'{0}'.format(self.title)
     title = models.CharField(max_length = 64, unique=True)
     track_url = models.URLField(max_length=200)
     description = models.CharField(max_length=400)
-    genre = models.CharField(max_length=2, choices = Genre_choices)
+    genre = models.ForeignKey(
+        Genre, on_delete=models.PROTECT,
+    )
 
 class Task(models.Model):
     def __unicode__(self):
@@ -41,13 +40,16 @@ class Task(models.Model):
     track = models.OneToOneField(
         Track,
         on_delete = models.CASCADE,
-        primary_key = True
+        null = False
     )
     title = models.CharField(max_length = 64, unique=True)
     task_url = models.URLField(max_length=200)
     description = models.CharField(max_length = 400)
-    year = models.IntegerField()
-    judgement_file = models.CharField(max_length=40)
+    year = models.PositiveSmallIntegerField()
+    judgement_file = models.FileField(upload_to="trec_tracks/%Y/%m/")
+
+class RunFile(models.Model):
+    result_file = models.FileField(upload_to="trec_upload/%Y/%m/%d/")
 
 class Run(models.Model):
     # Run_type enums
@@ -87,11 +89,14 @@ class Run(models.Model):
     researcher = models.ForeignKey(User, on_delete=models.CASCADE)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     name = models.CharField(max_length=64, unique=False)
+    result_file = models.OneToOneField(
+        RunFile,
+        on_delete = models.CASCADE,
+    )
     description = models.CharField(max_length=400, unique=False)
-    result_file = models.FileField(upload_to='trec_upload/%Y/%m/%d/')
     run_type = models.CharField(max_length=2, choices=Run_type_choices)
     query_type = models.CharField(max_length=2, choices=Query_type_choices)
     feedback_type = models.CharField(max_length=2, choices=Feedback_type_choices)
-    map = models.DecimalField(max_digits=200, decimal_places = 30)
-    p10 = models.DecimalField(max_digits=200, decimal_places = 30)
-    p20 = models.DecimalField(max_digits=200, decimal_places = 30)
+    map = models.DecimalField(max_digits=200, decimal_places=30)
+    p10 = models.DecimalField(max_digits=200, decimal_places=30)
+    p20 = models.DecimalField(max_digits=200, decimal_places=30)

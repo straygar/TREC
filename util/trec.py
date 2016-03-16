@@ -1,0 +1,2 @@
+def getRating(path):
+    pass

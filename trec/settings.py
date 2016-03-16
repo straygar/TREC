@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'main',
     'captcha',
     'parsley',
+    'rolepermissions',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -87,10 +88,16 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, "static")
+STATIC_PATH = os.path.join(BASE_DIR, "static")
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
-CAPTCHA_IMAGE_SIZE=(200,90)
+STATICFILES_DIRS = (STATIC_PATH,)
+
+CAPTCHA_IMAGE_SIZE=(220,90)
 CAPTCHA_FONT_SIZE=60
+
+ROLEPERMISSIONS_MODULE = 'trec.roles'
+
+LOGIN_URL="/main/login/"
