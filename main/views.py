@@ -5,6 +5,8 @@ from rolepermissions.decorators import has_permission_decorator
 
 from main.forms import RunForm
 from main.models import Task
+from main.models import Run
+from main.models import Researcher
 from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm, TaskForm, TrackForm, GenreForm, ReturnUrlForm
 
 from django.contrib.auth.models import User
@@ -24,16 +26,16 @@ def home(request):
 
 def browse(request):
     return render(request, 'main/browse.html')
-#
-# def search(request):
-#     query = request.GET.get('q')
-#     if query:
-#         # There was a query entered.
-#         results = SomeModel.objects.filter(somefield=query)
-#     else:
+
+#def search(request):
+#    query = request.GET.get('q')
+#    if query:
+#         # There was a query entered. Use Run as an example, would like to search everything!
+#        results = Run.objects.filter(=query)
+#    else:
 #         # If no query was entered, simply return all objects
-#         results = SomeModel.objects.all()
-#     return render(request, 'search_result.html', {'results': results})
+#        results = Run.objects.all()
+#    return render(request, 'search_result.html', {'results': results})
 
 
 

@@ -20,6 +20,15 @@
                 <li><a href="{% url 'login' %}">Login</a></li>
             {% endif %}
                 <li><a href="{% url 'about' %}">About</a></li>
+                <li><a href="{% url 'browse' %}">Browse</a></li>
+
+<!--                <form method="GET" action="{% url 'search' %}">
+                    <input type="text" name="q" />
+                    <input type="submit" />
+                </form> -->
+
+                <!-- Add a search bar that passes a query to the view, which returns a search
+                results page -->
             </ul>
 
         </div>
