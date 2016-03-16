@@ -27,18 +27,6 @@ def home(request):
 def browse(request):
     return render(request, 'main/browse.html')
 
-#def search(request):
-#    query = request.GET.get('q')
-#    if query:
-#         # There was a query entered. Use Run as an example, would like to search everything!
-#        results = Run.objects.filter(=query)
-#    else:
-#         # If no query was entered, simply return all objects
-#        results = Run.objects.all()
-#    return render(request, 'search_result.html', {'results': results})
-
-
-
 @login_required
 def uploadRun(request):
     contextDict = {}
