@@ -1,4 +1,21 @@
 {% extends "main/base.html" %}
 
+{% load staticfiles %} <!-- for when we have images -->
 
-{% block title %} Index {% endblock %}
+{% block title %}Home{% endblock %}
+
+{% block body_block %}
+  <!-- Panel to upload trec runs
+       graph of recent runs and top runs -->
+        <a href="/main/run/new/">Upload Run</a>
+
+    <!-- test to see if datasets work, if they do then export data sets to add
+    to scrollable tables with keys for top scores and recent -->
+    {% if genre %}
+        <li>Here</li>
+        {% for genre in genres %}
+        <li><h1>{{ genre_name }}</h1></li>
+        {% endfor %}
+    {% endif %}
+
+{% endblock %}

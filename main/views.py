@@ -7,6 +7,7 @@ from main.forms import RunForm
 from main.models import Task
 from main.models import Run
 from main.models import Researcher
+from main.models import Genre
 from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm, TaskForm, TrackForm, GenreForm, ReturnUrlForm
 
 from django.contrib.auth.models import User
@@ -22,7 +23,12 @@ from main.models import Researcher
 from trec import roles
 
 def home(request):
-    return render(request, 'main/home.html')
+    context_dict={}
+    genre = Genre.objects.all()
+
+    context_dict = { 'genre' : genre , 'genre_name' : genre.title}
+
+    return render(request, 'main/home.html', context_dict)
 
 def browse(request):
     return render(request, 'main/browse.html')
