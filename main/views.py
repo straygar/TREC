@@ -22,13 +22,13 @@ from main.models import Researcher
 
 from trec import roles
 
-def home(request):
-    context_dict={}
-    genre = Genre.objects.all()
+def index(request):
+    #for recent table we need : Run : researcher
+    context_dict = {}
+    run_list = Run.objects.all()
+    context_dict = { 'run' : run_list}
 
-    context_dict = { 'genre' : genre , 'genre_name' : genre.title}
-
-    return render(request, 'main/home.html', context_dict)
+    return render(request, 'main/index.html', context_dict)
 
 def browse(request):
     return render(request, 'main/browse.html')
@@ -178,7 +178,8 @@ def edit_profile(request):
         # Two valid forms?
         if profile_form.is_valid():
 
-            # We'll be setting values for the instance ourselves, so commit=False prevents Django from saving the instance automatically.
+            # We'll be setting values for the instance ourselves, so commit=False prevents Django
+            # from saving the instance automatically.
             profile = profile_form.save(commit=False)
             profile.user = request.user
 
@@ -263,12 +264,6 @@ def profile(request):
     context_dict['user'] = u
     context_dict['userprofile'] = up
     return render_to_response('main/profile.html', context_dict, context)
-
-
-def index(request):
-
-    response=render(request,"main/index.html")
-    return response
 
 def about(request):
     return render(request,'main/about.html')

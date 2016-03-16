@@ -11,11 +11,32 @@
 
     <!-- test to see if datasets work, if they do then export data sets to add
     to scrollable tables with keys for top scores and recent -->
-    {% if genre %}
-        <li>Here</li>
-        {% for genre in genres %}
-        <li><h1>{{ genre_name }}</h1></li>
-        {% endfor %}
-    {% endif %}
+<div>
+<thead>
+    <tr>
+        <th>Researcher</th>
+        <th>Run</th>
+        <th>Map</th>
+        <th>p10</th>
+        <th>p20</th>
+    </tr>
+</thead>
+    {% for run in run_list %}
+<tbody>
+  <tr>
+    <td colspan="2">
+      <div class="scrollit">
+        <table>
+    <tr>
+        <td>{{ run.researcher }}</td>
+        <td>{{ run.name }}</td>
+        <td>{{ run.map }}</td>
+        <td>{{ run.p10 }}</td>
+        <td>{{ run.p20 }}</td>
+    </tr>
 
+    {% endfor %}
+        </table>
+</tbody>
+</div>
 {% endblock %}
