@@ -36,6 +36,9 @@ def browse(request):
 @login_required
 def uploadRun(request):
     contextDict = {}
+    finish = False
+    fail = False
+    results = {}
     if request.method == "GET":
         upl_form = RunForm()
         upl_file_form = RunFileForm()
@@ -48,13 +51,20 @@ def uploadRun(request):
             temp_data.result_file = file_upload
             temp_data.researcher = request.user
             temp_data.task = upl_form.cleaned_data["task"]
-            results = trec.getRating(file_upload.file.path)
-            temp_data.p10 = results["p10"]
-            temp_data.p20 = results["p20"]
-            temp_data.map = results["map"]
-            temp_data.save()
+            try:
+                results = trec.getRating(temp_data.task.judgement_file.path, file_upload.result_file.path)
+                temp_data.p10 = results["P_10"]
+                temp_data.p20 = results["P_20"]
+                temp_data.map = results["map"]
+                temp_data.save()
+                finish = True
+            except:
+                fail = True
     contextDict["form"] = upl_form
     contextDict["form_file"] = upl_file_form
+    contextDict["finish"] = finish
+    contextDict["fail"] = fail
+    contextDict["results"] = results
     return render(request, "main/uploadRun.html", contextDict)
 
 @has_permission_decorator("edit_tracks")
