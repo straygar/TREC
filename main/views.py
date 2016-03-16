@@ -5,6 +5,8 @@ from rolepermissions.decorators import has_permission_decorator
 
 from main.forms import RunForm
 from main.models import Task
+from main.models import Run
+from main.models import Researcher
 from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm, TaskForm, TrackForm, GenreForm, ReturnUrlForm
 
 from django.contrib.auth.models import User
@@ -24,22 +26,25 @@ def home(request):
 
 def browse(request):
     return render(request, 'main/browse.html')
-#
-# def search(request):
-#     query = request.GET.get('q')
-#     if query:
-#         # There was a query entered.
-#         results = SomeModel.objects.filter(somefield=query)
-#     else:
+
+#def search(request):
+#    query = request.GET.get('q')
+#    if query:
+#         # There was a query entered. Use Run as an example, would like to search everything!
+#        results = Run.objects.filter(=query)
+#    else:
 #         # If no query was entered, simply return all objects
-#         results = SomeModel.objects.all()
-#     return render(request, 'search_result.html', {'results': results})
+#        results = Run.objects.all()
+#    return render(request, 'search_result.html', {'results': results})
 
 
 
 @login_required
 def uploadRun(request):
     contextDict = {}
+    finish = False
+    fail = False
+    results = {}
     if request.method == "GET":
         upl_form = RunForm()
         upl_file_form = RunFileForm()
@@ -52,13 +57,20 @@ def uploadRun(request):
             temp_data.result_file = file_upload
             temp_data.researcher = request.user
             temp_data.task = upl_form.cleaned_data["task"]
-            results = trec.getRating(file_upload.file.path)
-            temp_data.p10 = results["p10"]
-            temp_data.p20 = results["p20"]
-            temp_data.map = results["map"]
-            temp_data.save()
+            try:
+                results = trec.getRating(temp_data.task.judgement_file.path, file_upload.result_file.path)
+                temp_data.p10 = results["P_10"]
+                temp_data.p20 = results["P_20"]
+                temp_data.map = results["map"]
+                temp_data.save()
+                finish = True
+            except:
+                fail = True
     contextDict["form"] = upl_form
     contextDict["form_file"] = upl_file_form
+    contextDict["finish"] = finish
+    contextDict["fail"] = fail
+    contextDict["results"] = results
     return render(request, "main/uploadRun.html", contextDict)
 
 @has_permission_decorator("edit_tracks")

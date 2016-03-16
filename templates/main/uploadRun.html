@@ -6,16 +6,40 @@
 {% block title %}New run{% endblock %}
 
 {% block body_block %}
+
+{% if finish %}
+<h3>Run uploaded successfully!</h3>
+<h5>Your results:</h5><br/>
+<table>
+    <tr>
+        <th>Measure</th>
+        <th>Your score</th>
+    </tr>
+    <tr>
+        <td>Precision at 10 (P_10)</td>
+        <td>{{ results.P_10 }}</td>
+    </tr>
+    <tr>
+        <td>Precision at 20 (P_20)</td>
+        <td>{{ results.P_20 }}</td>
+    </tr>
+    <tr>
+        <td>Map (map)</td>
+        <td>{{ results.map }}</td>
+    </tr>
+</table>
+{% endif %}
+{% if fail %}
+<h3>Oops... Something went wrong</h3>
+<h5>Please try again later</h5>
+{% endif %}
 <form id="upload_run" method="post" action="{% url 'new_run' %}" enctype="multipart/form-data" data-parsley-validate>
     {% csrf_token %}
     {{ form_file.as_p }}
     {{ form.as_p }}
     <input type="submit" name="submit" value="Submit run">
-    {% if can_edit_tracks %}
-    <p>Want to add a new task? <a href="{% url 'new_task' %}">Click here</a></p>
-    {% endif %}
 </form>
-    
-
-
+{% if can_edit_tracks %}
+<p>Want to add a new task? <a href="{% url 'new_task' %}">Click here</a></p>
+{% endif %}
 {% endblock %}

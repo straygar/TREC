@@ -5,7 +5,7 @@ from django.contrib.auth.models import User
 from registration.signals import user_registered
 
 def upload_profile(instance, filename):
-    return "profile/%s/%s" % (instance.user.username,filename)
+    return "profile/%s/%s" % (instance.user.username, filename)
 
 class Researcher(models.Model):
     user = models.OneToOneField(
@@ -97,6 +97,6 @@ class Run(models.Model):
     run_type = models.CharField(max_length=2, choices=Run_type_choices)
     query_type = models.CharField(max_length=2, choices=Query_type_choices)
     feedback_type = models.CharField(max_length=2, choices=Feedback_type_choices)
-    map = models.DecimalField(max_digits=200, decimal_places=30)
-    p10 = models.DecimalField(max_digits=200, decimal_places=30)
-    p20 = models.DecimalField(max_digits=200, decimal_places=30)
+    map = models.DecimalField(max_digits=15, decimal_places=12)
+    p10 = models.DecimalField(max_digits=15, decimal_places=12)
+    p20 = models.DecimalField(max_digits=15, decimal_places=12)
