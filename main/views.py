@@ -250,11 +250,8 @@ def profile(request):
     context_dict={}
 
     u = User.objects.get(username=request.user)
-    try:
-        up = Researcher.objects.get(user=u)
-        print up
-    except:
-        raise
+    up = Researcher.objects.get(user=u)
+    print up
 
     context_dict['user'] = u
     context_dict['userprofile'] = up
@@ -264,4 +261,16 @@ def about(request):
     return render(request,'main/about.html')
 
 def viewRun(request, runid):
+    return render(request, "main/viewRun.html", {"run":Run.objects.get(id=runid)})
+
+def viewTrack(request, trackid):
+    pass
+
+def editTrack(request, trackid):
+    pass
+
+def viewTask(request, taskid):
+    pass
+
+def editTask(request, taskid):
     pass
