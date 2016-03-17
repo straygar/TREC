@@ -26,7 +26,7 @@ def index(request):
     #for recent table we need : Run : researcher
     context_dict = {}
     run_list = Run.objects.all()
-    context_dict = { 'run' : run_list}
+    context_dict = { 'runs' : run_list}
 
     return render(request, 'main/index.html', context_dict)
 
