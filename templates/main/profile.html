@@ -1,6 +1,12 @@
 {% extends 'main/base.html' %}
 
 {% load staticfiles %}
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+    google.load("visualization", "1", {packages:["corechart"]});
+</script>
+
 {% block title %}Profile{% endblock %}
 
 {% block body_block %}
@@ -13,5 +19,8 @@
         {% if userprofile.profile_picture %}
         <img src="{{ userprofile.profile_picture.url }}" alt="User profile picture" />
         {% endif %}
+		
+		<p> Last 5 runs: {{ point_chart.as_html }} </p>
+		
     </div>
 {% endblock %}

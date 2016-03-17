@@ -14,10 +14,12 @@ from django.contrib.auth import authenticate, login, logout
 from util import trec
 from trec import roles
 
+from graphos.sources.model import ModelDataSource
+from graphos.renderers import gchart
+
 def index(request):
-    #for recent table we need : Run : researcher
     context_dict = {}
-    run_list = Run.objects.all()
+    run_list = Run.objects.all()[:10]
     context_dict = { 'runs' : run_list}
 
     return render(request, 'main/index.html', context_dict)
@@ -250,9 +252,14 @@ def profile(request):
     u = User.objects.get(username=request.user)
     up = Researcher.objects.get(user=u)
     print up
+	
+	queryset = Run.objects.filter(researcher=request.user)[:5]
+    data_source = ModelDataSource(queryset,fields=['p10','p20'])
+    chart = gchart.LineChart(data_source)
 
     context_dict['user'] = u
     context_dict['userprofile'] = up
+	context_dict['chart']=chart
     return render_to_response('main/profile.html', context_dict, context)
 
 def about(request):
