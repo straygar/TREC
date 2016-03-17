@@ -1,0 +1,41 @@
+{% extends "main/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}View run by {{ run.{% endblock %}
+
+{% block body_block %}
+
+<h1>Run by {{ run.researcher.username }}</h1>
+<h3>Details</h3>
+
+<strong>Researcher name: </strong>{{ profile.display_name }}
+<strong>Title: </strong>{{ run.name }}
+<strong>Description: </strong>{{ run.description }}
+<strong>Submitted at: </strong>{{ run.datetime }}
+<strong>Run type: </strong>{{ run.run_type }}
+<strong>Query type: </strong>{{ run.query_type }}
+<strong>Feedback type: </strong>{{ run.feedback_type }}
+<strong>Task: </strong><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a>
+<strong>Track: </strong><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track.title}}</a>
+
+<h3>Results:</h3>
+<table>
+    <tr>
+        <th>Measure</th>
+        <th>Your score</th>
+    </tr>
+    <tr>
+        <td>Precision at 10 (P_10)</td>
+        <td>{{ run.p10 }}</td>
+    </tr>
+    <tr>
+        <td>Precision at 20 (P_20)</td>
+        <td>{{ run.p20 }}</td>
+    </tr>
+    <tr>
+        <td>Map (map)</td>
+        <td>{{ run.map }}</td>
+    </tr>
+</table>
+{% endblock %}

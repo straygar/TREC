@@ -48,8 +48,6 @@ def uploadRun(request):
                 temp_data.p10 = results["P_10"]
                 temp_data.p20 = results["P_20"]
                 temp_data.map = results["map"]
-                #run_list = Run.objects.filter(task = results["task"])
-                #contextDict["runs"] = run_list
                 temp_data.save()
                 finish = True
             except:
@@ -250,11 +248,8 @@ def profile(request):
     context_dict={}
 
     u = User.objects.get(username=request.user)
-    try:
-        up = Researcher.objects.get(user=u)
-        print up
-    except:
-        raise
+    up = Researcher.objects.get(user=u)
+    print up
 
     context_dict['user'] = u
     context_dict['userprofile'] = up
@@ -264,4 +259,16 @@ def about(request):
     return render(request,'main/about.html')
 
 def viewRun(request, runid):
+    return render(request, "main/viewRun.html", {"run":Run.objects.get(id=runid)})
+
+def viewTrack(request, trackid):
+    pass
+
+def editTrack(request, trackid):
+    pass
+
+def viewTask(request, taskid):
+    pass
+
+def editTask(request, taskid):
     pass

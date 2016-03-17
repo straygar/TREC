@@ -11,7 +11,6 @@ def getRating(qrels_path, run_path):
     tempOutput = subprocess.check_output([_getTrecExec(), qrels_path, run_path])
     returnDict = {}
     for value in tempOutput.split("\n"):
-        print value
         tempArray = value.strip().split("\t")
         identifier = tempArray[0].strip()
         if identifier in _wantedValues:
