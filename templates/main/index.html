@@ -21,21 +21,21 @@
         <th>p20</th>
     </tr>
 </thead>
-    {% for run in run_list %}
+
 <tbody>
   <tr>
     <td colspan="2">
       <div class="scrollit">
-        <table>
-    <tr>
-        <td>{{ run.researcher }}</td>
-        <td>{{ run.name }}</td>
-        <td>{{ run.map }}</td>
-        <td>{{ run.p10 }}</td>
-        <td>{{ run.p20 }}</td>
-    </tr>
-
-    {% endfor %}
+        <table class="sortable">
+            {% for run in run_list %}
+                <tr>
+                    <td>{{ run.researcher }}</td>
+                    <td>{{ run.name }}</td>
+                    <td>{{ run.map }}</td>
+                    <td>{{ run.p10 }}</td>
+                    <td>{{ run.p20 }}</td>
+                </tr>
+            {% endfor %}
         </table>
 </tbody>
 </div>
