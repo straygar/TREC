@@ -1,13 +1,8 @@
 from django.shortcuts import render, render_to_response, redirect
 from django.contrib.auth.decorators import login_required
-
 from rolepermissions.decorators import has_permission_decorator
 
-from main.forms import RunForm
-from main.models import Task
-from main.models import Run
-from main.models import Researcher
-from main.models import Genre
+from main.models import Task, Run, Researcher, Genre
 from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm, TaskForm, TrackForm, GenreForm, ReturnUrlForm
 
 from django.contrib.auth.models import User
@@ -17,9 +12,6 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 
 from util import trec
-
-from main.models import Researcher
-
 from trec import roles
 
 def index(request):
@@ -271,3 +263,5 @@ def profile(request):
 def about(request):
     return render(request,'main/about.html')
 
+def viewRun(request, runid):
+    pass
