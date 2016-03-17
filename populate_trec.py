@@ -8,48 +8,48 @@ from rango.models import Researcher, Genre, Track, Task, Run
 
 def populate():
     #need to add in pictures!
-    jill_researcher = register(username='jill',
+    jill_researcher = addUser(username='jill',
                                email='jill@gmail.com',
                                password='jill',
                                website='http://jsonmyfeet@tumblr.com',
                                display_name='Jill',
                                organization = 'University of Glasgow')
 
-    jen_researcher = register(username='jen',
+    jen_researcher = addUser(username='jen',
                                email='jen@gmail.com',
                                password='jen',
                                website='http://allthispurple@tumblr.com',
                                display_name='Jen',
                                organization = 'University of Strathclyde')
 
-    bob_researcher = register(username='bob',
+    bob_researcher = addUser(username='bob',
                                email='bob@gmail.com',
                                password='bob',
                                website='http://youknowit@tumblr.com',
                                display_name='Bob',
                                organization = 'University of Glasgow')
 
-    news_genre = uploadGenre('News')
+    news_genre = addGenre('News')
 
-    robust_track = uploadTrack(title='Robust2004',
+    robust_track = addTrack(title='Robust2004',
                                track_url='http://trec.nist.gov/data/t13_robust.html',
                                description = 'News Retrieval',
                                genre=news_genre)
     #add in file!
-    robust_task = uploadTask(track=robust_track,
+    robust_task = addTask(track=robust_track,
                              title = 'Robust2005',
                              description='Ad Hoc Topic Retrieval',
                              task_url='http://trec.nist.gov/data/t14_robust.html',
                              year=2005
                              )
 
-    first_run = uploadRun(name='first',
+    first_run = addRun(name='first',
                           description='first run ever',
                           run_type='AU',
                           query_type='AF',
                           feedback_type='RF')
 
-    def register(username,email,password,display_name,website,organization):
+    def addUser(username,email,password,display_name,website,organization):
         u = Researcher.objects.get_or_create(username=username,password=password,email=email)
         u.display_name=display_name
         u.website=website
@@ -57,12 +57,12 @@ def populate():
         u.save()
         return u
 
-    def uploadGenre(title):
+    def addGenre(title):
         g = Genre.objects.get_or_create(title=title)
         g.save()
         return g
 
-    def uploadTrack(title,track_url,description,genre):
+    def addTrack(title,track_url,description,genre):
         track = Track.objects.get_or_create(title=title)
         track.description=description
         track.genre=genre
@@ -70,7 +70,7 @@ def populate():
         track.save()
         return track
 
-    def uploadTask(track,title,description,task_url,year):
+    def addTask(track,title,description,task_url,year):
         task = Task.objects.get_or_create(title=title)
         task.track=track
         task.description=description
@@ -79,7 +79,7 @@ def populate():
         task.save()
         return task
 
-    def uploadRun(name,description,run_type,query_type,feedback_type):
+    def addRun(name,description,run_type,query_type,feedback_type):
         r = Run.objects.get_or_create(name=name)
         r.description=description
         r.run_type=run_type
