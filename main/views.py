@@ -15,9 +15,8 @@ from util import trec
 from trec import roles
 
 def index(request):
-    #for recent table we need : Run : researcher
     context_dict = {}
-    run_list = Run.objects.all()
+    run_list = Run.objects.all()[:10]
     context_dict = { 'runs' : run_list}
 
     return render(request, 'main/index.html', context_dict)
