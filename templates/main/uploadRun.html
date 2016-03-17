@@ -28,6 +28,70 @@
         <td>{{ results.map }}</td>
     </tr>
 </table>
+
+<h3>Other Runs on this Task</h3>
+<div>
+    <table class="sortable">
+    <thead>
+        <tr>
+            <th>Researcher</th>
+            <th>Run</th>
+            <th>Task</th>
+            <th>Track</th>
+            <th>Map</th>
+            <th>p10</th>
+            <th>p20</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for run in runs %}
+        <tr>
+            <td>{{ run.researcher }}</td>
+            <td>{{ run.name }}</td>
+            <td>{{ run.task }}</td>
+            <td>{{ run.task.track }}</td>
+            <td>{{ run.map }}</td>
+            <td>{{ run.p10 }}</td>
+            <td>{{ run.p20 }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+<a href="/main/run/new/">Upload Run</a>
+
+<h3>Other Runs on this Task</h3>
+<div>
+    <table class="sortable">
+    <thead>
+        <tr>
+            <th>Researcher</th>
+            <th>Run</th>
+            <th>Task</th>
+            <th>Track</th>
+            <th>Map</th>
+            <th>p10</th>
+            <th>p20</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for run in runs %}
+        <tr>
+            <td>{{ run.researcher }}</td>
+            <td>{{ run.name }}</td>
+            <td>{{ run.task }}</td>
+            <td>{{ run.task.track }}</td>
+            <td>{{ run.map }}</td>
+            <td>{{ run.p10 }}</td>
+            <td>{{ run.p20 }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+</div>
+
 {% endif %}
 {% if fail %}
 <h3>Oops... Something went wrong</h3>

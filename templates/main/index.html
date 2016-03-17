@@ -1,42 +1,38 @@
 {% extends "main/base.html" %}
 
-{% load staticfiles %} <!-- for when we have images -->
-
 {% block title %}Home{% endblock %}
 
 {% block body_block %}
-  <!-- Panel to upload trec runs
-       graph of recent runs and top runs -->
-        <a href="/main/run/new/">Upload Run</a>
 
-    <!-- test to see if datasets work, if they do then export data sets to add
-    to scrollable tables with keys for top scores and recent -->
+<a href="/main/run/new/">Upload Run</a>
+
 <div>
-<thead>
-    <tr>
-        <th>Researcher</th>
-        <th>Run</th>
-        <th>Map</th>
-        <th>p10</th>
-        <th>p20</th>
-    </tr>
-</thead>
+    <table class="sortable">
+    <thead>
+        <tr>
+            <th>Researcher</th>
+            <th>Run</th>
+            <th>Task</th>
+            <th>Track</th>
+            <th>Map</th>
+            <th>p10</th>
+            <th>p20</th>
+        </tr>
+    </thead>
 
-<tbody>
-  <tr>
-    <td colspan="2">
-      <div class="scrollit">
-        <table class="sortable">
-            {% for run in run_list %}
-                <tr>
-                    <td>{{ run.researcher }}</td>
-                    <td>{{ run.name }}</td>
-                    <td>{{ run.map }}</td>
-                    <td>{{ run.p10 }}</td>
-                    <td>{{ run.p20 }}</td>
-                </tr>
-            {% endfor %}
-        </table>
-</tbody>
+    <tbody>
+        {% for run in runs %}
+        <tr>
+            <td>{{ run.researcher }}</td>
+            <td>{{ run.name }}</td>
+            <td>{{ run.task }}</td>
+            <td>{{ run.task.track }}</td>
+            <td>{{ run.map }}</td>
+            <td>{{ run.p10 }}</td>
+            <td>{{ run.p20 }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
 </div>
 {% endblock %}

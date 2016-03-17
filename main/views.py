@@ -26,7 +26,7 @@ def index(request):
     #for recent table we need : Run : researcher
     context_dict = {}
     run_list = Run.objects.all()
-    context_dict = { 'run' : run_list}
+    context_dict = { 'runs' : run_list}
 
     return render(request, 'main/index.html', context_dict)
 
@@ -56,10 +56,13 @@ def uploadRun(request):
                 temp_data.p10 = results["P_10"]
                 temp_data.p20 = results["P_20"]
                 temp_data.map = results["map"]
+                #run_list = Run.objects.filter(task = results["task"])
+                #contextDict["runs"] = run_list
                 temp_data.save()
                 finish = True
             except:
                 fail = True
+
     contextDict["form"] = upl_form
     contextDict["form_file"] = upl_file_form
     contextDict["finish"] = finish
