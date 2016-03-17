@@ -3,6 +3,7 @@ from django.conf import settings
 from django.db.models.signals import post_save
 from django.contrib.auth.models import User
 from registration.signals import user_registered
+from django.utils import timezone
 
 def upload_profile(instance, filename):
     return "profile/%s/%s" % (instance.user.username, filename)
@@ -52,6 +53,9 @@ class RunFile(models.Model):
     result_file = models.FileField(upload_to="trec_upload/%Y/%m/%d/")
 
 class Run(models.Model):
+    def save(self, *args, **kwargs):
+        if self.pk is not None:
+            self.datetime = timezone.now()
     # Run_type enums
     RT_Automatic = "AU"
     RT_Manual = "MA"
@@ -89,6 +93,7 @@ class Run(models.Model):
     researcher = models.ForeignKey(User, on_delete=models.CASCADE)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     name = models.CharField(max_length=64, unique=False)
+    datetime = models.DateTimeField()
     result_file = models.OneToOneField(
         RunFile,
         on_delete = models.CASCADE,

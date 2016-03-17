@@ -33,6 +33,10 @@
 <h3>Oops... Something went wrong</h3>
 <h5>Please try again later</h5>
 {% endif %}
+{% if finish %}
+<br/>
+<h3>Want to upload another run?</h3>
+{% endif %}
 <form id="upload_run" method="post" action="{% url 'new_run' %}" enctype="multipart/form-data" data-parsley-validate>
     {% csrf_token %}
     {{ form_file.as_p }}
