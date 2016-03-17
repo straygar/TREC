@@ -56,10 +56,13 @@ def uploadRun(request):
                 temp_data.p10 = results["P_10"]
                 temp_data.p20 = results["P_20"]
                 temp_data.map = results["map"]
+                #run_list = Run.objects.filter(task = results["task"])
+                #contextDict["runs"] = run_list
                 temp_data.save()
                 finish = True
             except:
                 fail = True
+
     contextDict["form"] = upl_form
     contextDict["form_file"] = upl_file_form
     contextDict["finish"] = finish
