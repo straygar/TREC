@@ -248,18 +248,15 @@ def user_logout(request):
 def profile(request):
     context = RequestContext(request)
     context_dict={}
-
     u = User.objects.get(username=request.user)
     up = Researcher.objects.get(user=u)
     print up
-	
-	queryset = Run.objects.filter(researcher=request.user)[:5]
+    queryset = Run.objects.filter(researcher=request.user)[:5]
     data_source = ModelDataSource(queryset,fields=['p10','p20'])
     chart = gchart.LineChart(data_source)
-
     context_dict['user'] = u
     context_dict['userprofile'] = up
-	context_dict['chart']=chart
+    context_dict['chart']=chart
     return render_to_response('main/profile.html', context_dict, context)
 
 def about(request):
