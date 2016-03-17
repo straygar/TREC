@@ -56,6 +56,7 @@ class Run(models.Model):
     def save(self, *args, **kwargs):
         if self.pk is not None:
             self.datetime = timezone.now()
+        super(Run, self).save(*args, **kwargs)
     # Run_type enums
     RT_Automatic = "AU"
     RT_Manual = "MA"
