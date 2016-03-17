@@ -1,0 +1,56 @@
+{% extends "main/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}View track: {{ track.title }}{% endblock %}
+
+{% block body_block %}
+
+title = models.CharField(max_length = 64, unique=True)
+    track_url = models.URLField(max_length=200)
+    description = models.CharField(max_length=400)
+    genre = models.ForeignKey(
+        Genre, on_delete=models.PROTECT,
+    )
+<h1>Track: {{ track.title }}</h1>
+<h3>Details</h3>
+
+<table>
+    <tr>
+        <td>Title</td>
+        <td>{{ track.title }}</td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>{{ track.track_url }}</td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td>{{ track.description }}</td>
+    </tr>
+    <tr>
+        <td>Genre</td>
+        <td>{{ track.genre.title }}</td>
+    </tr>
+    <tr>
+        <td>Tasks</td>
+        <td>
+            <table>
+                <tr>
+                    <th>Title</th>
+                    <th>Description</th>
+                    <th>Year</th>
+                </tr>
+                {% for task in tasks %}
+                    <tr>
+                        <td>{{ task.title }}</td>
+                        <td>{{ task.description }}</td>
+                        <td>{{ task.year }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+        </td>
+    </tr>
+</table>
+
+{% endblock %}

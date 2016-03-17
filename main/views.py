@@ -2,7 +2,7 @@ from django.shortcuts import render, render_to_response, redirect
 from django.contrib.auth.decorators import login_required
 from rolepermissions.decorators import has_permission_decorator
 
-from main.models import Task, Run, Researcher, Genre
+from main.models import Task, Track, Run, Researcher, Genre
 from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm, TaskForm, TrackForm, GenreForm, ReturnUrlForm
 
 from django.contrib.auth.models import User
@@ -262,7 +262,12 @@ def viewRun(request, runid):
     return render(request, "main/viewRun.html", {"run":Run.objects.get(id=runid)})
 
 def viewTrack(request, trackid):
-    pass
+    track = Track.objects.get(id=trackid)
+    tasks = Task.objects.filter(track=track)
+    context_dict = {}
+    context_dict["track"] = track
+    context_dict["tasks"] = tasks
+    return render(request, "main/viewTrack.html", context_dict)
 
 def editTrack(request, trackid):
     pass
