@@ -2,40 +2,73 @@
 
 {% load staticfiles %}
 
-{% block title %}View run by {{ run.{% endblock %}
+{% block title %}View run by {{ run.researcher.username }}{% endblock %}
 
 {% block body_block %}
 
 <h1>Run by {{ run.researcher.username }}</h1>
 <h3>Details</h3>
 
-<strong>Researcher name: </strong>{{ profile.display_name }}
-<strong>Title: </strong>{{ run.name }}
-<strong>Description: </strong>{{ run.description }}
-<strong>Submitted at: </strong>{{ run.datetime }}
-<strong>Run type: </strong>{{ run.run_type }}
-<strong>Query type: </strong>{{ run.query_type }}
-<strong>Feedback type: </strong>{{ run.feedback_type }}
-<strong>Task: </strong><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a>
-<strong>Track: </strong><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track.title}}</a>
-
-<h3>Results:</h3>
 <table>
     <tr>
-        <th>Measure</th>
-        <th>Your score</th>
+        <td>Researcher name</td>
+        <td>{{ profile.display_name }}</td>
     </tr>
     <tr>
-        <td>Precision at 10 (P_10)</td>
-        <td>{{ run.p10 }}</td>
+        <td>Title</td>
+        <td>{{ run.name }}</td>
     </tr>
     <tr>
-        <td>Precision at 20 (P_20)</td>
-        <td>{{ run.p20 }}</td>
+        <td>Description</td>
+        <td>{{ run.description }}</td>
     </tr>
     <tr>
-        <td>Map (map)</td>
-        <td>{{ run.map }}</td>
+        <td>Submitted at</td>
+        <td>{{ run.datetime }}</td>
+    </tr>
+    <tr>
+        <td>Run type</td>
+        <td>{{ run.run_type }}</td>
+    </tr>
+    <tr>
+        <td>Query type</td>
+        <td>{{ run.query_type }}</td>
+    </tr>
+    <tr>
+        <td>Feedback type</td>
+        <td>{{ run.feedback_type }}</td>
+    </tr>
+    <tr>
+        <td>Task</td>
+        <td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
+    </tr>
+    <tr>
+        <td>Track</td>
+        <td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track.title}}</a></td>
+    </tr>
+    <tr>
+        <td>Results</td>
+        <td>
+            <table>
+                <tr>
+                    <th>Measure</th>
+                    <th>Your score</th>
+                </tr>
+                <tr>
+                    <td>Precision at 10 (P_10)</td>
+                    <td>{{ run.p10 }}</td>
+                </tr>
+                <tr>
+                    <td>Precision at 20 (P_20)</td>
+                    <td>{{ run.p20 }}</td>
+                </tr>
+                <tr>
+                    <td>Map (map)</td>
+                    <td>{{ run.map }}</td>
+                </tr>
+            </table>
+        </td>
     </tr>
 </table>
+
 {% endblock %}
