@@ -6,8 +6,10 @@
 
 {% block body_block %}
 
-{% if finish %}
-
+{% if accepted %}
+<h4>Track and Task</h4>
+<li>{{ track }}</li>
+<li>{{ task }}</li>
 {% endif %}
 
 <form id="upload_run" method="post" action="{% url 'browse' %}" enctype="multipart/form-data">
