@@ -3,7 +3,7 @@ from django.contrib.auth.decorators import login_required
 from rolepermissions.decorators import has_permission_decorator
 
 from main.models import Task, Track, Run, Researcher, Genre
-from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm, TaskForm, TrackForm, GenreForm, ReturnUrlForm
+from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm, TaskForm, TrackForm, GenreForm, ReturnUrlForm, BrowseForm
 
 from django.contrib.auth.models import User
 from django.template import RequestContext
@@ -25,7 +25,12 @@ def index(request):
     return render(request, 'main/index.html', context_dict)
 
 def browse(request):
-    return render(request, 'main/browse.html')
+    contextDict = {}
+    if request.method == "GET":
+        browse_form = BrowseForm()
+
+    contextDict["form"] = browse_form
+    return render(request, 'main/browse.html', contextDict)
 
 @login_required
 def uploadRun(request):
