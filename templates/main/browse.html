@@ -2,8 +2,14 @@
 
 {% load staticfiles %}
 
-{% block title %}New run{% endblock %}
+{% block title %}Browse{% endblock %}
 
 {% block body_block %}
+
+<form id="upload_run" method="post" action="{% url 'browse' %}">
+    {{ form.as_p }}
+    <input type="submit" name="submit" value="Get runs">
+</form>
+
 
 {% endblock %}
