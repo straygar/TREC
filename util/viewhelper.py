@@ -22,14 +22,17 @@ def editFormGeneric(request, template, model, formType, id):
     context_dict["title"] = currentElement.title
     return render(request, template, context_dict)
 
-def uploadFormGeneric(request, template, formType, extraCallable):
+def uploadFormGeneric(request, template, formType, extraCallable, useFiles = False):
     contextDict = {}
     valid = False
     error = False
     if request.method == "GET":
         upl_form = formType()
     else:
-        upl_form = formType(data=request.POST)
+        if not useFiles:
+            upl_form = formType(data=request.POST)
+        else:
+            upl_form = formType(request.POST, request.FILES)
         if upl_form.is_valid():
             temp_data = upl_form.save(commit=False)
             # Extra processing before saving. Can be none if not required

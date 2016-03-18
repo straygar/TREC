@@ -1,38 +1,36 @@
-{% extends "main/base.html" %}
-
-{% load staticfiles %}
+{% extends "main/base_forms.html" %}
 
 {% block title %}
     {% if new %}
-        Upload Task
+        {% block new_element %}Upload a new Task{% endblock %}
     {% else %}
-        Edit task {{ title }}
+        {% block edit_element %}Edit Task {{ title }}{% endblock %}
     {% endif %}
 {% endblock %}
 
-{% block body_block %}
-{% if new %}
-    {% if valid %}
-        <h3>Successfully added the task!</h3>
+{% block insert_block %}
+<h1>
+    {% if new %}
+        Upload a new Task
+    {% else %}
+        Edit Task {{ title }}
     {% endif %}
-    {% if error %}
-
-    {% endif %}
-{% else %}
-    {% if valid %}
-        <h3>Successfully edited task!</h3>
-    {% endif %}
-    {% if error %}
-        <h3>The data you entered is incorrect</h3>
-        <h5>Please, check all the fields</h5>
-    {% endif %}
-{% endif %}
-<!-- Action set as dot so we can call this from editTask and newTask without worrying for the URL to post to -->
-<form id="upload_task" method="post" action="." enctype="multipart/form-data" data-parsley-validate>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" name="submit" value="{% if new %}Create{% else %}Update{% endif %}">
-    <p>Want to add a new track? <a href="{% url 'new_track' %}">Click here</a></p>
-</form>
-
+</h1>
 {% endblock %}
+
+{% block ok_upload %}
+<h3>Successfully added the task!</h3>
+{% endblock %}
+{% block error_upload %}
+<h3>The data you entered is incorrect</h3>
+<h5>Please, check all the fields</h5>
+{% endblock %}
+{% block ok_edit %}
+<h3>Successfully edited task!</h3>
+{% endblock %}
+{% block error_edit %}
+<h3>The data you entered is incorrect</h3>
+<h5>Please, check all the fields</h5>
+{% endblock %}
+
+{% block suggest_add %}<p>Want to add a new genre? <p>Want to add a new track? <a href="{% url 'new_track' %}">Click here</a></p>{% endblock %}

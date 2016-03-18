@@ -87,7 +87,7 @@ def uploadGenre(request):
 def uploadTask(request):
     def extraCallable(data, form):
         data.track = form.cleaned_data["track"]
-    return viewhelper.uploadFormGeneric(request, "main/uploadTask.html", TaskForm, extraCallable)
+    return viewhelper.uploadFormGeneric(request, "main/uploadTask.html", TaskForm, extraCallable, True)
 
 @has_permission_decorator("edit_tracks")
 def uploadTrack(request):
