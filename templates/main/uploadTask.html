@@ -2,13 +2,36 @@
 
 {% load staticfiles %}
 
-{% block title %}Upload Task{% endblock %}
+{% block title %}
+    {% if new %}
+        Upload Task
+    {% else %}
+        Edit task {{ title }}
+    {% endif %}
+{% endblock %}
 
 {% block body_block %}
-<form id="upload_task" method="post" action="{% url 'new_task' %}" enctype="multipart/form-data" data-parsley-validate>
+{% if new %}
+    {% if valid %}
+        <h3>Successfully added the task!</h3>
+    {% endif %}
+    {% if error %}
+
+    {% endif %}
+{% else %}
+    {% if valid %}
+        <h3>Successfully edited task!</h3>
+    {% endif %}
+    {% if error %}
+        <h3>The data you entered is incorrect</h3>
+        <h5>Please, check all the fields</h5>
+    {% endif %}
+{% endif %}
+<!-- Action set as dot so we can call this from editTask and newTask without worrying for the URL to post to -->
+<form id="upload_task" method="post" action="." enctype="multipart/form-data" data-parsley-validate>
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" name="submit" value="Create">
+    <input type="submit" name="submit" value="{% if new %}Create{% else %}Update{% endif %}">
     <p>Want to add a new track? <a href="{% url 'new_track' %}">Click here</a></p>
 </form>
 

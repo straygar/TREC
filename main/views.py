@@ -1,4 +1,4 @@
-from django.shortcuts import render, render_to_response, redirect
+from django.shortcuts import render, render_to_response, redirect, get_object_or_404, get_list_or_404
 from django.contrib.auth.decorators import login_required
 from rolepermissions.decorators import has_permission_decorator
 
@@ -11,7 +11,7 @@ from django.template import RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 
-from util import trec
+from util import trec, viewhelper
 from trec import roles
 
 from graphos.sources.model import ModelDataSource
@@ -104,43 +104,45 @@ def uploadGenre(request):
 @has_permission_decorator("edit_tracks")
 def uploadTask(request):
     contextDict = {}
-    retUrl = ""
+    valid = False
+    error = False
     if request.method == "GET":
         upl_form = TaskForm()
-        retForm = ReturnUrlForm(initial={"url":request.META.get("HTTP_REFERER")})
     else:
         upl_form = TaskForm(request.POST, request.FILES)
         if upl_form.is_valid():
             temp_data = upl_form.save(commit=False)
             temp_data.track = upl_form.cleaned_data["track"]
             temp_data.save()
-        retForm = ReturnUrlForm(data=request.POST)
-        if retForm.is_valid():
-            retUrl = retForm.cleaned_data["url"]
+            valid = True
+        else:
+            error = True
     contextDict["form"] = upl_form
-    contextDict["retUrl"] = retUrl
-    contextDict["retForm"] = retForm
+    contextDict["valid"] = valid
+    contextDict["error"] = error
+    contextDict["new"] = True
     return render(request, "main/uploadTask.html", contextDict)
 
 @has_permission_decorator("edit_tracks")
 def uploadTrack(request):
     contextDict = {}
-    retUrl = ""
+    valid = False
+    error = False
     if request.method == "GET":
         upl_form = TrackForm()
-        retForm = ReturnUrlForm(initial={"url":request.META.get("HTTP_REFERER")})
     else:
         upl_form = TrackForm(data=request.POST)
         if upl_form.is_valid():
             temp_data = upl_form.save(commit=False)
             temp_data.genre = upl_form.cleaned_data["genre"]
             temp_data.save()
-        retForm = ReturnUrlForm(data=request.POST)
-        if retForm.is_valid():
-            retUrl = retForm.cleaned_data["url"]
+            valid = True
+        else:
+            error = True
     contextDict["form"] = upl_form
-    contextDict["retUrl"] = retUrl
-    contextDict["retForm"] = retForm
+    contextDict["valid"] = valid
+    contextDict["error"] = error
+    contextDict["new"] = True
     return render(request, "main/uploadTrack.html", contextDict)
 
 def register(request):
@@ -181,7 +183,7 @@ def edit_profile(request):
      # Request the context.
     context = RequestContext(request)
     context_dict = {}
-    old_profile=Researcher.objects.get(user=request.user)
+    old_profile=get_object_or_404(Researcher, user=request.user)
 
     # If HTTP POST, we wish to process form data and create an account.
     if request.method == 'POST':
@@ -266,7 +268,7 @@ def profile(request):
     context = RequestContext(request)
     context_dict={}
     u = User.objects.get(username=request.user)
-    up = Researcher.objects.get(user=u)
+    up = get_object_or_404(Researcher, user=u)
     print up
     queryset = Run.objects.filter(researcher=request.user)[:5]
     data_source = ModelDataSource(queryset,fields=['p10','p20'])
@@ -281,23 +283,23 @@ def about(request):
 
 def viewRun(request, runid):
     context_dict = {}
-    context_dict["run"] = run_info = Run.objects.get(id=runid)
-    context_dict["profile"] = Researcher.objects.get(user=run_info.researcher)
+    context_dict["run"] = run_info = get_object_or_404(Run, id=runid)
+    context_dict["profile"] = get_object_or_404(Researcher, user=run_info.researcher)
     return render(request, "main/viewRun.html", context_dict)
 
 def viewTrack(request, trackid):
-    track = Track.objects.get(id=trackid)
-    tasks = Task.objects.filter(track=track)
+    track = get_object_or_404(Track, id=trackid)
+    tasks = get_list_or_404(Task, track=track)
     context_dict = {}
     context_dict["track"] = track
     context_dict["tasks"] = tasks
     return render(request, "main/viewTrack.html", context_dict)
 
 def editTrack(request, trackid):
-    pass
+    return viewhelper.editFormGeneric(request, "main/uploadTrack.html", Track, TrackForm, trackid)
 
 def viewTask(request, taskid):
-    return render(request, "main/viewTask.html", {"task":Task.objects.get(id=taskid)})
+    return render(request, "main/viewTask.html", {"task":get_object_or_404(Task, id=taskid)})
 
 def editTask(request, taskid):
-    pass
+    return viewhelper.editFormGeneric(request, "main/uploadTask.html", Task, TaskForm, taskid)
