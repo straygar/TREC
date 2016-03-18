@@ -11,7 +11,7 @@ from django.template import RequestContext
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 
-from util import trec
+from util import trec, viewhelper
 from trec import roles
 
 from graphos.sources.model import ModelDataSource
@@ -122,22 +122,23 @@ def uploadTask(request):
 @has_permission_decorator("edit_tracks")
 def uploadTrack(request):
     contextDict = {}
-    retUrl = ""
+    valid = False
+    error = False
     if request.method == "GET":
         upl_form = TrackForm()
-        retForm = ReturnUrlForm(initial={"url":request.META.get("HTTP_REFERER")})
     else:
         upl_form = TrackForm(data=request.POST)
         if upl_form.is_valid():
             temp_data = upl_form.save(commit=False)
             temp_data.genre = upl_form.cleaned_data["genre"]
             temp_data.save()
-        retForm = ReturnUrlForm(data=request.POST)
-        if retForm.is_valid():
-            retUrl = retForm.cleaned_data["url"]
+            valid = True
+        else:
+            error = True
     contextDict["form"] = upl_form
-    contextDict["retUrl"] = retUrl
-    contextDict["retForm"] = retForm
+    contextDict["valid"] = valid
+    contextDict["error"] = error
+    contextDict["new"] = True
     return render(request, "main/uploadTrack.html", contextDict)
 
 def register(request):
@@ -291,28 +292,10 @@ def viewTrack(request, trackid):
     return render(request, "main/viewTrack.html", context_dict)
 
 def editTrack(request, trackid):
-    valid = False
-    error = False
-    currentTask = get_object_or_404(Task,id=trackid)
-    context_dict = {}
-    if request.method == "POST":
-        form = TrackForm(request.POST, instance = currentTask)
-        if form.is_valid():
-            form.save()
-            valid = True
-        else:
-            error = True
-    else:
-        form = TrackForm(instance = currentTask)
-
-    context_dict["form"] = form
-    context_dict["valid"] = valid
-    context_dict["error"] = error
-    context_dict["new"] = False
-    return render(request, "main/uploadTask.html", context_dict)
+    return viewhelper.editFormGeneric(request, "main/uploadTrack.html", Track, TrackForm, trackid)
 
 def viewTask(request, taskid):
     return render(request, "main/viewTask.html", {"task":get_object_or_404(Task, id=taskid)})
 
 def editTask(request, taskid):
-    pass
+    return viewhelper.editFormGeneric(request, "main/uploadTask.html", Task, TaskForm, taskid)

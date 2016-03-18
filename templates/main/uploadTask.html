@@ -6,7 +6,7 @@
     {% if new %}
         Upload Task
     {% else %}
-        Edit task {{ task.title }}
+        Edit task {{ title }}
     {% endif %}
 {% endblock %}
 
@@ -27,10 +27,11 @@
         <h5>Please, check all the fields</h5>
     {% endif %}
 {% endif %}
-<form id="upload_task" method="post" action="{% url 'new_task' %}" enctype="multipart/form-data" data-parsley-validate>
+<!-- Action set as dot so we can call this from editTask and newTask without worrying for the URL to post to -->
+<form id="upload_task" method="post" action="." enctype="multipart/form-data" data-parsley-validate>
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" name="submit" value="Create">
+    <input type="submit" name="submit" value="{% if new %}Create{% else %}Update{% endif %}">
     <p>Want to add a new track? <a href="{% url 'new_track' %}">Click here</a></p>
 </form>
 
