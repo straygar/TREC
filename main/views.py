@@ -268,7 +268,10 @@ def about(request):
     return render(request,'main/about.html')
 
 def viewRun(request, runid):
-    return render(request, "main/viewRun.html", {"run":Run.objects.get(id=runid)})
+    context_dict = {}
+    context_dict["run"] = run_info = Run.objects.get(id=runid)
+    context_dict["profile"] = Researcher.objects.get(user=run_info.researcher)
+    return render(request, "main/viewRun.html", context_dict)
 
 def viewTrack(request, trackid):
     track = Track.objects.get(id=trackid)
