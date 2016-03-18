@@ -1,12 +1,9 @@
 {% extends "main/base.html" %}
 
 {% block title %}Login{% endblock %}
-
+{% block h1 %}Login{% endblock %}
 {% block body_block %}
-<div class="hero-unit">
-    <h1>Login</h1>
 
-    <div class="container">
         <form class="form-signin span4" id="login_form" method="post" action="/main/login/">
             <h2 class="form-signin-heading">Please sign in</h2>
             {% if bad_details %}
@@ -28,10 +25,7 @@
         </form>
 
 
-    </div>
-    <!-- /container -->
 
-</div>
 
 
 {% endblock %}

@@ -7,8 +7,12 @@
 
 /* Fonts */
 @font-face {
-    font-family: BankGothic;
-    src: url('../fonts/BankGothic Md BT Medium.ttf');
+    font-family: Sertig;
+    src: url('../fonts/sertig.otf');
+}
+@font-face {
+    font-family: OSP-DIN;
+    src: url('../fonts/OSP-DIN.otf');
 }
 html {
   font-family: sans-serif;
@@ -271,6 +275,18 @@ th {
 
   src: url('../fonts/glyphicons-halflings-regular.eot');
   src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff2') format('woff2'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
+}
+div.container-fluid.page_title{
+	background-color: #79BCF3;
+	margin: 0;
+	padding: 0;
+	position: static;
+	z-index: 999;
+	left: 0;
+	right: 0;
+	min-height: 50px;
+	color: #FFFFFF;
+	box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.5);
 }
 .glyphicon {
   position: relative;
@@ -1190,8 +1206,8 @@ h6,
 .h4,
 .h5,
 .h6 {
-  font-family: inherit;
-  font-weight: 500;
+  font-family: Roboto;
+  font-weight: 300;
   line-height: 1.1;
   color: inherit;
 }
@@ -1229,7 +1245,7 @@ h2,
 .h2,
 h3,
 .h3 {
-  margin-top: 20px;
+  margin-top: 10px;
   margin-bottom: 10px;
 }
 h1 small,
@@ -4174,8 +4190,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar {
   position: relative;
-  min-height: 50px;
-  margin-bottom: 20px;
+  height: 75px;
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {
@@ -4282,10 +4297,13 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-brand {
   float: left;
-  height: 50px;
-  padding: 15px 15px;
+  height: 75px;
+  padding: 3px 15px;
   font-size: 18px;
   line-height: 20px;
+}
+.navbar-brand img {
+	height: 100%;
 }
 .navbar-brand:hover,
 .navbar-brand:focus {
@@ -4369,7 +4387,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left;
   }
   .navbar-nav > li > a {
-    padding-top: 15px;
+    padding-top: 25px;
     padding-bottom: 15px;
   }
 }
@@ -4503,7 +4521,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-default {
   background-color: #2196F3;
-  box-shadow:0px 0px 2px 3px rgba(0,0,0,0.5);
+  box-shadow:0px 0px 1px 1px rgba(0,0,0,0.5);
   border: 0;
 }
 .navbar-default .navbar-brand {
@@ -4520,7 +4538,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > li > a {
   color: #FFFFFF;
   font-family: Roboto;
-  font-size: 18px;
+  font-size: 20px;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {
