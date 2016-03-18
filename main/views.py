@@ -32,12 +32,16 @@ def browse(request):
     else:
         browse_form = BrowseForm(request.POST)
         if browse_form.is_valid():
-            selection = browse_form.save()
+            selection = browse_form.save(commit=False)
             accepted = True
+            contextDict["task"] = browse_form.cleaned_data["task"]
+            contextDict["track"] = browse_form.cleaned_data["track"]
 
 
     contextDict["form"] = browse_form
     contextDict["accepted"] = accepted
+
+
     return render(request, 'main/browse.html', contextDict)
 
 @login_required
