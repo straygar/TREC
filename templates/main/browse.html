@@ -2,7 +2,11 @@
 
 {% block title %}Browse{% endblock %}
 {% block h1 %}Browse{% endblock %}
-{% block body_block %}
+
+
+
+	<!-- Page card title !-->
+	<h2>Please select search criteria</h2>
 
 <div>
     <form id="browse" method="post" action="{% url 'browse' %}" enctype="multipart/form-data">
@@ -11,11 +15,25 @@
         <input type="submit" name="submit" value="Get runs">
     </form>
 </div>
+
 {% if accepted %}
-    {% if runs %}
-    <div>
-        <table class="sortable table table-hover table-striped">
-            <thead class="thead-inverse">
+        {% if runs %}
+<div>
+   <table class="sortable table table-hover table-striped">
+       <thead class="thead-inverse">
+            <tr>
+                <th>Researcher</th>
+                <th>Run</th>
+                <th>Map</th>
+                <th>p10</th>
+                <th>p20</th>
+            </tr>
+        </thead>
+
+
+        <tbody>
+            {% for run in runs %}
+
                 <tr>
                     <th>Researcher</th>
                     <th>Run</th>
