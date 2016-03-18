@@ -4,25 +4,48 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','trec.settings')
 import django
 django.setup()
 
-from rango.models import Researcher, Genre, Track, Task, Run
+from main.models import Researcher, Genre, Track, Task, Run, User
 
 def populate():
+
+    def addUser(username,email,password,display_name,website,organization):
+        u = User.objects.create_user(username,email,password)
+        up = Researcher.objects.get_or_create(user=u,display_name=display_name,website=website,organization=organization)[0]
+        return u
+
+    def addGenre(title):
+        g = Genre.objects.get_or_create(title=title)[0]
+        return g
+
+    def addTrack(title,track_url,description,genre):
+        track = Track.objects.get_or_create(title=title,description=description,genre=genre,track_url=track_url)[0]
+        return track
+
+    def addTask(track,title,description,task_url,year):
+        task = Task.objects.get_or_create(title=title, track=track, description = description, task_url=task_url,year=year)[0]
+        return task
+
+    def addRun(name,description,run_type,query_type,feedback_type,researcher,task,result_file_id,map,p10,p20):
+        r = Run.objects.get_or_create(name=name,description=description,run_type=run_type,query_type=query_type,
+                                      feedback_type=feedback_type,researcher=researcher,task=task,result_file_id=result_file_id,
+                                      map=map,p10=p10,p20=p20)[0]
+        return r
     #need to add in pictures!
-    jill_researcher = addUser(username='jill',
+    jill_researcher = addUser(username='Jill2',
                                email='jill@gmail.com',
                                password='jill',
                                website='http://jsonmyfeet@tumblr.com',
                                display_name='Jill',
                                organization = 'University of Glasgow')
 
-    jen_researcher = addUser(username='jen',
+    jen_researcher = addUser(username='Jen2',
                                email='jen@gmail.com',
                                password='jen',
                                website='http://allthispurple@tumblr.com',
                                display_name='Jen',
                                organization = 'University of Strathclyde')
 
-    bob_researcher = addUser(username='bob',
+    bob_researcher = addUser(username='Bob2',
                                email='bob@gmail.com',
                                password='bob',
                                website='http://youknowit@tumblr.com',
@@ -47,46 +70,14 @@ def populate():
                           description='first run ever',
                           run_type='AU',
                           query_type='AF',
-                          feedback_type='RF')
+                          feedback_type='RF',
+                          researcher=bob_researcher,
+                          task=robust_task,
+                          result_file_id=1,
+                          map=0.1,
+                          p10=0.3,
+                          p20=0.4)
 
-    def addUser(username,email,password,display_name,website,organization):
-        u = Researcher.objects.get_or_create(username=username,password=password,email=email)
-        u.display_name=display_name
-        u.website=website
-        u.organization=organization
-        u.save()
-        return u
-
-    def addGenre(title):
-        g = Genre.objects.get_or_create(title=title)
-        g.save()
-        return g
-
-    def addTrack(title,track_url,description,genre):
-        track = Track.objects.get_or_create(title=title)
-        track.description=description
-        track.genre=genre
-        track.track_url=track_url
-        track.save()
-        return track
-
-    def addTask(track,title,description,task_url,year):
-        task = Task.objects.get_or_create(title=title)
-        task.track=track
-        task.description=description
-        task.task_url=task_url
-        task.year=year
-        task.save()
-        return task
-
-    def addRun(name,description,run_type,query_type,feedback_type):
-        r = Run.objects.get_or_create(name=name)
-        r.description=description
-        r.run_type=run_type
-        r.query_type=query_type
-        r.feedback_type=feedback_type
-        r.save()
-        return r
 
 if __name__ == '__main__':
     populate()
