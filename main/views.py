@@ -77,69 +77,19 @@ def uploadRun(request):
 
 @has_permission_decorator("edit_tracks")
 def uploadGenre(request):
-    contextDict = {}
-    posted = False
-    retUrl = ""
-    if request.method == "GET":
-        upl_form = GenreForm()
-        retForm = ReturnUrlForm(initial={"url":request.META.get("HTTP_REFERER")})
-    else:
-        upl_form = GenreForm(data=request.POST)
-        if upl_form.is_valid():
-            upl_form.save(commit=True)
-            posted = True
-        retForm = ReturnUrlForm(data=request.POST)
-        if retForm.is_valid():
-            retUrl = retForm.cleaned_data["url"]
-    contextDict["form"] = upl_form
-    contextDict["posted"] = posted
-    contextDict["retUrl"] = retUrl
-    contextDict["retForm"] = retForm
-    return render(request, "main/uploadGenre.html", contextDict)
+    return viewhelper.uploadFormGeneric(request, "main/uploadGenre.html", GenreForm, None)
 
 @has_permission_decorator("edit_tracks")
 def uploadTask(request):
-    contextDict = {}
-    valid = False
-    error = False
-    if request.method == "GET":
-        upl_form = TaskForm()
-    else:
-        upl_form = TaskForm(request.POST, request.FILES)
-        if upl_form.is_valid():
-            temp_data = upl_form.save(commit=False)
-            temp_data.track = upl_form.cleaned_data["track"]
-            temp_data.save()
-            valid = True
-        else:
-            error = True
-    contextDict["form"] = upl_form
-    contextDict["valid"] = valid
-    contextDict["error"] = error
-    contextDict["new"] = True
-    return render(request, "main/uploadTask.html", contextDict)
+    def extraCallable(data, form):
+        data.track = form.cleaned_data["track"]
+    return viewhelper.uploadFormGeneric(request, "main/uploadTask.html", TaskForm, extraCallable)
 
 @has_permission_decorator("edit_tracks")
 def uploadTrack(request):
-    contextDict = {}
-    valid = False
-    error = False
-    if request.method == "GET":
-        upl_form = TrackForm()
-    else:
-        upl_form = TrackForm(data=request.POST)
-        if upl_form.is_valid():
-            temp_data = upl_form.save(commit=False)
-            temp_data.genre = upl_form.cleaned_data["genre"]
-            temp_data.save()
-            valid = True
-        else:
-            error = True
-    contextDict["form"] = upl_form
-    contextDict["valid"] = valid
-    contextDict["error"] = error
-    contextDict["new"] = True
-    return render(request, "main/uploadTrack.html", contextDict)
+    def extraCallable(data, form):
+        data.genre = form.cleaned_data["genre"]
+    return viewhelper.uploadFormGeneric(request, "main/uploadTrack.html", TrackForm, extraCallable)
 
 def register(request):
     context_dict = {}
@@ -255,9 +205,7 @@ def user_login(request):
 
 def user_logout(request):
     logout(request)
-
     return HttpResponseRedirect('/main/')
-
 
 @login_required
 def profile(request):
@@ -285,7 +233,7 @@ def viewRun(request, runid):
 
 def viewTrack(request, trackid):
     track = get_object_or_404(Track, id=trackid)
-    tasks = get_list_or_404(Task, track=track)
+    tasks = Task.objects.filter(track=track)
     context_dict = {}
     context_dict["track"] = track
     context_dict["tasks"] = tasks

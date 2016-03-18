@@ -21,3 +21,26 @@ def editFormGeneric(request, template, model, formType, id):
     context_dict["new"] = False
     context_dict["title"] = currentElement.title
     return render(request, template, context_dict)
+
+def uploadFormGeneric(request, template, formType, extraCallable):
+    contextDict = {}
+    valid = False
+    error = False
+    if request.method == "GET":
+        upl_form = formType()
+    else:
+        upl_form = formType(data=request.POST)
+        if upl_form.is_valid():
+            temp_data = upl_form.save(commit=False)
+            # Extra processing before saving. Can be none if not required
+            if extraCallable is not None:
+                extraCallable(temp_data, upl_form)
+            temp_data.save()
+            valid = True
+        else:
+            error = True
+    contextDict["form"] = upl_form
+    contextDict["valid"] = valid
+    contextDict["error"] = error
+    contextDict["new"] = True
+    return render(request, template, contextDict)
