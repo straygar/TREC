@@ -38,10 +38,9 @@ class Task(models.Model):
     def __unicode__(self):
         return u'{0}'.format(self.title)
 
-    track = models.OneToOneField(
+    track = models.ForeignKey(
         Track,
-        on_delete = models.CASCADE,
-        null = False
+        on_delete = models.CASCADE
     )
     title = models.CharField(max_length = 64, unique=True)
     task_url = models.URLField(max_length=200)
