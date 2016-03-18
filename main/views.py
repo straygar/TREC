@@ -259,3 +259,11 @@ def viewTask(request, taskid):
 
 def editTask(request, taskid):
     return viewhelper.editFormGeneric(request, "main/uploadTask.html", Task, TaskForm, taskid)
+
+def search(request):
+    track = request.GET.get("track", None)
+    task = request.GET.get("task", None)
+    uploader_username = request.GET.get("username", None)
+    uploader_name = request.GET.get("displayname", None)
+    runtype = request.GET.get("runtype", None)
+    genre = request.GET.get("genre", None)
