@@ -280,7 +280,7 @@ def editTrack(request, trackid):
     pass
 
 def viewTask(request, taskid):
-    pass
+    return render(request, "main/viewTask.html", {"task":Task.objects.get(id=taskid)})
 
 def editTask(request, taskid):
     pass
