@@ -4,6 +4,9 @@ from captcha.fields import CaptchaField
 from parsley.decorators import parsleyfy
 from django.contrib.auth.models import User
 
+class BrowseForm(forms.ModelForm):
+    task = forms.ModelChoiceField(queryset=Task.objects.all())
+
 @parsleyfy
 class RunForm(forms.ModelForm):
     task = forms.ModelChoiceField(queryset=Task.objects.all())
