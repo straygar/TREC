@@ -34,22 +34,20 @@
 					<th>p20</th>
 				</tr>
 			</thead>
-
-
-		<tbody>
-			{% for run in runs %}
-			<tr>
-				<td>{{ run.researcher }}</td>
-				<td>{{ run.name }}</td>
-				<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
-				<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
-				<td>{{ run.map }}</td>
-				<td>{{ run.p10 }}</td>
-				<td>{{ run.p20 }}</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-    </table>
-
+			<tbody>
+				{% for run in runs %}
+				<tr>
+					<td>{{ run.researcher }}</td>
+					<td>{{ run.name }}</td>
+					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
+					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
+					<td>{{ run.map }}</td>
+					<td>{{ run.p10 }}</td>
+					<td>{{ run.p20 }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		</div>
 </div>
 {% endblock %}
