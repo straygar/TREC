@@ -19,7 +19,7 @@ from django.core.serializers.json import DjangoJSONEncoder
 
 def index(request):
     context_dict = {}
-    run_list = Run.objects.all()[:10]
+    run_list = Run.objects.all()
     context_dict = { 'runs' : run_list}
 
     return render(request, 'main/index.html', context_dict)
@@ -35,14 +35,12 @@ def browse(request):
             selection = browse_form.save(commit=False)
             accepted = True
             contextDict["task"] = browse_form.cleaned_data["task"]
-            contextDict["track"] = browse_form.cleaned_data["track"]
+            #contextDict["track"] = browse_form.cleaned_data["track"]
             run_list = Run.objects.filter(task = browse_form.cleaned_data["task"])
             contextDict["runs"] = run_list
 
-
     contextDict["form"] = browse_form
     contextDict["accepted"] = accepted
-
 
     return render(request, 'main/browse.html', contextDict)
 
@@ -69,9 +67,7 @@ def uploadRun(request):
                 temp_data.p10 = results["P_10"]
                 temp_data.p20 = results["P_20"]
                 temp_data.map = results["map"]
-                print temp_data.task
                 run_list = Run.objects.filter(task=temp_data.task)
-                print run_list
                 contextDict["runs"] = run_list
                 temp_data.save()
                 finish = True
