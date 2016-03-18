@@ -26,10 +26,18 @@ def index(request):
 
 def browse(request):
     contextDict = {}
+    accepted = False
     if request.method == "GET":
         browse_form = BrowseForm()
+    else:
+        browse_form = BrowseForm(request.POST)
+        if browse_form.is_valid():
+            selection = browse_form.save()
+            accepted = True
+
 
     contextDict["form"] = browse_form
+    contextDict["accepted"] = accepted
     return render(request, 'main/browse.html', contextDict)
 
 @login_required

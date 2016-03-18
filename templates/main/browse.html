@@ -6,7 +6,12 @@
 
 {% block body_block %}
 
-<form id="upload_run" method="post" action="{% url 'browse' %}">
+{% if finish %}
+
+{% endif %}
+
+<form id="upload_run" method="post" action="{% url 'browse' %}" enctype="multipart/form-data">
+    {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" name="submit" value="Get runs">
 </form>
