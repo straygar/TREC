@@ -14,8 +14,8 @@ from django.contrib.auth import authenticate, login, logout
 from util import trec, viewhelper
 from trec import roles
 
-from graphos.sources.model import ModelDataSource
-from graphos.renderers import gchart
+import json
+from django.core.serializers.json import DjangoJSONEncoder
 
 def index(request):
     context_dict = {}
@@ -218,12 +218,18 @@ def profile(request):
     u = User.objects.get(username=request.user)
     up = get_object_or_404(Researcher, user=u)
     print up
-    queryset = Run.objects.filter(researcher=request.user)[:5]
-    data_source = ModelDataSource(queryset,fields=['p10','p20'])
-    chart = gchart.LineChart(data_source)
+
+    #p10 = Run.objects.filter(researcher=request.user)[:5].values_list('p10')
+    #p20 = Run.objects.filter(researcher=request.user)[:5].values_list('p10')
+    #p10_json = json.dumps(list(p10),cls=DjangoJSONEncoder)
+    #p20_json = json.dumps(list(p20),cls=DjangoJSONEncoder)
+
+    r =  Run.objects.filter(researcher=request.user)[:1]
+
     context_dict['user'] = u
     context_dict['userprofile'] = up
-    context_dict['chart']=chart
+    context_dict['run']=r
+
     return render_to_response('main/profile.html', context_dict, context)
 
 def about(request):

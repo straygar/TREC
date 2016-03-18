@@ -2,10 +2,7 @@
 
 {% load staticfiles %}
 
-<script type="text/javascript" src="https://www.google.com/jsapi"></script>
-<script type="text/javascript">
-    google.load("visualization", "1", {packages:["corechart"]});
-</script>
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
 
 {% block title %}Profile{% endblock %}
 
@@ -20,7 +17,34 @@
         <img src="{{ userprofile.profile_picture.url }}" alt="User profile picture" />
         {% endif %}
 		
-		<p> Last 5 runs: {{ point_chart.as_html }} </p>
+		<div id="chart_div"></div>
 		
     </div>
+    {% load googlecharts %}
+    {# container #}
+    <div id="out"></div>
+    {% googlecharts %}
+    {# named data and options can be reused #}
+    {% data values "out_data" %}
+        {% col "string" "Run" %}"{{ r.title }}"{% endcol %}
+        {% col "number" "p10" %}{{ r.p10 }}{% endcol %}
+        {% col "number" "p20" %}{{ r.p20 }}{% endcol %}
+    {% enddata %}
+    {# you can also use global javascript variables here, #}
+    {# and call functions #}
+    {% options "out_options" %}
+        kind: "BarChart",
+        options: {
+            width: 300,
+            height: 240
+        }
+    {% endoptions %}
+    {# chart is assembled from container, data and options #}
+    {% graph "out" "out_data" "out_options" %}
+{% endgooglecharts %}
+
+    <!--<script src="{#% static 'js/chart.js' %#}">
+    var p10_list = "{#  #}{ p10_json|safe }}"
+    var p20_list = "{#  #}{ p20_json|safe }}"
+    </script>-->
 {% endblock %}
