@@ -1,0 +1,39 @@
+{% extends "main/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}View task: {{ task.title }}{% endblock %}
+
+{% block body_block %}
+
+<h1>Task: {{ track.title }}</h1>
+<h3>Details</h3>
+
+<table>
+    <tr>
+        <td>Title</td>
+        <td>{{ task.title }}</td>
+    </tr>
+    <tr>
+        <td>URL</td>
+        <td>{{ task.task_url }}</td>
+    </tr>
+    <tr>
+        <td>Description</td>
+        <td>{{ task.description }}</td>
+    </tr>
+    <tr>
+        <td>Year</td>
+        <td>{{ task.year }}</td>
+    </tr>
+    <tr>
+        <td>Judgement file</td>
+        <td><a href="{{ task.judgement_file.url }}">Click here to download the qrels file</a></td>
+    </tr>
+    <tr>
+        <td>Belongs to track...</td>
+        <td><a href="{% url 'view_track' trackid=task.track.id %}">{{ task.track.title }}</a></td>
+    </tr>
+</table>
+
+{% endblock %}

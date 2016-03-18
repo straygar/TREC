@@ -1,15 +1,36 @@
-{% extends "main/base.html" %}
+{% extends "main/base_forms.html" %}
 
-{% load staticfiles %}
-
-{% block title %}Upload Task{% endblock %}
-
-{% block body_block %}
-<form id="upload_task" method="post" action="{% url 'new_task' %}" enctype="multipart/form-data" data-parsley-validate>
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" name="submit" value="Create">
-    <p>Want to add a new track? <a href="{% url 'new_track' %}">Click here</a></p>
-</form>
-
+{% block title %}
+    {% if new %}
+        {% block new_element %}Upload a new Task{% endblock %}
+    {% else %}
+        {% block edit_element %}Edit Task {{ title }}{% endblock %}
+    {% endif %}
 {% endblock %}
+
+{% block insert_block %}
+<h1>
+    {% if new %}
+        Upload a new Task
+    {% else %}
+        Edit Task {{ title }}
+    {% endif %}
+</h1>
+{% endblock %}
+
+{% block ok_upload %}
+<h3>Successfully added the task!</h3>
+{% endblock %}
+{% block error_upload %}
+<h3>The data you entered is incorrect</h3>
+<h5>Please, check all the fields</h5>
+{% endblock %}
+{% block ok_edit %}
+<h3>Successfully edited task!</h3>
+{% endblock %}
+{% block error_edit %}
+<h3>The data you entered is incorrect</h3>
+<h5>Please, check all the fields</h5>
+{% endblock %}
+
+{% block suggest_add %}<p>Want to add a new genre? <p>Want to add a new track? <a href="{% url 'new_track' %}">Click here</a></p>{% endblock %}
