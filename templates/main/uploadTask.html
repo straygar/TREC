@@ -33,4 +33,6 @@
 <h5>Please, check all the fields</h5>
 {% endblock %}
 
+{% if can_edit_tracks %}
 {% block suggest_add %}<p>Want to add a new genre? <p>Want to add a new track? <a href="{% url 'new_track' %}">Click here</a></p>{% endblock %}
+{% endif %}

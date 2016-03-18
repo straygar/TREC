@@ -11,12 +11,11 @@
     <h3><a href="/main/run/new/">Upload Run</a></h3>
 </div>
 
-{% if user.is_authenticated %}
+{% if can_edit_tracks %}
     <h4>Are you an Admin? Add:</h4>
     <a href="/main/task/new">Tasks</a>
     <a href="/main/track/new">Tracks</a>
     <a href="/main/edit/new">Genres</a>
-    <li>Is there a way to make it this only appear to adminrole users?</li>
 {% endif %}
 
 
