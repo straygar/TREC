@@ -3,20 +3,26 @@
 {% load staticfiles %}
 
 {% block title %}Browse{% endblock %}
+{% block h1 %}Browse{% endblock %}
 
 {% block body_block %}
+	<!-- Page card title !-->
+	<h2>Please select search criteria</h2>
+	<hr />
+	<!-- /Page card title !-->
+	<div class="col-lg-6 col-md-6 col-sm-12">
+		{% if accepted %}
+		<h4>Track and Task</h4>
+		<li>{{ track }}</li>
+		<li>{{ task }}</li>
+		{% endif %}
 
-{% if accepted %}
-<h4>Track and Task</h4>
-<li>{{ track }}</li>
-<li>{{ task }}</li>
-{% endif %}
-
-<form id="upload_run" method="post" action="{% url 'browse' %}" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <input type="submit" name="submit" value="Get runs">
-</form>
+		<form id="upload_run" method="post" action="{% url 'browse' %}" enctype="multipart/form-data">
+			{% csrf_token %}
+			{{ form.as_p }}
+			<input class="btn btn-primary"type="submit" name="submit" value="Get runs">
+		</form>
+	</div>
 
 
 {% endblock %}

@@ -4,7 +4,6 @@
 {% block h1 %}Register{% endblock %}
 
 {% block body_block %}
-		<br />
         {% if registered %}
         <p> Thank you for registering.</p>
         <p><a href="/main/login/">Login</a> when you are ready.</p>
@@ -13,25 +12,30 @@
         <form class="form-inline" id="user_form" method="post" action="/main/register/"
               enctype="multipart/form-data">
             {% csrf_token %}
-            <h2 class="form-signin-heading">Sign up Here</h2>
+			<!-- Page card title !-->
+            <h2 class="form-signin-heading">Please enter your details below</h2>
+			<hr />
+			<!-- /Page card title !-->
             <!-- Display each form here -->
+			<div class="col-lg-6 col-md-6 col-lg-12">
+				{% for field in user_form.visible_fields %}
+				
+					{{ field.help_text}}<br/>
+					{{ field }}<br/>
+					{{ field.errors }}
+				
+				{% endfor %}
 
-            {% for field in user_form.visible_fields %}
-            {{ field.help_text}}<br/>
-            {{ field }}
-			{{ field.errors }}<br/>
-            {% endfor %}
 
+				{% for field in profile_form.visible_fields %}
+				{{ field.errors }}
+				{{ field.help_text}}<br/>
+				{{ field }}<br/>
+				{% endfor %}
 
-            {% for field in profile_form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text}}<br/>
-            {{ field }}<br/>
-            {% endfor %}
-
-            <br/>
             <!-- Provide a button to click to submit the form. -->
-            <input class="btn btn-primary" type="submit" name="submit" value="Register"/>
+				<input class="btn btn-primary" type="submit" name="submit" value="Register"/>
+			</div>
         </form>
         {% endif %}
 {% endblock %}

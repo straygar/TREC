@@ -49,8 +49,14 @@
 				<h1>{% block h1 %}{% endblock %}</h1>
 			</div>
 		</div>
-        <div class="container">
-            {% block body_block %}{% endblock %}
+        <div class="container content">
+            {% block body_block %}
+			{% endblock %}
         </div>
+		<div class="container-fluid footer">
+			<div class="container footer-text">
+				--- Footer | Text | Test ----
+			</div>
+		</div>
     </body>
 </html>
