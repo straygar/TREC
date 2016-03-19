@@ -310,6 +310,8 @@ def search(request):
         try:
             date_min_c = getOrDefault(date_min, convertDate)
             date_max_c = getOrDefault(date_max, convertDate)
+            if date_max_c is not None:
+                date_max_c += datetime.timedelta(days=1) # Add one day
             p10_min_c = getOrDefault(p10_min, convertFloat)
             p10_max_c = getOrDefault(p10_max, convertFloat)
             p20_min_c = getOrDefault(p20_min, convertFloat)
@@ -318,8 +320,8 @@ def search(request):
             map_max_c = getOrDefault(map_max, convertFloat)
             if date_min_c is not None:
                 filtered_objects = filtered_objects.filter(datetime__gte=date_min_c)
-            if date_max_c is not None:
-                filtered_objects = filtered_objects.filter(datetime__lte=date_max_c)
+            if date_max_c is not None: # Since we added a day, we want it to be strictly less than it
+                filtered_objects = filtered_objects.filter(datetime__lt=date_max_c)
             if p10_min_c is not None:
                 filtered_objects = filtered_objects.filter(p10__gte=p10_min_c)
             if p10_max_c is not None:
