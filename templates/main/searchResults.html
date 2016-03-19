@@ -1,0 +1,15 @@
+{% extends "main/base.html" %}
+
+
+{% block title %}Search results{% endblock %}
+
+{% block h1 %}Search results for your query{% endblock %}
+
+{% block body_block %}
+
+	<h2>These are the runs matching your query</h2>
+	<hr />
+	<!-- /Page card title !-->
+	{{ objects }}
+
+{% endblock %}

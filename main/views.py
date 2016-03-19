@@ -264,6 +264,7 @@ def editTask(request, taskid):
 
 def search(request):
     error = False
+    context_dict = {}
     track = request.GET.get("track", None)
     task = request.GET.get("task", None)
     uploader_username = request.GET.get("username", None)
@@ -279,6 +280,8 @@ def search(request):
     p20_max = request.GET.get("p20_max", None)
     date_min = request.GET.get("date_min", None)
     date_max = request.GET.get("date_max", None)
+    name = request.GET.get("name", None)
+    description = request.GET.get("desc", None)
     filtered_objects = Run.objects.all()
     # Convert to the right data types
     try:
@@ -290,7 +293,7 @@ def search(request):
         p20_max_c = getOrDefault(p20_max, convertFloat)
         map_min_c = getOrDefault(map_min, convertFloat)
         map_max_c = getOrDefault(map_max, convertFloat)
-        track_c = getOrDefault(track, convertTrack)
+        task_c = getOrDefault(task, convertTask)
         if date_min_c is not None:
             filtered_objects = filtered_objects.filter(datetime__gte=date_min_c)
         if date_max_c is not None:
@@ -307,7 +310,32 @@ def search(request):
             filtered_objects = filtered_objects.filter(map__gte=map_min_c)
         if map_max_c is not None:
             filtered_objects = filtered_objects.filter(map__lte=map_max_c)
-        if track is not
+        if task is not None:
+            filtered_objects = filtered_objects.filter(task=task_c)
+        if uploader_username is not None:
+            tempUser = User.objects.get(username=uploader_username)
+            filtered_objects = filtered_objects.filter(researcher=tempUser)
+        if uploader_name is not None:
+            tempUser = Researcher.objects.get(display_name=uploader_name).user
+            filtered_objects = filtered_objects.filter(researcher=tempUser)
+        if runtype is not None:
+            filtered_objects = filtered_objects.filter(runtype=runtype)
+        if feedback_type is not None:
+            filtered_objects = filtered_objects.filter(feedback_type=feedback_type)
+        if genre is not None:
+            tempGenre = Genre.objects.get(title=genre)
+            filtered_objects = filtered_objects.filter(task__track__genre = tempGenre)
+        if track is not None:
+            tempTrack = Track.objects.get(title=track)
+            filtered_objects = filtered_objects.filter(task__track=tempTrack)
+        if name is not None:
+            filtered_objects = filtered_objects.filter(name__contains=name)
+        if description is not None:
+            filtered_objects = filtered_objects.filter(description__contains=description)
+        error = False
+        context_dict["objects"] = filtered_objects
     except:
         error = True
-
+        context_dict["objects"] = None
+    context_dict["error"] = error
+    return render(request, "main/searchResults.html", context_dict)
