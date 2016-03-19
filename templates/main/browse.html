@@ -47,7 +47,7 @@
 			<tbody>
 				{% for run in runs %}
 				<tr>
-					<td>{{ run.datetime }}</td>
+					<td>{{ run.datetime|date:"dd-mm-yy" }}</td>
 					<td>{{ run.researcher }}</td>
 					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
 					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>

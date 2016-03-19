@@ -339,7 +339,7 @@ def search(request):
             if uploader_username is not None:
                 filtered_objects = filtered_objects.filter(researcher__user__username=uploader_username)
             if uploader_name is not None:
-                filtered_objects = filtered_objects.filter(researcher__display_name=tempUser)
+                filtered_objects = filtered_objects.filter(researcher__display_name=uploader_name)
             if runtype is not None:
                 filtered_objects = filtered_objects.filter(run_type=runtype)
             if feedback_type is not None:
