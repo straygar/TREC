@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 var refetch = true;
 
 $(document).ready(function() {
