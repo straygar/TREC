@@ -18,6 +18,7 @@ from util.dataparser import *
 from trec import roles
 
 import json
+from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 
 def index(request):
@@ -358,3 +359,13 @@ def searchForm(request):
     context_dict["tasks"] = Task.objects.all()
     context_dict["genres"] = Genre.objects.all()
     return render(request, "main/searchForm.html", context_dict)
+
+def getOrgsJson(request):
+    query = request.GET.get("organization", None)
+    if query is None or len(query.strip()) == 0:
+        returnData = []
+    else:
+        fields = Researcher.objects.filter(organization__contains=query).values_list("organization", flat=True).distinct()
+        returnData = json.dumps(list(fields)) # Required to conver to a List and not a ValuesListQuerySet
+    print returnData
+    return HttpResponse(returnData, content_type='application/json')

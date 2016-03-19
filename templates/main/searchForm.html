@@ -6,10 +6,16 @@
 
 {% block h1 %}Search TREC-FEED{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+
+{% endblock %}
+
 {% block body_block %}
     <script src="{% static 'js/jquery.collapse.js' %}"></script>
     <script src="{% static 'js/jquery.collapse_cookie_storage.js' %}"></script>
     <script src="{% static 'js/jquery.collapse_storage.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
     <script src="{% static 'js/searchForm.js' %}"></script>
 
 	<!-- Page card title !-->
@@ -62,8 +68,8 @@
             </div>
         <h3>Organization</h3>
             <div>
-                Please type in an organization:
-
+                Please type in an organization:<br/>
+                <input type="text" id="org_input">
             </div>
         <h3>Researcher username</h3>
             <div>Here you can choose</div>
