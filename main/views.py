@@ -349,3 +349,6 @@ def search(request):
     context_dict["error"] = error
     context_dict["allnull"] = allNull
     return render(request, "main/searchResults.html", context_dict)
+
+def searchForm(request):
+    return HttpResponse("Not implemented")
