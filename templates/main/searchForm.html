@@ -109,7 +109,13 @@
             </div>
         <h3><span class="glyphicon glyphicon-plus"></span>Run type</h3>
             <div>
-
+                <label for="runtype_sel">Select a run type</label>
+                <select id="runtype_sel" class="form-control">
+                    <option value="">Do not search on this criteria</option>
+                    {% for val, type in run_type_choices %}
+                        <option value="runtype={{ val }}">{{ type }}</option>
+                    {% endfor %}
+                </select>
             </div>
         <h3><span class="glyphicon glyphicon-plus"></span>Feedback type</h3>
             <div>Here you can choose</div>

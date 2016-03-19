@@ -339,7 +339,7 @@ def search(request):
             if uploader_name is not None:
                 filtered_objects = filtered_objects.filter(researcher__display_name=tempUser)
             if runtype is not None:
-                filtered_objects = filtered_objects.filter(runtype=runtype)
+                filtered_objects = filtered_objects.filter(run_type=runtype)
             if feedback_type is not None:
                 filtered_objects = filtered_objects.filter(feedback_type=feedback_type)
             if genre is not None:
@@ -368,6 +368,7 @@ def searchForm(request):
     context_dict["tracks"] = Track.objects.all()
     context_dict["tasks"] = Task.objects.all()
     context_dict["genres"] = Genre.objects.all()
+    context_dict["run_type_choices"] = Run.Run_type_choices
     return render(request, "main/searchForm.html", context_dict)
 
 def getOrgsJson(request):
