@@ -19,13 +19,52 @@
     <h2>Please select what criteria you want to search on</h2>
     <div id="form">
         <h3>Track</h3>
-            <div>Here you can choose</div>
+            <div>
+                {% if tracks %}
+                    Please choose a track:<br/>
+                    <select id="track_sel">
+                        <option value="">Do not search on this criteria</option>
+                        {% for track in tracks %}
+                            <option value="track={{ track.title }}">{{ track.title }}</option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <span>There are no tracks on the database!</span>
+                {% endif %}
+            </div>
         <h3>Task</h3>
-            <div>Here you can choose</div>
+            <div>
+                {% if tasks %}
+                    Please choose a task:<br/>
+                    <select id="task_sel">
+                        <option value="">Do not search on this criteria</option>
+                        {% for task in tasks %}
+                            <option value="task={{ task.title }}">{{ task.title }}</option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <span>There are no tasks on the database!</span>
+                {% endif %}
+            </div>
         <h3>Genre</h3>
-            <div>Here you can choose</div>
+            <div>
+                {% if genres %}
+                    Please choose a genre:<br/>
+                    <select id="genre_sel">
+                        <option value="">Do not search on this criteria</option>
+                        {% for genre in genres %}
+                            <option value="genre={{ genre.title }}">{{ genre.title }}</option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <span>There are no genres on the database!</span>
+                {% endif %}
+            </div>
         <h3>Organization</h3>
-            <div>Here you can choose</div>
+            <div>
+                Please type in an organization:
+
+            </div>
         <h3>Researcher username</h3>
             <div>Here you can choose</div>
         <h3>Researcher name</h3>

@@ -354,4 +354,7 @@ def search(request):
 
 def searchForm(request):
     context_dict = {}
+    context_dict["tracks"] = Track.objects.all()
+    context_dict["tasks"] = Task.objects.all()
+    context_dict["genres"] = Genre.objects.all()
     return render(request, "main/searchForm.html", context_dict)
