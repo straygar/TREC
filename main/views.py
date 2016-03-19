@@ -307,7 +307,6 @@ def search(request):
             filtered_objects = filtered_objects.filter(map__gte=map_min_c)
         if map_max_c is not None:
             filtered_objects = filtered_objects.filter(map__lte=map_max_c)
-        if track is not
     except:
         error = True
 
