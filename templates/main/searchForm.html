@@ -22,162 +22,161 @@
 	<h2>Search for Runs on TREC-FEED</h2>
 	<hr />
 	<!-- /Page card title !-->
+    <h3 id="noCrit">You need to select some criteria</h3>
     <h2>Please select what criteria you want to search on</h2>
-    <form id="outerForm" action="{% url 'searchRes' %}">
-        <div id="form" class="search-forms">
-            <h3><span class="glyphicon glyphicon-plus"></span>Track</h3>
-                <div>
-                    {% if tracks %}
-                        <label for="track_sel">Select a track</label>
-                        <select id="track_sel" class="form-control">
-                            <option value="">Do not search on this criteria</option>
-                            {% for track in tracks %}
-                                <option value="track={{ track.title }}">{{ track.title }}</option>
-                            {% endfor %}
-                        </select>
-                    {% else %}
-                        <span>There are no tracks on the database!</span>
-                    {% endif %}
-                </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Task</h3>
-                <div>
-                    {% if tasks %}
-                        <label for="task_sel">Select a task</label>
-                        <select id="task_sel" class="form-control">
-                            <option value="">Do not search on this criteria</option>
-                            {% for task in tasks %}
-                                <option value="task={{ task.title }}">{{ task.title }}</option>
-                            {% endfor %}
-                        </select>
-                    {% else %}
-                        <span>There are no tasks on the database!</span>
-                    {% endif %}
-                </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Genre</h3>
-                <div>
-                    {% if genres %}
-                    <label for="genre_sel">Select a genre</label>
-                        <select id="genre_sel" class="form-control">
-                            <option value="">Do not search on this criteria</option>
-                            {% for genre in genres %}
-                                <option value="genre={{ genre.title }}">{{ genre.title }}</option>
-                            {% endfor %}
-                        </select>
-                    {% else %}
-                        <span>There are no genres on the database!</span>
-                    {% endif %}
-                </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Organization</h3>
-                <div>
-                    <label for="org_input">Enter an organisation name</label>
-                    <input type="text" id="org_input" class="form-control" refetch="true" jsonpath="getOrgsJson?query=" prepend="organization">
-                </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Researcher username</h3>
-                <div>
-                    <label for="usrname_input">Enter a username</label>
-                    <input type="text" id="usrname_input" class="form-control" refetch="true" jsonpath="getUsrnameJson?query=" prepend="username">
-                </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Researcher name</h3>
-                <div>
-                    <label for="usrdisplay_input">Enter a name</label>
-                    <input type="text" id="usrdisplay_input" class="form-control" refetch="true" jsonpath="getNameJson?query=" prepend="displayname">
-                </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Date uploaded</h3>
-                <div id="dateChooser">
-                    <h3><span class="glyphicon glyphicon-plus"></span>Only a certain date</h3>
-                    <div>
-                        <label for="datepicker1">Enter a date</label>
-                        <input type="text" class="form-control" id="datepicker1" prepend="date_" extra="unique">
-                    </div>
-                    <h3><span class="glyphicon glyphicon-plus"></span>A range of dates</h3>
-                    <div>
-                        <p>Note: You can leave any of the ends empty if you only want to set a maximum or a minimmum date</p>
-                        <label for="datepickerrange1">After this date</label>
-                        <input type="text" class="form-control" id="datepickerrange1" prepend="date_min">
-                        <label for="datepickerrange2">Before this date</label>
-                        <input type="text" class="form-control" id="datepickerrange2" prepend="date_max">
-                    </div>
-                </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Run name</h3>
-                <div>
-                    <label for="runname_input">Enter a run name</label>
-                    <input type="text" id="runname_input" class="form-control" refetch="true" jsonpath="getRunNameJson?query=" prepend="name">
-                </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Run description</h3>
-                <div>
-                    <label for="runname_desc">Enter part of the description</label>
-                    <input type="text" id="runname_desc" class="form-control" prepend="desc">
-                </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Run type</h3>
-                <div>
-                    <label for="runtype_sel">Select a run type</label>
-                    <select id="runtype_sel" class="form-control">
+    <div id="form" class="search-forms">
+        <h3><span class="glyphicon glyphicon-plus"></span>Track</h3>
+            <div>
+                {% if tracks %}
+                    <label for="track_sel">Select a track</label>
+                    <select id="track_sel" class="form-control">
                         <option value="">Do not search on this criteria</option>
-                        {% for val, type in run_type_choices %}
-                            <option value="runtype={{ val }}">{{ type }}</option>
+                        {% for track in tracks %}
+                            <option value="track={{ track.title }}">{{ track.title }}</option>
                         {% endfor %}
                     </select>
-                </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Feedback type</h3>
-                <div>
-                    <label for="feedbacktype_sel">Select a feedback type</label>
-                    <select id="feedbacktype_sel" class="form-control">
+                {% else %}
+                    <span>There are no tracks on the database!</span>
+                {% endif %}
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Task</h3>
+            <div>
+                {% if tasks %}
+                    <label for="task_sel">Select a task</label>
+                    <select id="task_sel" class="form-control">
                         <option value="">Do not search on this criteria</option>
-                        {% for val, type in feedback_type_choices %}
-                            <option value="feedbacktype={{ val }}">{{ type }}</option>
+                        {% for task in tasks %}
+                            <option value="task={{ task.title }}">{{ task.title }}</option>
                         {% endfor %}
                     </select>
+                {% else %}
+                    <span>There are no tasks on the database!</span>
+                {% endif %}
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Genre</h3>
+            <div>
+                {% if genres %}
+                <label for="genre_sel">Select a genre</label>
+                    <select id="genre_sel" class="form-control">
+                        <option value="">Do not search on this criteria</option>
+                        {% for genre in genres %}
+                            <option value="genre={{ genre.title }}">{{ genre.title }}</option>
+                        {% endfor %}
+                    </select>
+                {% else %}
+                    <span>There are no genres on the database!</span>
+                {% endif %}
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Organization</h3>
+            <div>
+                <label for="org_input">Enter an organisation name</label>
+                <input type="text" id="org_input" class="form-control" refetch="true" jsonpath="getOrgsJson?query=" prepend="organization">
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Researcher username</h3>
+            <div>
+                <label for="usrname_input">Enter a username</label>
+                <input type="text" id="usrname_input" class="form-control" refetch="true" jsonpath="getUsrnameJson?query=" prepend="username">
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Researcher name</h3>
+            <div>
+                <label for="usrdisplay_input">Enter a name</label>
+                <input type="text" id="usrdisplay_input" class="form-control" refetch="true" jsonpath="getNameJson?query=" prepend="displayname">
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Date uploaded</h3>
+            <div id="dateChooser">
+                <h3><span class="glyphicon glyphicon-plus"></span>Only a certain date</h3>
+                <div>
+                    <label for="datepicker1">Enter a date</label>
+                    <input type="text" class="form-control" id="datepicker1" prepend="date_" extra="unique">
                 </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Precision at 10 score</h3>
-                <div id="p10form">
-                    <h3><span class="glyphicon glyphicon-plus"></span>Only a certain score</h3>
-                    <div>
-                        <label for="p10input1">Enter a score</label>
-                        <input type="number" class="form-control" id="p10input1" step="any" extra="unique" prepend="p10_">
-                    </div>
-                    <h3><span class="glyphicon glyphicon-plus"></span>A range of scores</h3>
-                    <div>
-                        <p>Note: You can leave any of the ends empty if you only want to set a maximum or a minimmum score</p>
-                        <label for="p10inputrange1">More than this score</label>
-                        <input type="number" class="form-control" id="p10inputrange1" step="any" prepend="p10_min">
-                        <label for="p10inputrange2">And less than this one</label>
-                        <input type="number" class="form-control" id="p10inputrange2" step="any" prepend="p10_max">
-                    </div>
+                <h3><span class="glyphicon glyphicon-plus"></span>A range of dates</h3>
+                <div>
+                    <p>Note: You can leave any of the ends empty if you only want to set a maximum or a minimmum date</p>
+                    <label for="datepickerrange1">After this date</label>
+                    <input type="text" class="form-control" id="datepickerrange1" prepend="date_min">
+                    <label for="datepickerrange2">Before this date</label>
+                    <input type="text" class="form-control" id="datepickerrange2" prepend="date_max">
                 </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Precision at 20 score</h3>
-                <div id="p20form">
-                    <h3><span class="glyphicon glyphicon-plus"></span>Only a certain score</h3>
-                    <div>
-                        <label for="p20input1">Enter a score</label>
-                        <input type="number" class="form-control" id="p20input1" step="any" extra="unique" prepend="p20_">
-                    </div>
-                    <h3><span class="glyphicon glyphicon-plus"></span>A range of scores</h3>
-                    <div>
-                        <p>Note: You can leave any of the ends empty if you only want to set a maximum or a minimmum score</p>
-                        <label for="p20inputrange1">More than this score</label>
-                        <input type="number" class="form-control" id="p20inputrange1" step="any" prepend="p20_min">
-                        <label for="p20inputrange2">And less than this one</label>
-                        <input type="number" class="form-control" id="p20inputrange2" step="any" prepend="p20_max">
-                    </div>
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Run name</h3>
+            <div>
+                <label for="runname_input">Enter a run name</label>
+                <input type="text" id="runname_input" class="form-control" refetch="true" jsonpath="getRunNameJson?query=" prepend="name">
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Run description</h3>
+            <div>
+                <label for="runname_desc">Enter part of the description</label>
+                <input type="text" id="runname_desc" class="form-control" prepend="desc">
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Run type</h3>
+            <div>
+                <label for="runtype_sel">Select a run type</label>
+                <select id="runtype_sel" class="form-control">
+                    <option value="">Do not search on this criteria</option>
+                    {% for val, type in run_type_choices %}
+                        <option value="runtype={{ val }}">{{ type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Feedback type</h3>
+            <div>
+                <label for="feedbacktype_sel">Select a feedback type</label>
+                <select id="feedbacktype_sel" class="form-control">
+                    <option value="">Do not search on this criteria</option>
+                    {% for val, type in feedback_type_choices %}
+                        <option value="feedbacktype={{ val }}">{{ type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Precision at 10 score</h3>
+            <div id="p10form">
+                <h3><span class="glyphicon glyphicon-plus"></span>Only a certain score</h3>
+                <div>
+                    <label for="p10input1">Enter a score</label>
+                    <input type="number" class="form-control" id="p10input1" step="any" extra="unique" prepend="p10_">
                 </div>
-            <h3><span class="glyphicon glyphicon-plus"></span>Map score</h3>
-                <div id="mapform">
-                    <h3><span class="glyphicon glyphicon-plus"></span>Only a certain score</h3>
-                    <div>
-                        <label for="mapinput1">Enter a score</label>
-                        <input type="number" class="form-control" id="mapinput1" step="any" extra="unique" prepend="map_">
-                    </div>
-                    <h3><span class="glyphicon glyphicon-plus"></span>A range of scores</h3>
-                    <div>
-                        <p>Note: You can leave any of the ends empty if you only want to set a maximum or a minimmum score</p>
-                        <label for="mapinputrange1">More than this score</label>
-                        <input type="number" class="form-control" id="mapinputrange1" step="any" prepend="map_min">
-                        <label for="mapinputrange2">And less than this one</label>
-                        <input type="number" class="form-control" id="mapinputrange2" step="any" prepend="map_max">
-                    </div>
+                <h3><span class="glyphicon glyphicon-plus"></span>A range of scores</h3>
+                <div>
+                    <p>Note: You can leave any of the ends empty if you only want to set a maximum or a minimmum score</p>
+                    <label for="p10inputrange1">More than this score</label>
+                    <input type="number" class="form-control" id="p10inputrange1" step="any" prepend="p10_min">
+                    <label for="p10inputrange2">And less than this one</label>
+                    <input type="number" class="form-control" id="p10inputrange2" step="any" prepend="p10_max">
                 </div>
-        </div>
-        <button type="button" id="searchbtn">Search!</button>
-    </form>
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Precision at 20 score</h3>
+            <div id="p20form">
+                <h3><span class="glyphicon glyphicon-plus"></span>Only a certain score</h3>
+                <div>
+                    <label for="p20input1">Enter a score</label>
+                    <input type="number" class="form-control" id="p20input1" step="any" extra="unique" prepend="p20_">
+                </div>
+                <h3><span class="glyphicon glyphicon-plus"></span>A range of scores</h3>
+                <div>
+                    <p>Note: You can leave any of the ends empty if you only want to set a maximum or a minimmum score</p>
+                    <label for="p20inputrange1">More than this score</label>
+                    <input type="number" class="form-control" id="p20inputrange1" step="any" prepend="p20_min">
+                    <label for="p20inputrange2">And less than this one</label>
+                    <input type="number" class="form-control" id="p20inputrange2" step="any" prepend="p20_max">
+                </div>
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Map score</h3>
+            <div id="mapform">
+                <h3><span class="glyphicon glyphicon-plus"></span>Only a certain score</h3>
+                <div>
+                    <label for="mapinput1">Enter a score</label>
+                    <input type="number" class="form-control" id="mapinput1" step="any" extra="unique" prepend="map_">
+                </div>
+                <h3><span class="glyphicon glyphicon-plus"></span>A range of scores</h3>
+                <div>
+                    <p>Note: You can leave any of the ends empty if you only want to set a maximum or a minimmum score</p>
+                    <label for="mapinputrange1">More than this score</label>
+                    <input type="number" class="form-control" id="mapinputrange1" step="any" prepend="map_min">
+                    <label for="mapinputrange2">And less than this one</label>
+                    <input type="number" class="form-control" id="mapinputrange2" step="any" prepend="map_max">
+                </div>
+            </div>
+    </div>
+    <a href="{% url 'searchRes' %}" class="btn btn-info btn-block" role="button" id="searchbtn">Seach!</a>
 
 {% endblock %}

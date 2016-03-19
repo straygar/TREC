@@ -37,7 +37,7 @@
 			<tbody>
 				{% for run in recent %}
 				<tr>
-					<td>{{ run.datetime|date:"dd-mm-yy" }}</td>
+					<td>{{ run.datetime|date:"d-m-Y" }}</td>
 					<td>{{ run.researcher }}</td>
 					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
 					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
@@ -70,7 +70,7 @@
 			<tbody>
 				{% for run in best %}
 				<tr>
-					<td>{{ run.datetime|date:"dd-mm-yy" }}</td>
+					<td>{{ run.datetime|date:"d-m-Y" }}</td>
 					<td>{{ run.researcher }}</td>
 					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
 					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
