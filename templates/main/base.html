@@ -24,8 +24,8 @@
 			  </button>
 			  <div  class="navbar-brand">
 				  <a href="{% url 'index' %}">
-					<img src="{% static 'images/logo.png' %}"/>
-					TREC evaluator
+					<img style="brand-logo" src="{% static 'images/logo.png' %}"/>
+					<span class="brand-name">TREC evaluator</span>
 				  </a>
 			  </div>
 			</div>
@@ -36,7 +36,15 @@
 					<li><a href="{% url 'about' %}">About</a></li>
 				{% if user.is_authenticated %}
 					<li><a href="{% url 'logout' %}">Logout</a></li>
-					<li><a href="{% url 'profile' %}">{{ user.username }}</a></li>
+					<li>
+						<a href="{% url 'profile' %}" class="viewProfile">
+						{% if userprofile.profile_picture %}
+							<img class="img-circle avatar" src="{{ userprofile.profile_picture.url }}" alt="User profile picture" />
+						{% else %}
+							<img class="img-circle avatar" src="{% static 'images/place.png' %}" alt="User profile picture" />
+						{% endif %}
+						</a>
+					</li>
 				{% else %}
 					<li><a href="{% url 'register' %}">Register</a></li>
 					<li><a href="{% url 'login' %}">Login</a></li>

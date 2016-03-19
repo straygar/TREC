@@ -39,7 +39,17 @@ body {
 .table-responsive {
 	max-height: 500px;
 }
-
+a>img.img-circle.avatar {
+	height:35px;
+}
+.navbar-nav > li > a.viewProfile {
+	padding-top: 8px;
+	padding-left: 0;
+}
+.brand-name {
+	position: relative;
+	top: -10px;
+}
 article,
 aside,
 details,
@@ -302,14 +312,15 @@ div.container-fluid.page_title{
 	z-index: 999;
 	left: 0;
 	right: 0;
-	min-height: 50px;
+	height: 50px;
 	color: #FFFFFF;
 	box-shadow: 0px 0px 1px 1px rgba(0,0,0,0.5);
 }
-div.container.content {
+div.content {
 	box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
 	transition: all 0.2s ease-in-out;
 	padding: 20px;
+	margin: auto;
 	padding-bottom: 40px;
 	background-color: #fff;
 }
@@ -1314,7 +1325,9 @@ h6 .small,
 }
 h1,
 .h1 {
-  font-size: 33px;
+  font-size: 20px;
+  padding-left: 67px;
+  margin-top: 15px;
 }
 h2,
 .h2 {
@@ -2501,7 +2514,10 @@ table th[class*="col-"] {
 }
 
 @media screen and (max-width: 767px) {
-  .table-responsive {
+  .brand-name {
+	display: none;
+  }
+   .table-responsive {
     width: 100%;
     margin-bottom: 15px;
     overflow-y: hidden;
@@ -4227,7 +4243,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar {
   position: relative;
-  height: 75px;
+  height: 50px;
   border: 1px solid transparent;
 }
 @media (min-width: 768px) {
@@ -4334,8 +4350,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-brand {
   float: left;
-  height: 75px;
-  padding: 3px 15px;
+  height: 50px;
   font-size: 18px;
   line-height: 20px;
   position: relative;
@@ -4350,12 +4365,14 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 }
 .navbar-brand > a > img {
   display: inline-block;
+  position: relative;
+  top: 13px;
+  height: 75px;
 }
 .navbar-brand > a {
   text-decoration: none;
   color: white;
-  font-size: 20px;
-  font-weight: ultra-bold;
+  font-size: 25px;
 }
 @media (min-width: 768px) {
   .navbar > .container .navbar-brand,
@@ -4367,7 +4384,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
   position: relative;
   float: right;
   padding: 9px 10px;
-  margin-top: 20px;
+  margin-top: 8px;
   margin-right: 15px;
   margin-bottom: 8px;
   background-color: transparent;
@@ -4439,7 +4456,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
     float: left;
   }
   .navbar-nav > li > a {
-    padding-top: 25px;
+    padding-top: 15px;
     padding-bottom: 15px;
   }
 }
@@ -4590,7 +4607,7 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > li > a {
   color: #FFFFFF;
   font-family: Roboto;
-  font-size: 20px;
+  font-size: 15px;
 }
 .navbar-default .navbar-nav > li > a:hover,
 .navbar-default .navbar-nav > li > a:focus {

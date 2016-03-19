@@ -18,15 +18,13 @@
     <a href="/main/edit/new">Genres</a>
 {% endif %}
 
-
 	<div class="col-lg-6 col-md-12 col-sm-12">
-
 		<div class="table-responsive">
 		<h4>Recent Runs</h4>
 		<table class="sortable table table-hover table-striped">
 			<thead class="thead-inverse">
 				<tr>
-					<th>Upload Date</th>
+					<th>Uploaded</th>
 					<th>Researcher</th>
 					<th>Run</th>
 					<th>Task</th>
@@ -52,12 +50,14 @@
 			</tbody>
 		</table>
 		</div>
-
+	</div>
+	<div class="col-lg-6 col-md-12 col-sm-12">
 		<div class="table-responsive">
 		<h4>Best Runs</h4>
 		<table class="sortable table table-hover table-striped">
 			<thead class="thead-inverse">
 				<tr>
+					<th>Uploaded</th>
 					<th>Researcher</th>
 					<th>Run</th>
 					<th>Task</th>
@@ -70,6 +70,7 @@
 			<tbody>
 				{% for run in best %}
 				<tr>
+					<td>{{ run.datetime }}</td>
 					<td>{{ run.researcher }}</td>
 					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
 					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
@@ -82,5 +83,5 @@
 			</tbody>
 		</table>
 		</div>
-</div>
+	</div>
 {% endblock %}

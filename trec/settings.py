@@ -44,7 +44,7 @@ INSTALLED_APPS = (
     'captcha',
     'parsley',
     'rolepermissions',
-    #'googlecharts',
+    'googlecharts',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -81,10 +81,13 @@ TIME_ZONE = 'UTC'
 
 USE_I18N = True
 
-USE_L10N = True
+USE_L10N = False
 
 USE_TZ = True
 
+# Custom formatting
+
+DATETIME_FORMAT = 'H:i m/d/Y'
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
