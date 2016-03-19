@@ -4,49 +4,7 @@
 {% block h1 %}Browse{% endblock %}
 {% block body_block %}
 
-{% if user.is_authenticated %}
 
-    <form id="user_runs" method="get" action="{% url 'browse' %}">
-        <input type="submit" name="userRuns" value="Get My Runs">
-    </form>
-    {% if userRunsRequested %}
-    {% if userRuns %}
-        <div class="table-responsive">
-		<h4>Runs by {{ user }} </h4>
-		<table class="sortable table table-striped table-bordered table-hover order-column">
-			<thead class="thead-inverse">
-				<tr>
-					<th>Uploaded</th>
-					<th>Researcher</th>
-					<th>Run</th>
-					<th>Task</th>
-					<th>Track</th>
-					<th>Map</th>
-					<th>p10</th>
-					<th>p20</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for run in userRuns %}
-				<tr>
-					<td>{{ run.datetime|date:"d-m-Y" }}</td>
-					<td>{{ run.researcher }}</td>
-					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
-					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
-					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
-					<td>{{ run.map }}</td>
-					<td>{{ run.p10 }}</td>
-					<td>{{ run.p20 }}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		</div>
-    {% else %}
-        <h4>There are no Runs for this Task</h4>
-    {% endif %}
-    {% endif %}
-{% endif %}
 
 	<!-- Page card title !-->
 	<h2>Please select search criteria</h2>
@@ -60,6 +18,14 @@
         <input type="submit" name="submit" value="Get Runs for this Task">
     </form>
 </div>
+
+{% if user.is_authenticated %}
+<div>
+    <form id="user_runs" method="get" action="{% url 'browse' %}">
+        <input type="submit" name="userRuns" value="Get My Runs">
+    </form>
+</div>
+{% endif %}
 
 {% if accepted %}
 
@@ -84,6 +50,46 @@
 					<td>{{ run.datetime|date:"d-m-Y" }}</td>
 					<td>{{ run.researcher }}</td>
 					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
+					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
+					<td>{{ run.map }}</td>
+					<td>{{ run.p10 }}</td>
+					<td>{{ run.p20 }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		</div>
+    {% else %}
+        <h4>There are no Runs for this Task</h4>
+    {% endif %}
+{% endif %}
+
+
+
+{% if userRunsRequested %}
+    {% if userRuns %}
+        <div class="table-responsive">
+		<h4>Runs by {{ user }} </h4>
+		<table class="sortable table table-striped table-bordered table-hover order-column">
+			<thead class="thead-inverse">
+				<tr>
+					<th>Uploaded</th>
+					<th>Researcher</th>
+					<th>Run</th>
+					<th>Task</th>
+					<th>Track</th>
+					<th>Map</th>
+					<th>p10</th>
+					<th>p20</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for run in userRuns %}
+				<tr>
+					<td>{{ run.datetime|date:"d-m-Y" }}</td>
+					<td>{{ run.researcher }}</td>
+					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
+					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
 					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
 					<td>{{ run.map }}</td>
 					<td>{{ run.p10 }}</td>
