@@ -13,6 +13,20 @@ $(document).ready(function() {
         this.prev().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
       }
     });
+    new jQueryCollapse($("#dateChooser"), {
+     open: function() {
+        this.slideDown(150);
+        this.prev().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
+      },
+      close: function() {
+        // Clear all inputs when closing this
+        $.each($(this).find(":input"), function() {
+            $(this).val("");
+        });
+        this.slideUp(150);
+        this.prev().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
+      }
+    });
     applyAll(["#org_input","#usrname_input", "#usrdisplay_input"]);
 });
 
