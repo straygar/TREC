@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 import json
 
 def convertDate(dateStr):
-    return datetime.datetime.strptime(dateStr, "%Y-%m-%d")
+    return datetime.datetime.strptime(dateStr, "%d-%m-%Y")
 
 def convertFloat(floatStr):
     return float(floatStr)

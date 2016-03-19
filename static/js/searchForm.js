@@ -5,9 +5,7 @@ $(document).ready(function() {
     createCollapsible($("#p20form"), true);
     createCollapsible($("#mapform"), true);
     applyAll(["#org_input","#usrname_input", "#usrdisplay_input", "#runname_input"]);
-    $("#datepicker1").datepicker();
-    $("#datepickerrange1").datepicker();
-    $("#datepickerrange2").datepicker();
+    setDatePicker(["#datepicker1", "#datepickerrange1", "#datepickerrange2"]);
     $("#searchbtn").click(function() {
         var queryString = "?";
         var tempValue = "";
@@ -38,6 +36,13 @@ $(document).ready(function() {
         window.location.href=$("#outerForm").attr("action") + queryString;
     });
 });
+
+function setDatePicker(elements) {
+    $.each(elements, function(index, item) {
+        $(item).datepicker();
+        $(item).datepicker("option", "dateFormat", "dd-mm-yy");
+    });
+}
 
 function createCollapsible(element, accordion) {
     new jQueryCollapse(element, {
