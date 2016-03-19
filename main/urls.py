@@ -19,5 +19,5 @@ urlpatterns = patterns('',
     url(r'^track/(?P<trackid>[0-9]+)/', views.viewTrack, name="view_track"),
     url(r'^genre/new/', views.uploadGenre, name="new_genre"),
     url(r'^browse/$', views.browse, name='browse'),
-    #url(r'^search/$', views.search,'search'),
+    url(r'^search/$', views.search, name = 'search'),
     )

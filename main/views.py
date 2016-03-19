@@ -12,6 +12,7 @@ from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
 
 from util import trec, viewhelper
+from util.dataparser import *
 from trec import roles
 
 import json
@@ -261,9 +262,36 @@ def editTask(request, taskid):
     return viewhelper.editFormGeneric(request, "main/uploadTask.html", Task, TaskForm, taskid)
 
 def search(request):
+    error = False
     track = request.GET.get("track", None)
     task = request.GET.get("task", None)
     uploader_username = request.GET.get("username", None)
     uploader_name = request.GET.get("displayname", None)
     runtype = request.GET.get("runtype", None)
     genre = request.GET.get("genre", None)
+    feedback_type = request.GET.get("feedback", None)
+    map_min = request.GET.get("map_min", None)
+    map_max = request.GET.get("map_max", None)
+    p10_min = request.GET.get("p10_min", None)
+    p10_max = request.GET.get("p10_max", None)
+    p20_min = request.GET.get("p20_min", None)
+    p20_max = request.GET.get("p20_max", None)
+    date_min = request.GET.get("date_min", None)
+    date_max = request.GET.get("date_max", None)
+    filtered_objects = Run.objects.all()
+    # Convert to the right data types
+    try:
+        date_min_c = getOrDefault(date_min, convertDate)
+        date_max_c = getOrDefault(date_max, convertDate)
+        p10_min_c = getOrDefault(p10_min, convertFloat)
+        p10_max_c = getOrDefault(p10_max, convertFloat)
+        p20_min_c = getOrDefault(p20_min, convertFloat)
+        p20_max_c = getOrDefault(p20_max, convertFloat)
+        map_min_c = getOrDefault(map_min, convertFloat)
+        map_max_c = getOrDefault(map_max, convertFloat)
+    except:
+        error = True
+
+    if date_min is not None:
+        if date_max is not None:
+            pass
