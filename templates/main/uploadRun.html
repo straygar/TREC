@@ -14,52 +14,53 @@
 <table class="sortable table table-hover table-striped">
     <thead class="thead-inverse">
         <tr>
+			<th>Map (map)</th>
             <th>Precision at 10 (p10)</th>
             <th>Precision at 20 (p20)</th>
-            <th>Map (map)</th>
+
         </tr>
     </thead>
 
     <tbody>
         <tr>
+			<td>{{ results.map }}</td>
             <td>{{ results.P_10 }}</td>
             <td>{{ results.P_20 }}</td>
-            <td>{{ results.map }}</td>
+
         </tr>
     </tbody>
 </table>
 </div>
 
 <h4>Runs on this Task</h4>
-<div>
-   <table class="sortable table table-hover table-striped">
-		<thead class="thead-inverse">
-			<tr>
-				<th>Researcher</th>
-				<th>Run</th>
-				<th>Task</th>
-				<th>Track</th>
-				<th>Map</th>
-				<th>p10</th>
-				<th>p20</th>
-			</tr>
-		</thead>
-
-		<tbody>
-			{% for run in runs %}
-			<tr>
-				<td>{{ run.researcher }}</td>
-				<td>{{ run.name }}</td>
-				<td>{{ run.task }}</td>
-				<td>{{ run.task.track }}</td>
-				<td>{{ run.map }}</td>
-				<td>{{ run.p10 }}</td>
-				<td>{{ run.p20 }}</td>
-			</tr>
-			{% endfor %}
-		</tbody>
-    </table>
-</div>
+<div class="table-responsive">
+		<table class="sortable table table-hover table-striped">
+			<thead class="thead-inverse">
+				<tr>
+					<th>Researcher</th>
+					<th>Run</th>
+					<th>Task</th>
+					<th>Track</th>
+					<th>Map</th>
+					<th>p10</th>
+					<th>p20</th>
+				</tr>
+			</thead>
+			<tbody>
+				{% for run in runs %}
+				<tr>
+					<td>{{ run.researcher }}</td>
+					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
+					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
+					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
+					<td>{{ run.map }}</td>
+					<td>{{ run.p10 }}</td>
+					<td>{{ run.p20 }}</td>
+				</tr>
+				{% endfor %}
+			</tbody>
+		</table>
+		</div>
 
 
 {% endif %}
