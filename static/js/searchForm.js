@@ -2,10 +2,41 @@ $(document).ready(function() {
     createCollapsible($("#form"), false);
     createCollapsible($("#dateChooser"), true);
     createCollapsible($("#p10form"), true);
+    createCollapsible($("#p20form"), true);
+    createCollapsible($("#mapform"), true);
     applyAll(["#org_input","#usrname_input", "#usrdisplay_input", "#runname_input"]);
     $("#datepicker1").datepicker();
     $("#datepickerrange1").datepicker();
     $("#datepickerrange2").datepicker();
+    $("#searchbtn").click(function() {
+        var queryString = "?";
+        var tempValue = "";
+        var currentElement;
+        var tempPrefix = "";
+        $.each($("#form").find("select"), function() {
+            tempValue = encodeURI($(this).val());
+            if ($.trim(tempValue).length > 0) {
+                queryString += tempValue + "&";
+            }
+        });
+        $.each($("#form").find("input"), function() {
+            currentElement = $(this);
+            tempValue = encodeURI(currentElement.val());
+            if ($.trim(tempValue).length > 0) {
+                // Check if it is a single value
+                tempPrefix = currentElement.attr("prepend");
+                if (currentElement.attr("extra") == "unique") {
+                    queryString += tempPrefix + "min=" + tempValue + "&" + tempPrefix + "max=" + tempValue;
+                } else {
+                    queryString += tempPrefix + "=" + tempValue;
+                }
+                queryString += "&";
+            }
+        });
+        // Remove last character
+        queryString = queryString.substring(0, queryString.length - 1);
+        window.location.href=$("#outerForm").attr("action") + queryString;
+    });
 });
 
 function createCollapsible(element, accordion) {
