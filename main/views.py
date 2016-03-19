@@ -3,7 +3,8 @@ from django.contrib.auth.decorators import login_required
 from rolepermissions.decorators import has_permission_decorator
 
 from main.models import Task, Track, Run, Researcher, Genre
-from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm, TaskForm, TrackForm, GenreForm, ReturnUrlForm, BrowseForm
+from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm,\
+    TaskForm, TrackForm, GenreForm, ReturnUrlForm, BrowseForm
 
 from django.contrib.auth.models import User
 from django.template import RequestContext
@@ -351,4 +352,5 @@ def search(request):
     return render(request, "main/searchResults.html", context_dict)
 
 def searchForm(request):
-    return HttpResponse("Not implemented")
+    context_dict = {}
+    return render(request, "main/searchForm.html", context_dict)
