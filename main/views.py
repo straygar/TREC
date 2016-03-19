@@ -18,6 +18,7 @@ from util.dataparser import *
 from trec import roles
 
 import json
+from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 
 def index(request):
@@ -368,3 +369,15 @@ def searchForm(request):
     context_dict["tasks"] = Task.objects.all()
     context_dict["genres"] = Genre.objects.all()
     return render(request, "main/searchForm.html", context_dict)
+
+def getOrgsJson(request):
+    data = getJsonResponse(request, "organization", Researcher, "organization__contains")
+    return HttpResponse(data, content_type='application/json')
+
+def getUsrnameJson(request):
+    data = getJsonResponse(request, "username", User, "username__contains")
+    return HttpResponse(data, content_type='application/json')
+
+def getNameJson(request):
+    data = getJsonResponse(request, "display_name", Researcher, "display_name__contains")
+    return HttpResponse(data, content_type='application/json')

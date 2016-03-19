@@ -5,11 +5,13 @@
     <head>
         <title>TREC-FEED {% block title %}{% endblock %}</title>
 		<!-- CSS !-->
-		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet"></script>
+		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 		<!-- JS !-->
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.3.5/parsley.js"></script>
         <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
+		{% block head %}
+		{% endblock %}
     </head>
 
     <body>
@@ -34,7 +36,7 @@
 			  <ul class="nav navbar-nav navbar-right">
 					<li><a href="{% url 'index' %}">Home</a></li>
 					<li><a href="{% url 'browse' %}">Browse</a></li>
-				  	<li><a herf="{% url 'search' %}">Search</a></li>
+				  	<li><a href="{% url 'search' %}">Search</a></li>
 					<li><a href="{% url 'about' %}">About</a></li>
 				{% if user.is_authenticated %}
 					<li><a href="{% url 'logout' %}">Logout</a></li>

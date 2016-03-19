@@ -6,10 +6,16 @@
 
 {% block h1 %}Search TREC-FEED{% endblock %}
 
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/jquery-ui.min.css' %}">
+
+{% endblock %}
+
 {% block body_block %}
     <script src="{% static 'js/jquery.collapse.js' %}"></script>
     <script src="{% static 'js/jquery.collapse_cookie_storage.js' %}"></script>
     <script src="{% static 'js/jquery.collapse_storage.js' %}"></script>
+    <script src="{% static 'js/jquery-ui.min.js' %}"></script>
     <script src="{% static 'js/searchForm.js' %}"></script>
 
 	<!-- Page card title !-->
@@ -17,12 +23,12 @@
 	<hr />
 	<!-- /Page card title !-->
     <h2>Please select what criteria you want to search on</h2>
-    <div id="form">
-        <h3>Track</h3>
+    <div id="form" class="search-forms">
+        <h3><span class="glyphicon glyphicon-plus"></span>Track</h3>
             <div>
                 {% if tracks %}
-                    Please choose a track:<br/>
-                    <select id="track_sel">
+					<label for="track_sel">Select a track</label>
+                    <select id="track_sel" class="form-control">
                         <option value="">Do not search on this criteria</option>
                         {% for track in tracks %}
                             <option value="track={{ track.title }}">{{ track.title }}</option>
@@ -32,11 +38,11 @@
                     <span>There are no tracks on the database!</span>
                 {% endif %}
             </div>
-        <h3>Task</h3>
+        <h3><span class="glyphicon glyphicon-plus"></span>Task</h3>
             <div>
                 {% if tasks %}
-                    Please choose a task:<br/>
-                    <select id="task_sel">
+					<label for="task_sel">Select a task</label>
+                    <select id="task_sel" class="form-control">
                         <option value="">Do not search on this criteria</option>
                         {% for task in tasks %}
                             <option value="task={{ task.title }}">{{ task.title }}</option>
@@ -46,11 +52,11 @@
                     <span>There are no tasks on the database!</span>
                 {% endif %}
             </div>
-        <h3>Genre</h3>
+        <h3><span class="glyphicon glyphicon-plus"></span>Genre</h3>
             <div>
                 {% if genres %}
-                    Please choose a genre:<br/>
-                    <select id="genre_sel">
+				<label for="genre_sel">Select a genre</label>
+                    <select id="genre_sel" class="form-control">
                         <option value="">Do not search on this criteria</option>
                         {% for genre in genres %}
                             <option value="genre={{ genre.title }}">{{ genre.title }}</option>
@@ -60,30 +66,36 @@
                     <span>There are no genres on the database!</span>
                 {% endif %}
             </div>
-        <h3>Organization</h3>
+        <h3><span class="glyphicon glyphicon-plus"></span>Organization</h3>
             <div>
-                Please type in an organization:
-
+                <label for="org_input">Enter an organisation name</label>
+                <input type="text" id="org_input" class="form-control" refetch="true" jsonpath="getOrgsJson?query=">
             </div>
-        <h3>Researcher username</h3>
+        <h3><span class="glyphicon glyphicon-plus"></span>Researcher username</h3>
+            <div>
+                <label for="usrname_input">Enter a username</label>
+                <input type="text" id="usrname_input" class="form-control" refetch="true" jsonpath="getUsrnameJson?query=">
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Researcher name</h3>
+            <div>
+                <label for="usrdisplay_input">Enter a name</label>
+                <input type="text" id="usrdisplay_input" class="form-control" refetch="true" jsonpath="getNameJson?query=">
+            </div>
+        <h3><span class="glyphicon glyphicon-plus"></span>Date uploaded</h3>
             <div>Here you can choose</div>
-        <h3>Researcher name</h3>
+        <h3><span class="glyphicon glyphicon-plus"></span>Run name</h3>
             <div>Here you can choose</div>
-        <h3>Date uploaded</h3>
+        <h3><span class="glyphicon glyphicon-plus"></span>Run description</h3>
             <div>Here you can choose</div>
-        <h3>Run name</h3>
+        <h3><span class="glyphicon glyphicon-plus"></span>Run type</h3>
             <div>Here you can choose</div>
-        <h3>Run description</h3>
+        <h3><span class="glyphicon glyphicon-plus"></span>Feedback type</h3>
             <div>Here you can choose</div>
-        <h3>Run type</h3>
+        <h3><span class="glyphicon glyphicon-plus"></span>Precision at 10 score</h3>
             <div>Here you can choose</div>
-        <h3>Feedback type</h3>
+        <h3><span class="glyphicon glyphicon-plus"></span>Precision at 20 score</h3>
             <div>Here you can choose</div>
-        <h3>Precision at 10 score</h3>
-            <div>Here you can choose</div>
-        <h3>Precision at 20 score</h3>
-            <div>Here you can choose</div>
-        <h3>Map score</h3>
+        <h3><span class="glyphicon glyphicon-plus"></span>Map score</h3>
             <div>Here you can choose</div>
 
     </div>
