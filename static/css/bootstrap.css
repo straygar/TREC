@@ -50,6 +50,21 @@ a>img.img-circle.avatar {
 	position: relative;
 	top: -10px;
 }
+#form.search-forms  {
+	border-left: 5px solid #2196F3!important;
+	margin-top: 20px;
+}
+#form.search-forms > h3 > a,
+#form.search-forms > h3 > a:hover {
+	text-decoration: none;
+	padding-left: 10px;
+	color: #2196F3;
+	font-size: 18px;
+}
+#form.search-forms > div {
+	padding-left: 30px;
+}
+
 article,
 aside,
 details,
@@ -332,7 +347,8 @@ div.content {
   font-style: normal;
   font-weight: normal;
   line-height: 1;
-
+  padding: 5px 5px 5px 0px;
+  font-size: 15px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
