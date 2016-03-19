@@ -27,5 +27,5 @@ def getJsonResponse(request, value, model, fieldName, param="query", maxResults=
         returnData = []
     else:
         fields = model.objects.filter(**{fieldName:query}).values_list(value, flat=True).distinct()
-        returnData = json.dumps(list(fields)) # Required to conver to a List and not a ValuesListQuerySet
-    return returnData[:maxResults]
+        returnData = json.dumps(list(fields)[:maxResults]) # Required to conver to a List and not a ValuesListQuerySet
+    return returnData
