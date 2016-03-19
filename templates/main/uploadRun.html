@@ -14,17 +14,19 @@
 <table class="sortable table table-hover table-striped">
     <thead class="thead-inverse">
         <tr>
+			<th>Map (map)</th>
             <th>Precision at 10 (p10)</th>
             <th>Precision at 20 (p20)</th>
-            <th>Map (map)</th>
+
         </tr>
     </thead>
 
     <tbody>
         <tr>
+			<td>{{ results.map }}</td>
             <td>{{ results.P_10 }}</td>
             <td>{{ results.P_20 }}</td>
-            <td>{{ results.map }}</td>
+
         </tr>
     </tbody>
 </table>
