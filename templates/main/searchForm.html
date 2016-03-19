@@ -69,12 +69,18 @@
         <h3><span class="glyphicon glyphicon-plus"></span>Organization</h3>
             <div>
                 <label for="org_input">Enter an organisation name</label>
-                <input type="text" id="org_input" class="form-control">
+                <input type="text" id="org_input" class="form-control" refetch="true" jsonpath="getOrgsJson?query=">
             </div>
         <h3><span class="glyphicon glyphicon-plus"></span>Researcher username</h3>
-            <div>Here you can choose</div>
+            <div>
+                <label for="usrname_input">Enter a username</label>
+                <input type="text" id="usrname_input" class="form-control" refetch="true" jsonpath="getUsrnameJson?query=">
+            </div>
         <h3><span class="glyphicon glyphicon-plus"></span>Researcher name</h3>
-            <div>Here you can choose</div>
+            <div>
+                <label for="usrdisplay_input">Enter a name</label>
+                <input type="text" id="usrdisplay_input" class="form-control" refetch="true" jsonpath="getNameJson?query=">
+            </div>
         <h3><span class="glyphicon glyphicon-plus"></span>Date uploaded</h3>
             <div>Here you can choose</div>
         <h3><span class="glyphicon glyphicon-plus"></span>Run name</h3>

@@ -22,4 +22,6 @@ urlpatterns = patterns('',
     url(r'^search/results', views.search, name="searchRes"),
     url(r'^search/$', views.searchForm, name='search'),
     url(r'^getOrgsJson/$', views.getOrgsJson),
+    url(r'^getUsrnameJson/$', views.getUsrnameJson),
+    url(r'^getNameJson/$', views.getNameJson),
     )

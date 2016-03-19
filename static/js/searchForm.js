@@ -1,5 +1,3 @@
-var refetch = true;
-
 $(document).ready(function() {
     new jQueryCollapse($("#form"), {
       open: function() {
@@ -15,26 +13,33 @@ $(document).ready(function() {
         this.prev().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
       }
     });
-    $("#org_input").autocomplete({source:[]});
-    $("#org_input").keyup(changeFunc);
+    applyAll(["#org_input","#usrname_input", "#usrdisplay_input"]);
 });
 
+function applyAll(controlArray) {
+    $.each(controlArray, function(index, item) {
+        $(item).autocomplete({source:[]});
+        $(item).keyup(changeFunc);
+    });
+}
+
 function changeFunc() {
-    if (refetch) {
-        refetch = false;
+    control = $(this);
+    if (control.attr("refetch")) {
+        control.attr("refetch", false);
         $.ajax({
             type: "GET",
-            url: "/main/getOrgsJson?organization=" + $("#org_input").val(),
+            url: "/main/" + control.attr("jsonpath") + control.val(),
             dataType: "json",
             success: function(json) {
-                $( "#org_input" ).autocomplete("option", "source", json);
+                control.autocomplete("option", "source", json);
                },
             error: function() {
              // Cannot do anything, auto-complete won't be offered
             }
         });
         window.setTimeout(function() {
-            refetch = true;
+            control.attr("refetch", true);
         }, 800);
     }
 

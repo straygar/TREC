@@ -361,11 +361,13 @@ def searchForm(request):
     return render(request, "main/searchForm.html", context_dict)
 
 def getOrgsJson(request):
-    query = request.GET.get("organization", None)
-    if query is None or len(query.strip()) == 0:
-        returnData = []
-    else:
-        fields = Researcher.objects.filter(organization__contains=query).values_list("organization", flat=True).distinct()
-        returnData = json.dumps(list(fields)) # Required to conver to a List and not a ValuesListQuerySet
-    print returnData
-    return HttpResponse(returnData, content_type='application/json')
+    data = getJsonResponse(request, "organization", Researcher, "organization__contains")
+    return HttpResponse(data, content_type='application/json')
+
+def getUsrnameJson(request):
+    data = getJsonResponse(request, "username", User, "username__contains")
+    return HttpResponse(data, content_type='application/json')
+
+def getNameJson(request):
+    data = getJsonResponse(request, "display_name", Researcher, "display_name__contains")
+    return HttpResponse(data, content_type='application/json')
