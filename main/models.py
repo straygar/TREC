@@ -11,7 +11,7 @@ def upload_profile(instance, filename):
 class Researcher(models.Model):
     def __unicode__(self):
         return u'{0}'.format(self.display_name)
-    
+
     user = models.OneToOneField(
         User,
         on_delete = models.CASCADE,

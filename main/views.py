@@ -273,7 +273,7 @@ def search(request):
     task = request.GET.get("task", None)
     uploader_username = request.GET.get("username", None)
     uploader_name = request.GET.get("displayname", None)
-    institution = request.GET.get("institution", None)
+    organization = request.GET.get("organization", None)
     runtype = request.GET.get("runtype", None)
     genre = request.GET.get("genre", None)
     feedback_type = request.GET.get("feedback", None)
@@ -322,7 +322,6 @@ def search(request):
             if map_max_c is not None:
                 filtered_objects = filtered_objects.filter(map__lte=map_max_c)
             if task is not None:
-                print task
                 filtered_objects = filtered_objects.filter(task__title=task)
             if uploader_username is not None:
                 filtered_objects = filtered_objects.filter(researcher__user__username=uploader_username)
@@ -340,6 +339,8 @@ def search(request):
                 filtered_objects = filtered_objects.filter(name__contains=name)
             if description is not None:
                 filtered_objects = filtered_objects.filter(description__contains=description)
+            if organization is not None:
+                filtered_objects = filtered_objects.filter(researcher__organization=organization)
             error = False
             context_dict["objects"] = filtered_objects
         except:
