@@ -369,6 +369,7 @@ def searchForm(request):
     context_dict["tasks"] = Task.objects.all()
     context_dict["genres"] = Genre.objects.all()
     context_dict["run_type_choices"] = Run.Run_type_choices
+    context_dict["feedback_type_choices"] = Run.Feedback_type_choices
     return render(request, "main/searchForm.html", context_dict)
 
 def getOrgsJson(request):

@@ -118,9 +118,31 @@
                 </select>
             </div>
         <h3><span class="glyphicon glyphicon-plus"></span>Feedback type</h3>
-            <div>Here you can choose</div>
+            <div>
+                <label for="feedbacktype_sel">Select a feedback type</label>
+                <select id="feedbacktype_sel" class="form-control">
+                    <option value="">Do not search on this criteria</option>
+                    {% for val, type in feedback_type_choices %}
+                        <option value="feedbacktype={{ val }}">{{ type }}</option>
+                    {% endfor %}
+                </select>
+            </div>
         <h3><span class="glyphicon glyphicon-plus"></span>Precision at 10 score</h3>
-            <div>Here you can choose</div>
+            <div id="p10form">
+                <h3><span class="glyphicon glyphicon-plus"></span>Only a certain score</h3>
+                <div>
+                    <label for="p10input1">Enter a score</label>
+                    <input type="number" class="form-control" id="p10input1" step="any">
+                </div>
+                <h3><span class="glyphicon glyphicon-plus"></span>A range of scores</h3>
+                <div>
+                    <p>Note: You can leave any of the ends empty if you only want to set a maximum or a minimmum score</p>
+                    <label for="p10inputrange1">More than this score</label>
+                    <input type="number" class="form-control" id="p10inputrange1" step="any">
+                    <label for="p10inputrange2">And less than this one</label>
+                    <input type="number" class="form-control" id="p10inputrange2" step="any">
+                </div>
+            </div>
         <h3><span class="glyphicon glyphicon-plus"></span>Precision at 20 score</h3>
             <div>Here you can choose</div>
         <h3><span class="glyphicon glyphicon-plus"></span>Map score</h3>
