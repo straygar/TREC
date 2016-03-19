@@ -7,6 +7,7 @@ from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm, TaskForm
 
 from django.contrib.auth.models import User
 from django.template import RequestContext
+from django.utils import timezone
 
 from django.http import HttpResponse,HttpResponseRedirect
 from django.contrib.auth import authenticate, login, logout
@@ -289,9 +290,24 @@ def search(request):
         p20_max_c = getOrDefault(p20_max, convertFloat)
         map_min_c = getOrDefault(map_min, convertFloat)
         map_max_c = getOrDefault(map_max, convertFloat)
+        track_c = getOrDefault(track, convertTrack)
+        if date_min_c is not None:
+            filtered_objects = filtered_objects.filter(datetime__gte=date_min_c)
+        if date_max_c is not None:
+            filtered_objects = filtered_objects.filter(datetime__lte=date_max_c)
+        if p10_min_c is not None:
+            filtered_objects = filtered_objects.filter(p10__gte=p10_min_c)
+        if p10_max_c is not None:
+            filtered_objects = filtered_objects.filter(p10__lte=p10_max_c)
+        if p20_min_c is not None:
+            filtered_objects = filtered_objects.filter(p20__gte=p20_min_c)
+        if p20_max_c is not None:
+            filtered_objects = filtered_objects.filter(p20__lte=p20_max_c)
+        if map_min_c is not None:
+            filtered_objects = filtered_objects.filter(map__gte=map_min_c)
+        if map_max_c is not None:
+            filtered_objects = filtered_objects.filter(map__lte=map_max_c)
+        if track is not
     except:
         error = True
 
-    if date_min is not None:
-        if date_max is not None:
-            pass
