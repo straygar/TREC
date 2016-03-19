@@ -6,34 +6,39 @@ $(document).ready(function() {
     createCollapsible($("#mapform"), true);
     applyAll(["#org_input","#usrname_input", "#usrdisplay_input", "#runname_input"]);
     setDatePicker(["#datepicker1", "#datepickerrange1", "#datepickerrange2"]);
-    $("#searchbtn").click(function() {
+    $("#searchbtn").click(function(event) {
+        event.preventDefault();
         var queryString = "?";
         var tempValue = "";
         var currentElement;
         var tempPrefix = "";
-        $.each($("#form").find("select"), function() {
-            tempValue = encodeURI($(this).val());
-            if ($.trim(tempValue).length > 0) {
-                queryString += tempValue + "&";
-            }
-        });
-        $.each($("#form").find("input"), function() {
-            currentElement = $(this);
-            tempValue = encodeURI(currentElement.val());
-            if ($.trim(tempValue).length > 0) {
-                // Check if it is a single value
-                tempPrefix = currentElement.attr("prepend");
-                if (currentElement.attr("extra") == "unique") {
-                    queryString += tempPrefix + "min=" + tempValue + "&" + tempPrefix + "max=" + tempValue;
-                } else {
-                    queryString += tempPrefix + "=" + tempValue;
+        try {
+            $.each($("#form").find("select"), function() {
+                tempValue = encodeURI($(this).val());
+                if ($.trim(tempValue).length > 0) {
+                    queryString += tempValue + "&";
                 }
-                queryString += "&";
+            });
+            $.each($("#form").find("input"), function() {
+                currentElement = $(this);
+                tempValue = encodeURI(currentElement.val());
+                if ($.trim(tempValue).length > 0) {
+                    // Check if it is a single value
+                    tempPrefix = currentElement.attr("prepend");
+                    if (currentElement.attr("extra") == "unique") {
+                        queryString += tempPrefix + "min=" + tempValue + "&" + tempPrefix + "max=" + tempValue;
+                    } else {
+                        queryString += tempPrefix + "=" + tempValue;
+                    }
+                    queryString += "&";
+                }
+            });
+            // Remove last character
+            queryString = queryString.substring(0, queryString.length - 1);
+            if ($.trim(queryString).length > 1) {
+                window.location.href=$(this).attr("action") + queryString;
             }
-        });
-        // Remove last character
-        queryString = queryString.substring(0, queryString.length - 1);
-        window.location.href=$("#outerForm").attr("action") + queryString;
+        } catch (e) { }
     });
 });
 
