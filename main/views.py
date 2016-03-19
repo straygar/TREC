@@ -66,7 +66,7 @@ def uploadRun(request):
             file_upload = upl_file_form.save(commit=True)
             temp_data = upl_form.save(commit=False)
             temp_data.result_file = file_upload
-            temp_data.researcher = request.user
+            temp_data.researcher = get_object_or_404(Researcher,user=request.user)
             temp_data.task = upl_form.cleaned_data["task"]
             try:
                 results = trec.getRating(temp_data.task.judgement_file.path, file_upload.result_file.path)
@@ -232,7 +232,7 @@ def profile(request):
     #p10_json = json.dumps(list(p10),cls=DjangoJSONEncoder)
     #p20_json = json.dumps(list(p20),cls=DjangoJSONEncoder)
 
-    r =  Run.objects.filter(researcher=request.user)[:1]
+    r =  Run.objects.filter(researcher__user=request.user)[:1]
 
     context_dict['user'] = u
     context_dict['userprofile'] = up
@@ -246,7 +246,7 @@ def about(request):
 def viewRun(request, runid):
     context_dict = {}
     context_dict["run"] = run_info = get_object_or_404(Run, id=runid)
-    context_dict["profile"] = get_object_or_404(Researcher, user=run_info.researcher)
+    context_dict["profile"] = run_info.researcher
     return render(request, "main/viewRun.html", context_dict)
 
 def viewTrack(request, trackid):
@@ -325,10 +325,9 @@ def search(request):
                 print task
                 filtered_objects = filtered_objects.filter(task__title=task)
             if uploader_username is not None:
-                filtered_objects = filtered_objects.filter(researcher__username=uploader_username)
+                filtered_objects = filtered_objects.filter(researcher__user__username=uploader_username)
             if uploader_name is not None:
-                tempUser = Researcher.objects.get(display_name=uploader_name).user
-                filtered_objects = filtered_objects.filter(researcher=tempUser)
+                filtered_objects = filtered_objects.filter(researcher__display_name=tempUser)
             if runtype is not None:
                 filtered_objects = filtered_objects.filter(runtype=runtype)
             if feedback_type is not None:

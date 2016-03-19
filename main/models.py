@@ -9,6 +9,9 @@ def upload_profile(instance, filename):
     return "profile/%s/%s" % (instance.user.username, filename)
 
 class Researcher(models.Model):
+    def __unicode__(self):
+        return u'{0}'.format(self.display_name)
+    
     user = models.OneToOneField(
         User,
         on_delete = models.CASCADE,
@@ -89,7 +92,7 @@ class Run(models.Model):
         (FT_Other, "Other"),
     )
 
-    researcher = models.ForeignKey(User, on_delete=models.CASCADE)
+    researcher = models.ForeignKey(Researcher, on_delete=models.CASCADE)
     task = models.ForeignKey(Task, on_delete=models.CASCADE)
     name = models.CharField(max_length=64, unique=False)
     datetime = models.DateTimeField()
