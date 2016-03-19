@@ -22,6 +22,7 @@
 	<h2>Search for Runs on TREC-FEED</h2>
 	<hr />
 	<!-- /Page card title !-->
+    <h3 id="noCrit" class="alert alert-danger">You need to select some criteria</h3>
     <h2>Please select what criteria you want to search on</h2>
     <div id="form" class="search-forms">
         <h3><span class="glyphicon glyphicon-plus"></span>Track</h3>
@@ -177,6 +178,5 @@
             </div>
     </div>
     <a href="{% url 'searchRes' %}" class="btn btn-info btn-block" role="button" id="searchbtn">Seach!</a>
-    <h3 id="noCrit" class="alert alert-danger">You need to select some criteria</h3>
 
 {% endblock %}
