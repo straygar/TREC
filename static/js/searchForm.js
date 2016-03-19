@@ -36,7 +36,7 @@ $(document).ready(function() {
             // Remove last character
             queryString = queryString.substring(0, queryString.length - 1);
             if ($.trim(queryString).length > 1) {
-                window.location.href=$(this).attr("action") + queryString;
+                window.location.href=$(this).attr("href") + queryString;
             }
         } catch (e) { }
     });
