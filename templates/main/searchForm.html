@@ -85,15 +85,23 @@
             <div id="dateChooser">
                 <h3><span class="glyphicon glyphicon-plus"></span>Only a certain date</h3>
                 <div>
-                    aaaa
+                    <label for="datepicker1">Enter a date</label>
+                    <input type="text" class="form-control" id="datepicker1">
                 </div>
                 <h3><span class="glyphicon glyphicon-plus"></span>A range of dates</h3>
                 <div>
-                    bbbb
+                    <p>Note: You can leave any of the ends empty if you only want to set a maximum or a minimmum date</p>
+                    <label for="datepickerrange1">After this date</label>
+                    <input type="text" class="form-control" id="datepickerrange1">
+                    <label for="datepickerrange2">Before this date</label>
+                    <input type="text" class="form-control" id="datepickerrange2">
                 </div>
             </div>
         <h3><span class="glyphicon glyphicon-plus"></span>Run name</h3>
-            <div>Here you can choose</div>
+            <div>
+                <label for="runname_input">Enter a run name</label>
+                <input type="text" id="runname_input" class="form-control" refetch="true" jsonpath="getRunNameJson?query=">
+            </div>
         <h3><span class="glyphicon glyphicon-plus"></span>Run description</h3>
             <div>Here you can choose</div>
         <h3><span class="glyphicon glyphicon-plus"></span>Run type</h3>

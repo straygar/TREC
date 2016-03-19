@@ -14,6 +14,7 @@ $(document).ready(function() {
       }
     });
     new jQueryCollapse($("#dateChooser"), {
+     accordion: true,
      open: function() {
         this.slideDown(150);
         this.prev().find(".glyphicon-plus").removeClass("glyphicon-plus").addClass("glyphicon-minus");
@@ -27,7 +28,10 @@ $(document).ready(function() {
         this.prev().find(".glyphicon-minus").removeClass("glyphicon-minus").addClass("glyphicon-plus");
       }
     });
-    applyAll(["#org_input","#usrname_input", "#usrdisplay_input"]);
+    applyAll(["#org_input","#usrname_input", "#usrdisplay_input", "#runname_input"]);
+    $("#datepicker1").datepicker();
+    $("#datepickerrange1").datepicker();
+    $("#datepickerrange2").datepicker();
 });
 
 function applyAll(controlArray) {

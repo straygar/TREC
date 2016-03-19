@@ -381,3 +381,7 @@ def getUsrnameJson(request):
 def getNameJson(request):
     data = getJsonResponse(request, "display_name", Researcher, "display_name__contains")
     return HttpResponse(data, content_type='application/json')
+
+def getRunNameJson(request):
+    data = getJsonResponse(request, "name", Run, "name__contains")
+    return HttpResponse(data, content_type='application/json')
