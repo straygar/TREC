@@ -10,9 +10,9 @@
 			<hr />
 			<!-- /Page card title !-->
             {% if bad_details %}
-            <p><strong>Your username and/or password were incorrect!</strong></p>
+            <h3 class="alert alert-danger">Your username and/or password were incorrect!</h3>
             {% elif disabled_account %}
-            <p><>Your account is currently disabled; we can't log you in!</p>
+            <h3 class="alert alert-danger">Your account is currently disabled; we can't log you in!</h3>
             {% endif %}
 			
 			{% csrf_token %}
