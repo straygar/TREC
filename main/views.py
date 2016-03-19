@@ -34,8 +34,13 @@ def index(request):
 def browse(request):
     contextDict = {}
     accepted = False
+    userRunsRequested = False
     if request.method == "GET":
         browse_form = BrowseForm()
+        if request.GET.get('userRuns'):
+            userRunsRequested = True
+            user_runs = Run.objects.filter(researcher__user=request.user)
+            contextDict["userRuns"] = user_runs
     else:
         browse_form = BrowseForm(request.POST)
         if browse_form.is_valid():
@@ -46,10 +51,15 @@ def browse(request):
             run_list = Run.objects.filter(task = browse_form.cleaned_data["task"])
             contextDict["runs"] = run_list
 
+
+    contextDict["user"] = request.user
     contextDict["form"] = browse_form
     contextDict["accepted"] = accepted
+    contextDict["userRunsRequested"] = userRunsRequested
+
 
     return render(request, 'main/browse.html', contextDict)
+
 
 @login_required
 def uploadRun(request):
