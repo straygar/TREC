@@ -193,37 +193,26 @@ def edit_profile(request):
         context)
 
 def user_login(request):
-    # Obtain our request's context.
     context = RequestContext(request)
     context_dict = {}
 
-    # If HTTP POST, pull out form data and process it.
     if request.method == 'POST':
         username = request.POST['username']
         password = request.POST['password']
-
         user = authenticate(username=username, password=password)
-
-        # A valid user logged in?
         if user is not None:
-            # Check if the account is active (can be used).
-            # If so, log the user in and redirect them to the homepage.
             if user.is_active:
                 login(request, user)
                 return HttpResponseRedirect('/main/')
-            # The account is inactive; tell by adding variable to the template context.
             else:
                 context_dict['disabled_account'] = True
-                return render_to_response('main/login.html', context_dict, context)
-        # Invalid login details supplied!
         else:
-            print "Invalid login details: {0}, {1}".format(username, password)
             context_dict['bad_details'] = True
-            return render_to_response('main/login.html', context_dict, context)
-
-    # Not a HTTP POST - most likely a HTTP GET. In this case, we render the login form for the user.
-    else:
-        return render_to_response('main/login.html', context_dict, context)
+    context_dict["regist_count"] = User.objects.count()
+    context_dict["runs_count"] = Run.objects.count()
+    context_dict["task_count"] = Task.objects.count()
+    context_dict["runs_today"] = Run.objects.filter(datetime__gte=timezone.now().replace(hour=0, minute=0, second=0)).count()
+    return render_to_response('main/login.html', context_dict, context)
 
 
 def user_logout(request):

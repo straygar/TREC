@@ -10,7 +10,7 @@
 			<hr />
 			<!-- /Page card title !-->
             {% if bad_details %}
-            <h3 class="alert alert-danger">Your username and/or password were incorrect!</h3>
+            <h3 class="alert alert-danger">The username / password you provided are incorrect!</h3>
             {% elif disabled_account %}
             <h3 class="alert alert-danger">Your account is currently disabled; we can't log you in!</h3>
             {% endif %}
@@ -32,9 +32,30 @@
 				</div>
 				
 				<button class="btn btn-primary" type="submit">Sign in</button>
-			</div>
         </form>
 	</div>
 	<div class="col-lg-6 col-md-6 col-sm-12">
+		<h2>Statistics about TREC-FEED</h2>
+		<hr/>
+		<table class="table table-hover table-striped">
+			<tbody>
+				<tr>
+					<td>Registered users</td>
+					<td>{{ regist_count }}</td>
+				</tr>
+				<tr>
+					<td>Runs uploaded</td>
+					<td>{{ runs_count }}</td>
+				</tr>
+				<tr>
+					<td>Number of tasks</td>
+					<td>{{ task_count }}</td>
+				</tr>
+				<tr>
+					<td>Number of runs uploaded today</td>
+					<td>{{ runs_today }}</td>
+				</tr>
+			</tbody>
+		</table>
 	</div>
 {% endblock %}
