@@ -37,8 +37,12 @@ $(document).ready(function() {
             queryString = queryString.substring(0, queryString.length - 1);
             if ($.trim(queryString).length > 1) {
                 window.location.href=$(this).attr("href") + queryString;
+            } else {
+                $("#noCrit").slideDown(150);
             }
-        } catch (e) { }
+        } catch (e) {
+            $("#noCrit").slideDown(150);
+        }
     });
 });
 
