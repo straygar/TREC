@@ -2,14 +2,14 @@
 
 {% load staticfiles %}
 
-{% block title %}View run by {{ run.researcher.username }}{% endblock %}
+{% block title %}View run by {{ profile.display_name }}{% endblock %}
 
 {% block body_block %}
 
-<h1>Run by {{ run.researcher.username }}</h1>
-<h3>Details</h3>
+<h2>Run by {{ profile.display_name }}</h2>
+<h4>Details</h4>
 
-<table>
+<table class="table-striped table-bordered table-hover order-column">
     <tr>
         <td>Researcher name</td>
         <td>{{ profile.display_name }}</td>
@@ -49,7 +49,7 @@
     <tr>
         <td>Results</td>
         <td>
-            <table>
+            <table class="table-striped table-bordered table-hover order-column">
                 <tr>
                     <th>Measure</th>
                     <th>Your score</th>

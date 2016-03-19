@@ -6,10 +6,10 @@
 
 {% block body_block %}
 
-<h1>Task: {{ track.title }}</h1>
-<h3>Details</h3>
+<h2>Task: {{ task.title }}</h2>
+<h4>Details</h4>
 
-<table>
+<table class="table-striped table-bordered table-hover order-column">
     <tr>
         <td>Title</td>
         <td>{{ task.title }}</td>
@@ -28,10 +28,10 @@
     </tr>
     <tr>
         <td>Judgement file</td>
-        <td><a href="{{ task.judgement_file.url }}">Click here to download the qrels file</a></td>
+        <td><a href="{{ task.judgement_file.url }}">Download the qrels file</a></td>
     </tr>
     <tr>
-        <td>Belongs to track...</td>
+        <td>Track</td>
         <td><a href="{% url 'view_track' trackid=task.track.id %}">{{ task.track.title }}</a></td>
     </tr>
 </table>
