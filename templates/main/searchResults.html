@@ -38,12 +38,19 @@
         {% endfor %}
         </table>
     {% else %}
-        <h2>No results match your query</h2>
-    	<hr />
-        <h3>You might want to <a href="{% url 'search' %}">try again</a> with less restrictive conditions</h3>
-        {% if error %}
-            <p>You might want to check your query since some parts of it are incorrect</p>
+        {% if allnull %}
+            <h2>You need to provide with a query to search</h2>
+    	    <hr />
+            <h3>You might want to <a href="{% url 'search' %}">try again</a></h3>
+        {% else %}
+            <h2>No results match your query</h2>
+            <hr />
+            <h3>You might want to <a href="{% url 'search' %}">try again</a> with less restrictive conditions</h3>
+            {% if error %}
+                <p>You might want to check your query since some parts of it are incorrect</p>
+            {% endif %}
         {% endif %}
+
     {% endif %}
 
 {% endblock %}

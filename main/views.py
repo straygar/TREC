@@ -286,57 +286,66 @@ def search(request):
     name = request.GET.get("name", None)
     description = request.GET.get("desc", None)
     filtered_objects = Run.objects.all()
-    # Convert to the right data types
-    try:
-        date_min_c = getOrDefault(date_min, convertDate)
-        date_max_c = getOrDefault(date_max, convertDate)
-        p10_min_c = getOrDefault(p10_min, convertFloat)
-        p10_max_c = getOrDefault(p10_max, convertFloat)
-        p20_min_c = getOrDefault(p20_min, convertFloat)
-        p20_max_c = getOrDefault(p20_max, convertFloat)
-        map_min_c = getOrDefault(map_min, convertFloat)
-        map_max_c = getOrDefault(map_max, convertFloat)
-        
-        if date_min_c is not None:
-            filtered_objects = filtered_objects.filter(datetime__gte=date_min_c)
-        if date_max_c is not None:
-            filtered_objects = filtered_objects.filter(datetime__lte=date_max_c)
-        if p10_min_c is not None:
-            filtered_objects = filtered_objects.filter(p10__gte=p10_min_c)
-        if p10_max_c is not None:
-            filtered_objects = filtered_objects.filter(p10__lte=p10_max_c)
-        if p20_min_c is not None:
-            filtered_objects = filtered_objects.filter(p20__gte=p20_min_c)
-        if p20_max_c is not None:
-            filtered_objects = filtered_objects.filter(p20__lte=p20_max_c)
-        if map_min_c is not None:
-            filtered_objects = filtered_objects.filter(map__gte=map_min_c)
-        if map_max_c is not None:
-            filtered_objects = filtered_objects.filter(map__lte=map_max_c)
-        if task is not None:
-            print task
-            filtered_objects = filtered_objects.filter(task__title=task)
-        if uploader_username is not None:
-            filtered_objects = filtered_objects.filter(researcher__username=uploader_username)
-        if uploader_name is not None:
-            tempUser = Researcher.objects.get(display_name=uploader_name).user
-            filtered_objects = filtered_objects.filter(researcher=tempUser)
-        if runtype is not None:
-            filtered_objects = filtered_objects.filter(runtype=runtype)
-        if feedback_type is not None:
-            filtered_objects = filtered_objects.filter(feedback_type=feedback_type)
-        if genre is not None:
-            filtered_objects = filtered_objects.filter(task__track__genre__title=genre)
-        if track is not None:
-            filtered_objects = filtered_objects.filter(task__track__title=track)
-        if name is not None:
-            filtered_objects = filtered_objects.filter(name__contains=name)
-        if description is not None:
-            filtered_objects = filtered_objects.filter(description__contains=description)
-        error = False
-        context_dict["objects"] = filtered_objects
-    except:
-        error = True
-        context_dict["objects"] = None
+    if checkNotAllNull(
+            (track, task, uploader_name,
+             uploader_username, runtype,
+             genre, feedback_type, map_min,
+             map_max, p10_min, p10_max,
+             p20_min, p20_max, date_min,
+             date_max, name, description)):
+        allNull = False
+        try:
+            date_min_c = getOrDefault(date_min, convertDate)
+            date_max_c = getOrDefault(date_max, convertDate)
+            p10_min_c = getOrDefault(p10_min, convertFloat)
+            p10_max_c = getOrDefault(p10_max, convertFloat)
+            p20_min_c = getOrDefault(p20_min, convertFloat)
+            p20_max_c = getOrDefault(p20_max, convertFloat)
+            map_min_c = getOrDefault(map_min, convertFloat)
+            map_max_c = getOrDefault(map_max, convertFloat)
+            if date_min_c is not None:
+                filtered_objects = filtered_objects.filter(datetime__gte=date_min_c)
+            if date_max_c is not None:
+                filtered_objects = filtered_objects.filter(datetime__lte=date_max_c)
+            if p10_min_c is not None:
+                filtered_objects = filtered_objects.filter(p10__gte=p10_min_c)
+            if p10_max_c is not None:
+                filtered_objects = filtered_objects.filter(p10__lte=p10_max_c)
+            if p20_min_c is not None:
+                filtered_objects = filtered_objects.filter(p20__gte=p20_min_c)
+            if p20_max_c is not None:
+                filtered_objects = filtered_objects.filter(p20__lte=p20_max_c)
+            if map_min_c is not None:
+                filtered_objects = filtered_objects.filter(map__gte=map_min_c)
+            if map_max_c is not None:
+                filtered_objects = filtered_objects.filter(map__lte=map_max_c)
+            if task is not None:
+                print task
+                filtered_objects = filtered_objects.filter(task__title=task)
+            if uploader_username is not None:
+                filtered_objects = filtered_objects.filter(researcher__username=uploader_username)
+            if uploader_name is not None:
+                tempUser = Researcher.objects.get(display_name=uploader_name).user
+                filtered_objects = filtered_objects.filter(researcher=tempUser)
+            if runtype is not None:
+                filtered_objects = filtered_objects.filter(runtype=runtype)
+            if feedback_type is not None:
+                filtered_objects = filtered_objects.filter(feedback_type=feedback_type)
+            if genre is not None:
+                filtered_objects = filtered_objects.filter(task__track__genre__title=genre)
+            if track is not None:
+                filtered_objects = filtered_objects.filter(task__track__title=track)
+            if name is not None:
+                filtered_objects = filtered_objects.filter(name__contains=name)
+            if description is not None:
+                filtered_objects = filtered_objects.filter(description__contains=description)
+            error = False
+            context_dict["objects"] = filtered_objects
+        except:
+            error = True
+            context_dict["objects"] = None
+    else:
+        allNull = True
     context_dict["error"] = error
+    context_dict["allnull"] = allNull
     return render(request, "main/searchResults.html", context_dict)
