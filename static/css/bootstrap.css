@@ -14,6 +14,10 @@
     font-family: OSP-DIN;
     src: url('../fonts/OSP-DIN.otf');
 }
+@font-face {
+    font-family: Roboto;
+    src: url('../fonts/Roboto-Regular.ttf');
+}
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
