@@ -7,9 +7,43 @@
 
 {% block body_block %}
 
-	<h2>These are the runs matching your query</h2>
-	<hr />
 	<!-- /Page card title !-->
-	{{ objects }}
+	{% if objects %}
+        <h2>These are the runs matching your query</h2>
+    	<hr />
+	    <table class="sortable table table-hover table-striped">
+            <thead class="thead-inverse">
+                    <tr>
+                        <th>Upload Date</th>
+                        <th>Researcher</th>
+                        <th>Run</th>
+                        <th>Task</th>
+                        <th>Track</th>
+                        <th>Map</th>
+                        <th>p10</th>
+                        <th>p20</th>
+                    </tr>
+            </thead>
+        {% for run in objects %}
+            <tr>
+                <td>{{ run.datetime }}</td>
+                <td>{{ run.researcher }}</td>
+                <td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
+                <td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
+                <td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
+                <td>{{ run.map }}</td>
+                <td>{{ run.p10 }}</td>
+                <td>{{ run.p20 }}</td>
+            </tr>
+        {% endfor %}
+        </table>
+    {% else %}
+        <h2>No results match your query</h2>
+    	<hr />
+        <h3>You might want to <a href="{% url 'search' %}">try again</a> with less restrictive conditions</h3>
+        {% if error %}
+            <p>You might want to check your query since some parts of it are incorrect</p>
+        {% endif %}
+    {% endif %}
 
 {% endblock %}

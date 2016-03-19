@@ -296,7 +296,7 @@ def search(request):
         p20_max_c = getOrDefault(p20_max, convertFloat)
         map_min_c = getOrDefault(map_min, convertFloat)
         map_max_c = getOrDefault(map_max, convertFloat)
-        task_c = getOrDefault(task, convertTask)
+        
         if date_min_c is not None:
             filtered_objects = filtered_objects.filter(datetime__gte=date_min_c)
         if date_max_c is not None:
@@ -314,10 +314,10 @@ def search(request):
         if map_max_c is not None:
             filtered_objects = filtered_objects.filter(map__lte=map_max_c)
         if task is not None:
-            filtered_objects = filtered_objects.filter(task=task_c)
+            print task
+            filtered_objects = filtered_objects.filter(task__title=task)
         if uploader_username is not None:
-            tempUser = User.objects.get(username=uploader_username)
-            filtered_objects = filtered_objects.filter(researcher=tempUser)
+            filtered_objects = filtered_objects.filter(researcher__username=uploader_username)
         if uploader_name is not None:
             tempUser = Researcher.objects.get(display_name=uploader_name).user
             filtered_objects = filtered_objects.filter(researcher=tempUser)
@@ -326,11 +326,9 @@ def search(request):
         if feedback_type is not None:
             filtered_objects = filtered_objects.filter(feedback_type=feedback_type)
         if genre is not None:
-            tempGenre = Genre.objects.get(title=genre)
-            filtered_objects = filtered_objects.filter(task__track__genre = tempGenre)
+            filtered_objects = filtered_objects.filter(task__track__genre__title=genre)
         if track is not None:
-            tempTrack = Track.objects.get(title=track)
-            filtered_objects = filtered_objects.filter(task__track=tempTrack)
+            filtered_objects = filtered_objects.filter(task__track__title=track)
         if name is not None:
             filtered_objects = filtered_objects.filter(name__contains=name)
         if description is not None:

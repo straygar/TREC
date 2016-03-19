@@ -13,3 +13,9 @@ def getOrDefault(dataStr, callFunction):
         return None
     else:
         return callFunction(dataStr)
+
+def checkNotAllNull(data):
+    for item in data:
+        if item is not None:
+            return True
+    return False
