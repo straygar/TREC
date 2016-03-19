@@ -1,7 +1,7 @@
 $(document).ready(function() {
     $.ajax({
 			type: "GET",
-			url: "{% url 'getOrgsAjax' %}"},
+			url: "/main/getOrgsJson",
 			dataType: "json",
 			success: function(xml) {
 
