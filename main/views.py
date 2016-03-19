@@ -273,6 +273,7 @@ def search(request):
     task = request.GET.get("task", None)
     uploader_username = request.GET.get("username", None)
     uploader_name = request.GET.get("displayname", None)
+    institution = request.GET.get("institution", None)
     runtype = request.GET.get("runtype", None)
     genre = request.GET.get("genre", None)
     feedback_type = request.GET.get("feedback", None)

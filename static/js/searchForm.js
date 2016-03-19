@@ -1,9 +1,11 @@
 $(document).ready(function() {
-    $('#searchform').aCollapTable({
-        startCollapsed: true,
-        addColumn: true,
-        plusButton: '<i class="glyphicon glyphicon-plus"></i> ',
-        minusButton: '<i class="glyphicon glyphicon-minus"></i> '
-    });
+      new jQueryCollapse($("#form"), {
+          open: function() {
+            this.slideDown(150);
+          },
+          close: function() {
+            this.slideUp(150);
+          }
+        });
 });
 

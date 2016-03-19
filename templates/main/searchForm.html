@@ -7,143 +7,33 @@
 {% block h1 %}Search TREC-FEED{% endblock %}
 
 {% block body_block %}
-    <script src="{% static 'js/jquery.aCollapTable.min.js' %}"></script>
+    <script src="{% static 'js/jquery.collapse.js' %}"></script>
+    <script src="{% static 'js/jquery.collapse_cookie_storage.js' %}"></script>
+    <script src="{% static 'js/jquery.collapse_storage.js' %}"></script>
     <script src="{% static 'js/searchForm.js' %}"></script>
 
 	<!-- Page card title !-->
 	<h2>Search for Runs on TREC-FEED</h2>
 	<hr />
 	<!-- /Page card title !-->
+    <h2>Please select what criteria you want to search on</h2>
     <div id="form">
-        <table id="searchform" class="table table-hover">
-			<thead>
-				<tr>
-					<th>Field to search</th>
-				</tr>
-			</thead>
-            <tbody>
-                <tr data-id="1" data-parent="">
-                    <td>Researcher username</td>
-                </tr>
-                    <tr data-id="15" data-parent="1">
-                        <td>Please enter the username to search:</td>
-                    </tr>
-                <tr data-id="2" data-parent="">
-                    <td>Researcher name</td>
-                </tr>
-                    <tr data-id="16" data-parent="2">
-                        <td>Please enter the name to search:</td>
-                    </tr>
-                <tr data-id="3" data-parent="">
-                    <td>Run title</td>
-                </tr>
-                    <tr data-id="17" data-parent="3">
-                        <td>Please enter the title to search:</td>
-                    </tr>
-                <tr data-id="4" data-parent="">
-                    <td>Run description</td>
-                </tr>
-                    <tr data-id="18" data-parent="4">
-                        <td>Please enter the description to search:</td>
-                    </tr>
-                <tr data-id="5" data-parent="">
-                    <td>Run type</td>
-                </tr>
-                    <tr data-id="19" data-parent="5">
-                        <td>Please select a run type to search:</td>
-                    </tr>
-                <tr data-id="6" data-parent="">
-                    <td>Query type</td>
-                </tr>
-                    <tr data-id="20" data-parent="6">
-                        <td>Please select the query type to search:</td>
-                    </tr>
-                <tr data-id="7" data-parent="">
-                    <td>Feedback type</td>
-                </tr>
-                    <tr data-id="21" data-parent="7">
-                        <td>Please select the feedback type to search:</td>
-                    </tr>
-                <tr data-id="8" data-parent="">
-                    <td>Genre</td>
-                </tr>
-                    <tr data-id="22" data-parent="8">
-                        <td>Please select the genre to search:</td>
-                    </tr>
-                <tr data-id="9" data-parent="">
-                    <td>Map</td>
-                </tr>
-                    <tr data-id="23" data-parent="9">
-                        <td>I want to search for a single value</td>
-                    </tr>
-                        <tr data-id="24" data-parent="23">
-                            <td>Please enter the Map value: <input id="map_single" type="number" step="0.0001"></td>
-                        </tr>
-                    <tr data-id="25" data-parent="9">
-                        <td>I want to search for a range of values</td>
-                    </tr>
-                        <tr data-id="26" data-parent="25">
-                            <td>Please enter the limit values: <input id="map_limit1" type="number" step="0.0001">  <input id="map_limit2" type="number" step="0.0001"></td>
-                        </tr>
-                <tr data-id="10" data-parent="">
-                    <td>Precision at 10</td>
-                </tr>
-                    <tr data-id="27" data-parent="10">
-                        <td>I want to search for a single value</td>
-                    </tr>
-                        <tr data-id="28" data-parent="27">
-                            <td>Please enter the Precision at 10 value: <input id="p10_single" type="number" step="0.0001"></td>
-                        </tr>
-                    <tr data-id="29" data-parent="10">
-                        <td>I want to search for a range of values</td>
-                    </tr>
-                        <tr data-id="30" data-parent="29">
-                            <td>Please enter the limit values: <input id="p10_limit1" type="number" step="0.0001"><input id="p10_limit2" type="number" step="0.0001"></td>
-                        </tr>
-                <tr data-id="11" data-parent="">
-                    <td>Precision at 20</td>
-                </tr>
-                    <tr data-id="31" data-parent="11">
-                        <td>I want to search for a single value</td>
-                    </tr>
-                        <tr data-id="32" data-parent="31">
-                            <td>Please enter the Precision at 20 value: <input id="p20_single" type="number" step="0.0001"></td>
-                        </tr>
-                    <tr data-id="33" data-parent="11">
-                        <td>I want to search for a range of values</td>
-                    </tr>
-                        <tr data-id="34" data-parent="33">
-                            <td>Please enter the limit values: <input id="p20_limit1" type="number" step="0.0001"><input id="p20_limit2" type="number" step="0.0001"></td>
-                        </tr>
-                <tr data-id="12" data-parent="">
-                    <td>Date</td>
-                </tr>
-                    <tr data-id="35" data-parent="12">
-                        <td>I want to search for a single value</td>
-                    </tr>
-                        <tr data-id="36" data-parent="35">
-                            <td>Please enter the date:</td>
-                        </tr>
-                    <tr data-id="37" data-parent="12">
-                        <td>I want to search for a range of values</td>
-                    </tr>
-                        <tr data-id="38" data-parent="37">
-                            <td>Please enter the limit values:</td>
-                        </tr>
-                <tr data-id="13" data-parent="">
-                    <td>Task</td>
-                </tr>
-                    <tr data-id="39" data-parent="13">
-                        <td>Please select the task to search:</td>
-                    </tr>
-                <tr data-id="14" data-parent="">
-                    <td>Track</td>
-                </tr>
-                     <tr data-id="40" data-parent="14">
-                        <td>Please select the track to search:</td>
-                    </tr>
-            </tbody>
-        </table>
+        <h3>Researcher username</h3>
+            <div>Here you can choose</div>
+        <h3>Researcher name</h3>
+            <div>Here you can choose</div>
+        <h3>Date uploaded</h3>
+            <div>Here you can choose</div>
+        <h3>Institution</h3>
+            <div>Here you can choose</div>
+        <h3>Track</h3>
+            <div>Here you can choose</div>
+        <h3>Task</h3>
+            <div>Here you can choose</div>
+        <h3>Genre</h3>
+            <div>Here you can choose</div>
+        <h3>Researcher name</h3>
+            <div>Here you can choose</div>
     </div>
 
 {% endblock %}
