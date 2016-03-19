@@ -6,13 +6,17 @@
 
 
 
+<div>
+	<li> Bug found, table columns dont sort correctly for datetime field</li>
+</div>
 
-<div class="col-lg-7 col-md-1 col-sm-1">
+
+<div class="col-lg-7 col-md-12 col-sm-12">
 	<a href="/main/run/new/" class="btn btn-info" role="button">Upload Run</a>
 </div>
 
 {% if can_edit_tracks %}
-    <h4>Are you an Admin? Add:</h4>
+    <h4>Admin Commands. Add:</h4>
     <a href="/main/task/new">Tasks</a>
     <a href="/main/track/new">Tracks</a>
     <a href="/main/edit/new">Genres</a>
@@ -20,18 +24,18 @@
 
 	<div class="col-lg-6 col-md-12 col-sm-12">
 		<div class="table-responsive">
-		<h4>Recent Runs</h4>
-		<table class="sortable table table-hover table-striped">
+			<h4>Recent Runs</h4>
+		<table class="sortable table table-striped table-bordered table-hover order-column">
 			<thead class="thead-inverse">
 				<tr>
 					<th>Uploaded</th>
 					<th>Researcher</th>
 					<th>Run</th>
-					<th>Task</th>
-					<th>Track</th>
 					<th>Map</th>
 					<th>p10</th>
 					<th>p20</th>
+					<th>Task</th>
+					<th>Track</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -40,11 +44,11 @@
 					<td>{{ run.datetime }}</td>
 					<td>{{ run.researcher }}</td>
 					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
-					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
-					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
 					<td>{{ run.map }}</td>
 					<td>{{ run.p10 }}</td>
 					<td>{{ run.p20 }}</td>
+					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
+					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
 				</tr>
 				{% endfor %}
 			</tbody>
@@ -54,17 +58,17 @@
 	<div class="col-lg-6 col-md-12 col-sm-12">
 		<div class="table-responsive">
 		<h4>Best Runs</h4>
-		<table class="sortable table table-hover table-striped">
+		<table class="sortable table table-hover table-striped table-bordered order-column">
 			<thead class="thead-inverse">
 				<tr>
 					<th>Uploaded</th>
 					<th>Researcher</th>
 					<th>Run</th>
-					<th>Task</th>
-					<th>Track</th>
 					<th>Map</th>
 					<th>p10</th>
 					<th>p20</th>
+					<th>Task</th>
+					<th>Track</th>
 				</tr>
 			</thead>
 			<tbody>
@@ -73,11 +77,11 @@
 					<td>{{ run.datetime }}</td>
 					<td>{{ run.researcher }}</td>
 					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
-					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
-					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
 					<td>{{ run.map }}</td>
 					<td>{{ run.p10 }}</td>
 					<td>{{ run.p20 }}</td>
+					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
+					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
 				</tr>
 				{% endfor %}
 			</tbody>
