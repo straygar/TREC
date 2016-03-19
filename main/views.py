@@ -21,8 +21,11 @@ from django.core.serializers.json import DjangoJSONEncoder
 
 def index(request):
     context_dict = {}
-    run_list = Run.objects.all()
-    context_dict = { 'runs' : run_list}
+
+    best_list = Run.objects.all().order_by('p10')
+    context_dict["best"] = best_list
+    recent_list = Run.objects.all().order_by('-datetime')
+    context_dict["recent"] = recent_list
 
     return render(request, 'main/index.html', context_dict)
 
@@ -69,7 +72,7 @@ def uploadRun(request):
                 temp_data.p10 = results["P_10"]
                 temp_data.p20 = results["P_20"]
                 temp_data.map = results["map"]
-                run_list = Run.objects.filter(task=temp_data.task)
+                run_list = Run.objects.filter(task=temp_data.task).order_by('p10')
                 contextDict["runs"] = run_list
                 temp_data.save()
                 finish = True
