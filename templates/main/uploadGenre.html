@@ -1,24 +1,34 @@
-{% extends "main/base.html" %}
+{% extends "main/base_forms.html" %}
 
-{% load staticfiles %}
-
-{% block title %}Create new Genre{% endblock %}
-
-{% block body_block %}
-
-{% if posted %}
-<h3 class="alert alert-success">Successfully added genre!</h3>
-{% if retUrl %}
-<a href="{{ retUrl }}">Go back</a>
-{% endif %}
-{% endif %}
-<form id="upload_genre" method="post" action="{% url 'new_genre' %}" enctype="multipart/form-data" data-parsley-validate>
-    {% csrf_token %}
-    {% if retForm %}
-        {{ retForm.as_p }}
+{% block title %}
+    {% if new %}
+        {% block new_element %}Upload a new Genre{% endblock %}
+    {% else %}
+        {% block edit_element %}Edit Genre {{ title }}{% endblock %}
     {% endif %}
-    {{ form.as_p }}
-    <input type="submit" name="submit" value="Create">
-</form>
+{% endblock %}
 
+{% block insert_block %}
+<h1>
+    {% if new %}
+        Upload a new Genre
+    {% else %}
+        Edit Genre {{ title }}
+    {% endif %}
+</h1>
+{% endblock %}
+
+{% block ok_upload %}
+<h3 class="alert alert-success">Successfully added the Genre!</h3>
+{% endblock %}
+{% block error_upload %}
+<h3 class="alert alert-warning">The data you entered is incorrect</h3>
+<h5>Please, check all the fields</h5>
+{% endblock %}
+{% block ok_edit %}
+<h3 class="alert alert-success">Successfully edited Genre!</h3>
+{% endblock %}
+{% block error_edit %}
+<h3 class="alert alert-warning">The data you entered is incorrect</h3>
+<h5>Please, check all the fields</h5>
 {% endblock %}

@@ -9,7 +9,7 @@
 <h2>Track: {{ track.title }}</h2>
 <h4>Details</h4>
 
-<table class="table-striped table-bordered table-hover">
+<table class="table table-striped table-bordered table-hover">
     <tr>
         <td>Title</td>
         <td>{{ track.title }}</td>
@@ -29,20 +29,24 @@
     <tr>
         <td>Tasks</td>
         <td>
-            <table class="table-striped table-bordered table-hover">
-                <tr>
-                    <th>Title</th>
-                    <th>Description</th>
-                    <th>Year</th>
-                </tr>
-                {% for task in tasks %}
+            {% if tasks %}
+                <table class="table table-striped table-bordered table-hover">
                     <tr>
-                        <td>{{ task.title }}</td>
-                        <td>{{ task.description }}</td>
-                        <td>{{ task.year }}</td>
+                        <th>Title</th>
+                        <th>Description</th>
+                        <th>Year</th>
                     </tr>
-                {% endfor %}
-            </table>
+                    {% for task in tasks %}
+                        <tr>
+                            <td><a href="{% url 'view_task' taskid=task.id %}">{{ task.title }}</a></td>
+                            <td>{{ task.description }}</td>
+                            <td>{{ task.year }}</td>
+                        </tr>
+                    {% endfor %}
+                </table>
+            {% else %}
+                This track has no tasks
+            {% endif %}
         </td>
     </tr>
 </table>

@@ -3,37 +3,63 @@
 {% load staticfiles %}
 
 {% block title %}Manage tracks{% endblock %}
-
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/manageTracks.css' %}">
+{% endblock %}
 {% block body_block %}
+    <script src="{% static 'js/jquery.bpopup.min.js' %}"></script>
+    <script src="{% static 'js/manageTracks.js' %}"></script>
 
-<h2>Manage tracks</h2>
+<h2>Manage Tracks</h2>
 <h4>Details</h4>
 
+<div class="col-lg-6 col-md-12 col-sm-12 col-lg-offset-3">
+	    <a href="{% url 'new_track' %}" class="btn btn-info btn-block" role="button">Create new Track</a>
+</div>
+
 {% if list %}
-<table class="sortable table table-striped table-bordered table-hover">
-    <thead>
-        <th>Title</th>
-        <th>Description</th>
-        <th>URL</th>
-        <th>Genre</th>
-        <th>Associated tasks</th>
-        <th>Edit</th>
-        <th>Delete</th>
-    </thead>
-    <tbody>
-        {% for track in list %}
-            <tr>
-                <td>{{ track.title }}</td>
-                <td>{{ track.description }}</td>
-                <td><a href="{{ track.track_url }}">{{ track.track_url }}</a></td>
-                <td>{{ track.genre.title }}</td>
-                <td>TODO</td>
-                <td><a href="{% url 'edit_track' trackid=track.id %}" class="btn btn-info btn-block">Edit</a></td>
-                <td><a href="{% url 'delete_track' trackid=track.id %}" class="btn btn-info btn-block">Delete</a></td>
-            </tr>
-        {% endfor %}
-    </tbody>
-</table>
+<div class="col-lg-12 col-md-12 col-sm-12 table-responsive">
+    <table class="sortable table table-striped table-bordered table-hover" id="manage-table">
+        <thead>
+            <th>Title</th>
+            <th>Description</th>
+            <th>URL</th>
+            <th>Genre</th>
+            <th>Associated tasks</th>
+            <th>Edit</th>
+            <th>Delete</th>
+        </thead>
+        <tbody>
+            {% for track in list %}
+                <tr>
+                    <td>{{ track.title }}</td>
+                    <td>{{ track.description }}</td>
+                    <td><a href="{{ track.track_url }}">{{ track.track_url }}</a></td>
+                    <td>{{ track.genre.title }}</td>
+                    <td><a href="#" class="btn btn-info btn-block" id="see_tasks" track_id="{{ track.id }}">See tasks</a></td>
+                    <td><a href="{% url 'edit_track' trackid=track.id %}" class="btn btn-info btn-block">Edit</a></td>
+                    <td><a href="{% url 'delete_track' trackid=track.id %}" class="btn btn-info btn-block">Delete</a></td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+{% else %}
+<h3 class="alert alert-warning">There are no Tracks yet</h3>
 {% endif %}
+<div id="popup" class="popup">
+    <table id="tableInfo" class="sortable table table-striped table-bordered table-hover">
+        <thead>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>URL</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+</div>
 
 {% endblock %}

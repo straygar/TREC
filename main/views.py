@@ -212,44 +212,27 @@ def register(request):
 
 @login_required
 def edit_profile(request):
-     # Request the context.
     context = RequestContext(request)
     context_dict = {}
     old_profile=get_object_or_404(Researcher, user=request.user)
-
-    # If HTTP POST, we wish to process form data and create an account.
     if request.method == 'POST':
         profile_form = UserProfileForm(data=request.POST)
-
-        # Two valid forms?
         if profile_form.is_valid():
-
-            # We'll be setting values for the instance ourselves, so commit=False prevents Django
-            # from saving the instance automatically.
             profile = profile_form.save(commit=False)
             profile.user = request.user
-
-            # Profile picture supplied? If so, we put it in the new UserProfile.
             if 'profile_picture' in request.FILES:
                 profile.profile_picture = request.FILES['profile_picture']
 
-            # Now we save the model instance!
             profile.save()
 
             return HttpResponseRedirect('/main/profile/')
-
-
-        # Invalid form(s) - just print errors to the terminal.
         else:
             print profile_form.errors
-
-    # Not a HTTP POST, so we render the two ModelForms to allow a user to input their data.
     else:
         profile_form = UserProfileForm(instance=old_profile)
 
     context_dict['profile_form']= profile_form
 
-    # Render and return!
     return render_to_response(
         'main/edit_profile.html',
         context_dict,
@@ -289,10 +272,11 @@ class DecimalEncoder(json.JSONEncoder):
             return "%.2f" % obj
         return json.JSONEncoder.default(self, obj)
 
-def return_result(request):
-    context = serializers.serialize("json", Run.objects.all().filter(researcher=request.user))
+@login_required
+def return_result(request, taskid):
+    task = get_object_or_404(Task, id=taskid)
+    context = serializers.serialize("json", Run.objects.all().filter(researcher=request.user).filter(task=task))
     return HttpResponse(json.dumps(context), content_type="application/json")
-
 
 # def return_result(request):
 #      runs = Run.objects.filter(researcher=request.user)[:5]
@@ -323,6 +307,10 @@ def viewTrack(request, trackid):
 @staff_member_required
 def editTrack(request, trackid):
     return viewhelper.editFormGeneric(request, "main/uploadTrack.html", Track, TrackForm, trackid)
+
+@staff_member_required
+def editGenre(request, genreid):
+    return viewhelper.editFormGeneric(request, "main/uploadGenre.html", Genre, GenreForm, genreid)
 
 def viewTask(request, taskid):
     return render(request, "main/viewTask.html", {"task":get_object_or_404(Task, id=taskid)})
@@ -472,19 +460,39 @@ def getTaskInfoJson(request):
         returnData = json.dumps(returnData)
     return HttpResponse(returnData, content_type="application/json")
 
+@staff_member_required
 def manageTask(request):
     task_list = Task.objects.all()
     return render(request, "main/manageTask.html", {"list":task_list})
 
+@staff_member_required
 def manageTrack(request):
     track_list = Track.objects.all()
     return render(request, "main/manageTrack.html", {"list":track_list})
 
+@staff_member_required
 def manageGenre(request):
-    pass
+    genre_list = Genre.objects.all()
+    return render(request, "main/manageGenre.html", {"list":genre_list})
 
+@staff_member_required
 def deleteTask(request, taskid):
     return viewhelper.deleteFormGeneric(request, "main/deleteConfirm.html", Task, taskid, "Task", reverse("manage_task"))
 
+@staff_member_required
 def deleteTrack(request, trackid):
     return viewhelper.deleteFormGeneric(request, "main/deleteConfirm.html", Track, trackid, "Track", reverse("manage_track"))
+
+@staff_member_required
+def deleteGenre(request, genreid):
+    return viewhelper.deleteFormGeneric(request, "main/deleteConfirm.html", Genre, genreid, "Genre", reverse("manage_genre")
+                                        , False)
+
+def getTasksJson(request):
+    query = request.GET.get("track", None)
+    if query is None or len(query.strip()) == 0:
+        returnData = json.dumps([()])
+    else:
+        tasks = Task.objects.filter(track__id=query).values_list("title", "description", "task_url")
+        returnData = json.dumps(list(tasks))
+    return HttpResponse(returnData, content_type="application/json")

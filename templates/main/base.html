@@ -54,7 +54,7 @@
 					</li>
 					{% endif %}
 				{% if user.is_authenticated %}
-
+					<li><a href="{% url 'new_run' %}">New Run</a></li>
 					<li><a href="{% url 'logout' %}">Logout</a></li>
 					<li>
 						<a href="{% url 'view_profile' userId=user.id %}" class="viewProfile">

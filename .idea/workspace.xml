@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a04ee13-9171-42c7-a14e-b61c3f484228" name="Default" comment="">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/trec/tests.py" afterPath="$PROJECT_DIR$/trec/tests.py" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/trec.iml" afterPath="$PROJECT_DIR$/.idea/trec.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+=======
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/browseTask.html" afterPath="$PROJECT_DIR$/templates/main/browseTask.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/edit_profile.html" afterPath="$PROJECT_DIR$/templates/main/edit_profile.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/login.html" afterPath="$PROJECT_DIR$/templates/main/login.html" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/register.html" afterPath="$PROJECT_DIR$/templates/main/register.html" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
     </list>
     <ignored path="TREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,6 +34,7 @@
     <favorites_list name="TREC" />
   </component>
   <component name="FileEditorManager">
+<<<<<<< HEAD
     <splitter split-orientation="horizontal" split-proportion="0.5">
       <split-first>
         <leaf>
@@ -61,6 +69,60 @@
         </leaf>
       </split-second>
     </splitter>
+=======
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
+      <file leaf-file-name="about.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/main/about.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.7846155">
+              <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="browseTask.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/main/browseTask.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-17.261538">
+              <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="edit_profile.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/main/edit_profile.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-7.806452">
+              <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="register.html" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/templates/main/register.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.41363102">
+              <caret line="16" column="91" selection-start-line="16" selection-start-column="91" selection-end-line="16" selection-end-column="91" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/main/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-1.2571429">
+              <caret line="5" column="54" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="54" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -77,25 +139,41 @@
       <list>
         <option value="$PROJECT_DIR$/trec/settings.py" />
         <option value="$PROJECT_DIR$/../profile.html" />
-        <option value="$PROJECT_DIR$/templates/main/register.html" />
         <option value="$PROJECT_DIR$/main/forms.py" />
         <option value="$PROJECT_DIR$/templates/main/profile.html" />
         <option value="$PROJECT_DIR$/templates/main/viewRun.html" />
-        <option value="$PROJECT_DIR$/templates/main/viewTrack.html" />
-        <option value="$PROJECT_DIR$/templates/main/viewProfile.html" />
-        <option value="$PROJECT_DIR$/templates/main/browseTask.html" />
-        <option value="$PROJECT_DIR$/templates/main/searchResults.html" />
         <option value="$PROJECT_DIR$/util/dataparser.py" />
+        <option value="$PROJECT_DIR$/static/css/bootstrap.css" />
+        <option value="$PROJECT_DIR$/templates/main/searchResults.html" />
+        <option value="$PROJECT_DIR$/templates/main/viewProfile.html" />
         <option value="$PROJECT_DIR$/static/js/chart.js" />
-        <option value="$PROJECT_DIR$/templates/main/base.html" />
-        <option value="$PROJECT_DIR$/main/urls.py" />
-        <option value="$PROJECT_DIR$/templates/main/manageTask.html" />
-        <option value="$PROJECT_DIR$/templates/main/deleteConfirm.html" />
-        <option value="$PROJECT_DIR$/templates/main/manageTrack.html" />
+        <option value="$PROJECT_DIR$/static/js/manageTracks.js" />
+        <option value="$PROJECT_DIR$/templates/main/viewTask.html" />
+        <option value="$PROJECT_DIR$/templates/main/viewTrack.html" />
+        <option value="$PROJECT_DIR$/static/css/manageTracks.css" />
         <option value="$PROJECT_DIR$/templates/main/base_forms.html" />
-        <option value="$PROJECT_DIR$/main/views.py" />
+        <option value="$PROJECT_DIR$/util/trec.py" />
+        <option value="$PROJECT_DIR$/templates/main/searchForm.html" />
+        <option value="$PROJECT_DIR$/templates/main/manageTrack.html" />
+        <option value="$PROJECT_DIR$/templates/main/manageTask.html" />
+        <option value="$PROJECT_DIR$/main/urls.py" />
+        <option value="$PROJECT_DIR$/templates/main/uploadTask.html" />
+        <option value="$PROJECT_DIR$/templates/main/uploadTrack.html" />
+        <option value="$PROJECT_DIR$/templates/main/uploadGenre.html" />
         <option value="$PROJECT_DIR$/util/viewhelper.py" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/trec/tests.py" />
+=======
+        <option value="$PROJECT_DIR$/main/views.py" />
+        <option value="$PROJECT_DIR$/templates/main/deleteConfirm.html" />
+        <option value="$PROJECT_DIR$/templates/main/manageGenre.html" />
+        <option value="$PROJECT_DIR$/templates/main/base.html" />
+        <option value="$PROJECT_DIR$/templates/main/about.html" />
+        <option value="$PROJECT_DIR$/templates/main/browseTask.html" />
+        <option value="$PROJECT_DIR$/templates/main/login.html" />
+        <option value="$PROJECT_DIR$/templates/main/edit_profile.html" />
+        <option value="$PROJECT_DIR$/templates/main/register.html" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
       </list>
     </option>
   </component>
@@ -257,7 +335,15 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
+<<<<<<< HEAD
               <option name="myItemId" value="qrels" />
+=======
+              <option name="myItemId" value="static" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="css" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -272,6 +358,20 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="TREC" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="htmlcov" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -458,6 +558,7 @@
     <frame x="4" y="23" width="1364" height="852" extended-state="0" />
     <editor active="true" />
     <layout>
+<<<<<<< HEAD
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.24560118" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
@@ -477,6 +578,27 @@
       <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+=======
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.29947916" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
+      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Database" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -495,6 +617,7 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/templates/main/uploadTask.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -523,146 +646,27 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/searchResults.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#101#0" expanded="false" />
-            <marker date="1458496838000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/dataparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/viewTrack.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/viewRun.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="69" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/searchResults.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="3" column="26" selection-start-line="3" selection-start-column="26" selection-end-line="3" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/models.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#28#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/main/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="365" column="55" selection-start-line="365" selection-start-column="55" selection-end-line="365" selection-end-column="55" />
-          <folding>
-            <element signature="e#0#101#0" expanded="false" />
-            <marker date="1458496838000" expanded="true" signature="-1:-1" placeholder="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/dataparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
+=======
     <entry file="file://$PROJECT_DIR$/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="290" column="12" selection-start-line="290" selection-start-column="12" selection-end-line="290" selection-end-column="12" />
           <folding>
-            <element signature="e#0#101#0" expanded="false" />
-            <marker date="1458496838000" expanded="true" signature="-1:-1" placeholder="..." />
+            <element signature="e#0#101#0" expanded="true" />
           </folding>
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
+          <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
+=======
           <caret line="34" column="5" selection-start-line="34" selection-start-column="5" selection-end-line="34" selection-end-column="5" />
           <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
         </state>
       </provider>
     </entry>
@@ -670,6 +674,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -677,6 +682,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -694,11 +700,15 @@
     <entry file="file://$PROJECT_DIR$/trec/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+=======
           <caret line="46" column="4" selection-start-line="46" selection-start-column="4" selection-end-line="46" selection-end-column="4" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/edit_profile.html">
+    <entry file="file://$PROJECT_DIR$/populate_trec.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -707,29 +717,43 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/main/index.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+=======
         <state vertical-scroll-proportion="39.26923">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/static/js/searchForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
+          <caret line="51" column="21" selection-start-line="51" selection-start-column="21" selection-end-line="51" selection-end-column="69" />
+=======
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="7" selection-end-column="3" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/register.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-17.032259">
-          <caret line="33" column="69" selection-start-line="33" selection-start-column="69" selection-end-line="33" selection-end-column="69" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/main/forms.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
+=======
         <state vertical-scroll-proportion="-17.470589">
           <caret line="76" column="65" selection-start-line="76" selection-start-column="65" selection-end-line="76" selection-end-column="65" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/ajaxBrowseTask.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -740,79 +764,91 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/viewTrack.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/chart.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7096774">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/util/dataparser.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.3529415">
-          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/searchResults.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.723356">
-          <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/searchForm.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-23.419355">
-          <caret line="180" column="70" selection-start-line="180" selection-start-column="40" selection-end-line="180" selection-end-column="70" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/browseTask.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-16.32258">
-          <caret line="23" column="81" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="81" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/main/viewRun.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.0">
+          <caret line="365" column="55" selection-start-line="365" selection-start-column="55" selection-end-line="365" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#101#0" expanded="false" />
+            <marker date="1458496838000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+=======
         <state vertical-scroll-proportion="-2.1290324">
           <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/manageTask.html">
+    <entry file="file://$PROJECT_DIR$/templates/main/uploadRun.html">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="11" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="14" />
+<<<<<<< HEAD
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+=======
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/bootstrap-theme.css">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.0">
+          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
+=======
+        <state vertical-scroll-proportion="-7.8333335">
+          <caret line="94" column="24" selection-start-line="94" selection-start-column="21" selection-end-line="94" selection-end-column="24" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/manageTrack.html">
+    <entry file="file://$PROJECT_DIR$/static/css/bootstrap-theme.css.map">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/uploadTask.html">
+    <entry file="file://$PROJECT_DIR$/htmlcov/keybd_closed.png">
+      <provider selected="true" editor-type-id="images">
+        <state />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/viewProfile.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.0">
+          <caret line="5" column="29" selection-start-line="5" selection-start-column="29" selection-end-line="5" selection-end-column="29" />
+=======
+        <state vertical-scroll-proportion="-27.753845">
+          <caret line="82" column="0" selection-start-line="82" selection-start-column="0" selection-end-line="82" selection-end-column="0" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/bootstrap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
+          <caret line="290" column="12" selection-start-line="290" selection-start-column="12" selection-end-line="290" selection-end-column="12" />
+          <folding>
+            <element signature="e#0#101#0" expanded="false" />
+            <marker date="1458496838000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+=======
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/bootstrap.min.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
@@ -820,22 +856,306 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/base_forms.html">
+    <entry file="file://$PROJECT_DIR$/static/js/browseForm.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
+          <caret line="2" column="6" selection-start-line="2" selection-start-column="6" selection-end-line="2" selection-end-column="6" />
+=======
+          <caret line="15" column="3" selection-start-line="15" selection-start-column="3" selection-end-line="15" selection-end-column="3" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/searchResults.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.723356">
+          <caret line="29" column="114" selection-start-line="29" selection-start-column="114" selection-end-line="29" selection-end-column="114" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/ajaxBrowseTrack.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
+          <caret line="241" column="52" selection-start-line="241" selection-start-column="52" selection-end-line="241" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#101#0" expanded="false" />
+            <marker date="1458496838000" expanded="true" signature="-1:-1" placeholder="..." />
+          </folding>
+=======
+          <caret line="27" column="11" selection-start-line="4" selection-start-column="8" selection-end-line="27" selection-end-column="11" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/manageTracks.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="25" column="55" selection-start-line="25" selection-start-column="55" selection-end-line="25" selection-end-column="55" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/dataparser.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-13.588235">
+          <caret line="24" column="4" selection-start-line="24" selection-start-column="4" selection-end-line="24" selection-end-column="4" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/templates/main/index.html">
+=======
+    <entry file="file://$PROJECT_DIR$/templates/main/viewTask.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-21.064516">
+          <caret line="35" column="9" selection-start-line="35" selection-start-column="9" selection-end-line="35" selection-end-column="9" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/viewTrack.html">
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-22.0">
+          <caret line="46" column="22" selection-start-line="46" selection-start-column="22" selection-end-line="46" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/chart.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="50" selection-start-line="8" selection-start-column="50" selection-end-line="8" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/bootstrap.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.9929078">
+          <caret line="6013" column="6" selection-start-line="6013" selection-start-column="1" selection-end-line="6013" selection-end-column="6" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/css/manageTracks.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-1.8333334">
+          <caret line="3" column="39" selection-start-line="3" selection-start-column="39" selection-end-line="3" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+<<<<<<< HEAD
+    <entry file="file://$PROJECT_DIR$/templates/main/browse.html">
+=======
+    <entry file="file://$PROJECT_DIR$/util/trec.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#17#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/base_forms.html">
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-16.32258">
+          <caret line="23" column="62" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/searchForm.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.0">
+          <caret line="8" column="11" selection-start-line="8" selection-start-column="11" selection-end-line="8" selection-end-column="11" />
+=======
+        <state vertical-scroll-proportion="-18.225807">
+          <caret line="26" column="40" selection-start-line="26" selection-start-column="40" selection-end-line="26" selection-end-column="40" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/manageTrack.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.5161295">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/uploadTask.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.0">
+          <caret line="56" column="0" selection-start-line="56" selection-start-column="0" selection-end-line="56" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="-11.83871">
+          <caret line="21" column="56" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/uploadTrack.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="-0.7096774">
+          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
+=======
+        <state vertical-scroll-proportion="0.33251533">
+          <caret line="15" column="27" selection-start-line="15" selection-start-column="22" selection-end-line="15" selection-end-column="27" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/viewhelper.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="-10.3529415">
+          <caret line="19" column="18" selection-start-line="19" selection-start-column="18" selection-end-line="19" selection-end-column="18" />
+=======
+        <state vertical-scroll-proportion="-11.058824">
+          <caret line="18" column="8" selection-start-line="18" selection-start-column="8" selection-end-line="18" selection-end-column="8" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/models.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.723356">
+          <caret line="29" column="109" selection-start-line="29" selection-start-column="109" selection-end-line="29" selection-end-column="109" />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="-23.419355">
+          <caret line="180" column="70" selection-start-line="180" selection-start-column="40" selection-end-line="180" selection-end-column="70" />
+=======
+        <state vertical-scroll-proportion="0.8374384">
+          <caret line="487" column="96" selection-start-line="487" selection-start-column="96" selection-end-line="487" selection-end-column="96" />
+          <folding>
+            <element signature="e#0#101#0" expanded="true" />
+          </folding>
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/deleteConfirm.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="-16.32258">
+          <caret line="23" column="81" selection-start-line="23" selection-start-column="26" selection-end-line="23" selection-end-column="81" />
+=======
+        <state vertical-scroll-proportion="0.31022328">
+          <caret line="12" column="41" selection-start-line="12" selection-start-column="41" selection-end-line="12" selection-end-column="41" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/uploadGenre.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="-2.1290324">
+          <caret line="3" column="0" selection-start-line="3" selection-start-column="0" selection-end-line="3" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="36" selection-start-line="0" selection-start-column="36" selection-end-line="0" selection-end-column="36" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/manageTask.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.0">
+          <caret line="11" column="13" selection-start-line="0" selection-start-column="0" selection-end-line="40" selection-end-column="14" />
+=======
+        <state vertical-scroll-proportion="-18.451612">
+          <caret line="36" column="94" selection-start-line="36" selection-start-column="64" selection-end-line="36" selection-end-column="94" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/manageGenre.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
+        <state vertical-scroll-proportion="0.0">
+          <caret line="29" column="24" selection-start-line="29" selection-start-column="24" selection-end-line="29" selection-end-column="24" />
+=======
+        <state vertical-scroll-proportion="-18.225807">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.645162">
+          <caret line="56" column="61" selection-start-line="56" selection-start-column="61" selection-end-line="56" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trec/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+<<<<<<< HEAD
           <caret line="23" column="57" selection-start-line="23" selection-start-column="62" selection-end-line="23" selection-end-column="68" />
           <folding />
+=======
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#51#0" expanded="false" />
+          </folding>
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/urls.py">
+    <entry file="file://$PROJECT_DIR$/templates/main/about.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0">
           <caret line="19" column="67" selection-start-line="19" selection-start-column="67" selection-end-line="19" selection-end-column="67" />
+=======
+        <state vertical-scroll-proportion="-7.7846155">
+          <caret line="23" column="36" selection-start-line="23" selection-start-column="36" selection-end-line="23" selection-end-column="36" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
           <folding />
         </state>
       </provider>
     </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/main/views.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -844,27 +1164,48 @@
             <element signature="e#0#101#0" expanded="false" />
             <marker date="1458496838000" expanded="true" signature="-1:-1" placeholder="..." />
           </folding>
+=======
+    <entry file="file://$PROJECT_DIR$/templates/main/browseTask.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-17.261538">
+          <caret line="51" column="0" selection-start-line="51" selection-start-column="0" selection-end-line="51" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/deleteConfirm.html">
+    <entry file="file://$PROJECT_DIR$/templates/main/login.html">
       <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.34430084">
+          <caret line="10" column="89" selection-start-line="10" selection-start-column="89" selection-end-line="10" selection-end-column="89" />
+          <folding />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/edit_profile.html">
+      <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0">
           <caret line="25" column="45" selection-start-line="25" selection-start-column="36" selection-end-line="25" selection-end-column="45" />
+=======
+        <state vertical-scroll-proportion="-7.806452">
+          <caret line="11" column="32" selection-start-line="11" selection-start-column="32" selection-end-line="11" selection-end-column="32" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/uploadRun.html">
+    <entry file="file://$PROJECT_DIR$/main/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state vertical-scroll-proportion="-1.2571429">
+          <caret line="5" column="54" selection-start-line="5" selection-start-column="46" selection-end-line="5" selection-end-column="54" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/util/viewhelper.py">
+    <entry file="file://$PROJECT_DIR$/templates/main/register.html">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state vertical-scroll-proportion="0.0">
           <caret line="40" column="33" selection-start-line="40" selection-start-column="33" selection-end-line="40" selection-end-column="33" />
           <folding />
@@ -875,6 +1216,10 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+=======
+        <state vertical-scroll-proportion="0.41363102">
+          <caret line="16" column="91" selection-start-line="16" selection-start-column="91" selection-end-line="16" selection-end-column="91" />
+>>>>>>> ffb230ebd2b5091406bd870b7503b8c2d0bc586f
           <folding />
         </state>
       </provider>

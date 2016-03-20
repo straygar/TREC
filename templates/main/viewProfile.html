@@ -1,6 +1,10 @@
 {% extends "main/base.html" %}
 {% load static %}
 
+{% block head %}
+<script type="text/javascript" src="{% static 'js/chart.js' %}"></script>
+{% endblock %}
+
 {% block body_block %}
 <div class="col-lg-6 col-md-12 col-sm-12 col-lg-offset-3 text-center">
 	<h2>{{ profile.display_name }}'s profile</h2>
@@ -14,6 +18,7 @@
 </div>
 <div class="col-lg-12 col-md-12 col-sm-12">
 	<h4>Details</h4>
+	<div id="chart_div"></div>
 	<table class="table-striped table-bordered table-hover table table-responsive">
 		<tr>
 			<td>Username</td>
@@ -63,7 +68,7 @@
 										{{ run.task }}</a></td>
 									<td>{{ run.p10 }}</td>
 									<td>{{ run.p20 }}</td>
-									<td>{{ run.map }}</td>
+									<td>{{ run.map }}
 								</tr>
 							{% endfor %}
 						</tbody>
@@ -74,5 +79,8 @@
 			</td>
 		</tr>
 	</table>
+	<div>
+
+	</div>
 </div>
 {% endblock %}
