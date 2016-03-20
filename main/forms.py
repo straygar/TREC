@@ -4,10 +4,10 @@ from captcha.fields import CaptchaField
 from parsley.decorators import parsleyfy
 from django.contrib.auth.models import User
 
-<<<<<<< HEAD
+
 class BrowseForm(forms.ModelForm):
     task = forms.ModelChoiceField(queryset=Task.objects.all())
-=======
+
 class BrowseTrackForm(forms.ModelForm):
     track = forms.ModelChoiceField(queryset=Track.objects.all())
     class Meta:
@@ -20,7 +20,7 @@ class BrowseTaskForm(forms.ModelForm):
         super(BrowseTaskForm, self).__init__(*args, **kwargs)
         self.fields['task'].queryset = Task.objects.filter(track=thisTask)
     task = forms.ModelChoiceField(queryset=Track.objects.all())
->>>>>>> c89446304fda8d7b0e67732c4c56aa98bb8c391d
+
     class Meta:
         model = Task
         fields = ('task',)
