@@ -50,10 +50,12 @@
 					<li><a href="{% url 'logout' %}">Logout</a></li>
 					<li>
 						<a href="{% url 'profile' %}" class="viewProfile">
-						{% if userprofile.profile_picture %}
-							<img class="img-circle avatar" src="{{ userprofile.profile_picture.url }}" alt="User profile picture" />
-						{% else %}
-							<img class="img-circle avatar" src="{% static 'images/place.png' %}" alt="User profile picture" />
+						{% if userProfileObject %}
+							{% if userProfileObject.profile_picture %}
+								<img class="img-circle avatar" src="{{ userProfileObject.profile_picture.url }}" alt="User profile picture" />
+							{% else %}
+								<img class="img-circle avatar" src="{% static 'images/place.png' %}" alt="User profile picture" />
+							{% endif %}
 						{% endif %}
 						</a>
 					</li>

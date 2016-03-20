@@ -9,6 +9,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 """
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
+from django.conf import global_settings
 import os
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
@@ -60,6 +61,9 @@ ROOT_URLCONF = 'trec.urls'
 
 WSGI_APPLICATION = 'trec.wsgi.application'
 
+TEMPLATE_CONTEXT_PROCESSORS = global_settings.TEMPLATE_CONTEXT_PROCESSORS + (
+    "util.context_processor.includeProfile",
+)
 
 # Database
 # https://docs.djangoproject.com/en/1.7/ref/settings/#databases
@@ -102,7 +106,5 @@ STATICFILES_DIRS = (STATIC_PATH,
 
 CAPTCHA_IMAGE_SIZE=(220,90)
 CAPTCHA_FONT_SIZE=60
-
-ROLEPERMISSIONS_MODULE = 'trec.roles'
 
 LOGIN_URL="/main/login/"

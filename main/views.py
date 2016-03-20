@@ -184,16 +184,14 @@ def register(request):
             user = user_form.save()
             user.set_password(user.password)
             user.save()
-
             profile = profile_form.save(commit=False)
             profile.user = user
-
             if 'profile_picture' in request.FILES:
                 profile.profile_picture = request.FILES['profile_picture']
-
             profile.save()
+            print profile
+            print "SAVED!"
             registered = True
-
     else:
         user_form = UserForm()
         profile_form = UserProfileForm()
