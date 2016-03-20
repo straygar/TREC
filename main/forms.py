@@ -79,7 +79,7 @@ class UserProfileForm(forms.ModelForm):
 
     class Meta:
         model = Researcher
-        fields = ('website', 'profile_picture','display_name','organisation')
+        fields = ('website', 'display_name','organisation', 'profile_picture')
 
 class TaskForm(forms.ModelForm):
     track = forms.ModelChoiceField(queryset=Track.objects.all())

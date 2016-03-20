@@ -20,8 +20,7 @@
             <!-- Display each form here -->
 				{% for field in user_form.visible_fields %}
 					<div class="form-group col-lg-12 col-md-12 col-sm-12 register">
-						<label class="control-label col-sm-3">{{ field.help_text }}</label>
-						<div class="col-sm-9">
+						<div>
 						{{ field|add_class:"form-control"|attr:"{'size': 10, 'placeholder': 'Your name',}"}}
 						</div>
 						{{ field.errors }}
@@ -31,13 +30,13 @@
 
 				{% for field in profile_form.visible_fields %}
 					<div class="form-group col-lg-12 col-md-12 col-sm-12 register">
-						<label class="control-label col-sm-3">{{ field.help_text }}</label>
-						<div class="col-sm-9">
-						{% if field.label == "profile_picture" %}
-							{{ field|add_class:"form-control" }} <!-- TODO - style pic upload field !-->
-						{% else %}
-							{{ field|add_class:"form-control" }}
-						{% endif %}
+						<div>
+							{% if field.label == "profile_picture" %}
+								
+								{{ field|add_class:"form-control" }} <!-- TODO - style pic upload field !-->
+							{% else %}
+								{{ field|add_class:"form-control" }}
+							{% endif %}
 						</div>
 						{{ field.errors }}
 					</div>
