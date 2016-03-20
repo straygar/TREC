@@ -4,14 +4,24 @@ os.environ.setdefault('DJANGO_SETTINGS_MODULE','trec.settings')
 import django
 django.setup()
 
-from main.models import Researcher, Genre, Track, Task, Run, User
+from main.models import Researcher, Genre, Track, Task, Run, User, RunFile
+from django.core.files import File
+from django.core.files.images import ImageFile
+from django.contrib.staticfiles.templatetags.staticfiles import static
 
 def populate():
 
-    def addUser(username,email,password,display_name,website,organization):
+    def addUser(username,email,password,display_name,website,organization,profile_pic):
         u = User.objects.create_user(username,email,password)
         up = Researcher.objects.get_or_create(user=u,display_name=display_name,website=website,organization=organization)[0]
-        return u
+        pic = ImageFile(open(profile_pic,"r"))
+        up.profile_picture.save("jill.jpg",pic,save=True)
+        return up
+
+    # def addRunFile(result_file):
+    #     file = File(open(result_file,"r"))
+    #     r = RunFile.objects.get_or_create()
+    #     r.result_file.save("aq.trec.bm25.0.50.res",r,save=True)
 
     def addGenre(title):
         g = Genre.objects.get_or_create(title=title)[0]
@@ -36,23 +46,28 @@ def populate():
                                password='jill',
                                website='http://jsonmyfeet@tumblr.com',
                                display_name='Jill',
-                               organization = 'University of Glasgow')
+                               organization = 'University of Glasgow',
+                               profile_pic='jill.jpg')
 
     jen_researcher = addUser(username='Jen2',
                                email='jen@gmail.com',
                                password='jen',
                                website='http://allthispurple@tumblr.com',
                                display_name='Jen',
-                               organization = 'University of Strathclyde')
+                               organization = 'University of Strathclyde',
+                               profile_pic='jill.jpg')
 
     bob_researcher = addUser(username='Bob2',
                                email='bob@gmail.com',
                                password='bob',
                                website='http://youknowit@tumblr.com',
                                display_name='Bob',
-                               organization = 'University of Glasgow')
+                               organization = 'University of Glasgow',
+                               profile_pic='jill.jpg')
 
     news_genre = addGenre('News')
+
+    # aq_run_file = addRunFile('aq.trec.bm25.0.50.res')
 
     robust_track = addTrack(title='Robust2004',
                                track_url='http://trec.nist.gov/data/t13_robust.html',
