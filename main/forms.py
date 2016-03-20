@@ -64,7 +64,7 @@ class RunFileForm(forms.ModelForm):
 class UserForm(forms.ModelForm):
     username = forms.CharField(help_text="Username", widget=forms.TextInput(attrs={'placeholder': 'Username'}))
     email = forms.CharField(help_text="E-mail", widget=forms.TextInput(attrs={'placeholder': 'e-Mail'}))
-    password = forms.CharField(widget=forms.PasswordInput(), help_text="Password")
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), help_text="Password")
 
     class Meta:
         model = User
