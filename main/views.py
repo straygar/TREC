@@ -436,3 +436,31 @@ def getNameJson(request):
 def getRunNameJson(request):
     data = getJsonResponse(request, "name", Run, "name__contains")
     return HttpResponse(data, content_type='application/json')
+
+def getTrackInfoJson(request):
+    query = request.GET.get("track", None)
+    if query is None or len(query.strip()) == 0:
+        returnData = json.dumps([()])
+    else:
+        track = get_object_or_404(Track, id=query)
+        returnData = []
+        returnData.append(("Title", track.title,))
+        returnData.append(("Description",track.description,))
+        returnData.append(("URL", track.track_url,))
+        returnData.append(("Genre",track.genre.title,))
+        returnData = json.dumps(returnData)
+    return HttpResponse(returnData, content_type="application/json")
+
+def getTaskInfoJson(request):
+    query = request.GET.get("task", None)
+    if query is None or len(query.strip()) == 0:
+        returnData = json.dumps([()])
+    else:
+        task = get_object_or_404(Task, id=query)
+        returnData = []
+        returnData.append(("Title",task.title,))
+        returnData.append(("Description", task.description,))
+        returnData.append(("URL",task.task_url,))
+        returnData.append(("Description",task.description,))
+        returnData = json.dumps(returnData)
+    return HttpResponse(returnData, content_type="application/json")

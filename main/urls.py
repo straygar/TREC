@@ -27,4 +27,6 @@ urlpatterns = patterns('',
     url(r'^getUsrnameJson/$', views.getUsrnameJson),
     url(r'^getNameJson/$', views.getNameJson),
     url(r'^getRunNameJson/$', views.getRunNameJson),
+    url(r'^getTrackInfoJson/$', views.getTrackInfoJson),
+    url(r'^getTaskInfoJson/$', views.getTaskInfoJson),
     )

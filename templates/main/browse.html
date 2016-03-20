@@ -11,6 +11,11 @@
     	<script src="{% static 'js/jquery.collapse_storage.js' %}"></script>
 		<script src="{% static 'js/browseForm.js' %}"></script>
 	{% endif %}
+	{% if track %}
+		<script src="{% static 'js/ajaxBrowseTask.js' %}"></script>
+	{% else %}
+		<script src="{% static 'js/ajaxBrowseTrack.js' %}"></script>
+	{% endif %}
 
 	<!-- Page card title !-->
 	<h2>Please select search criteria</h2>
@@ -21,6 +26,13 @@
 			<a href="{% url 'browse' %}">select another track</a></h5>
 	{% endif %}
 <div>
+	<div id="generalInfo">
+		<table class="table table-striped table-bordered" id="tableInfo">
+			<tbody>
+
+			</tbody>
+		</table>
+	</div>
     <form id="browse" method="post" action="{{ action_url }}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}

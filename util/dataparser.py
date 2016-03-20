@@ -24,7 +24,7 @@ def checkNotAllNull(data):
 def getJsonResponse(request, value, model, fieldName, param="query", maxResults=6):
     query = request.GET.get(param, None)
     if query is None or len(query.strip()) == 0:
-        returnData = []
+        returnData = json.dumps({})
     else:
         fields = model.objects.filter(**{fieldName:query}).values_list(value, flat=True).distinct()
         returnData = json.dumps(list(fields)[:maxResults]) # Required to conver to a List and not a ValuesListQuerySet
