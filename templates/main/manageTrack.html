@@ -3,7 +3,9 @@
 {% load staticfiles %}
 
 {% block title %}Manage tracks{% endblock %}
-
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/manageTracks.css' %}">
+{% endblock %}
 {% block body_block %}
     <script src="{% static 'js/jquery.bpopup.min.js' %}"></script>
     <script src="{% static 'js/manageTracks.js' %}"></script>
@@ -36,7 +38,7 @@
         {% endfor %}
     </tbody>
 </table>
-<div id="popup" style="display:none;">
+<div id="popup" class="popup">
     <table id="tableInfo" class="sortable table table-striped table-bordered table-hover">
         <thead>
             <tr>

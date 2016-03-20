@@ -1,0 +1,9 @@
+.popup {
+    display: none;
+    background-color: #fff;
+    border-radius: 10px 10px 10px 10px;
+    color: #111;
+    display: none;
+    min-width: 450px;
+    padding: 25px
+}
