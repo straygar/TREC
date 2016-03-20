@@ -2,18 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9a04ee13-9171-42c7-a14e-b61c3f484228" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/templates/main/manageGenre.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/db.sqlite3" afterPath="$PROJECT_DIR$/db.sqlite3" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/urls.py" afterPath="$PROJECT_DIR$/main/urls.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/main/views.py" afterPath="$PROJECT_DIR$/main/views.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/deleteConfirm.html" afterPath="$PROJECT_DIR$/templates/main/deleteConfirm.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/manageTask.html" afterPath="$PROJECT_DIR$/templates/main/manageTask.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/manageTrack.html" afterPath="$PROJECT_DIR$/templates/main/manageTrack.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/uploadGenre.html" afterPath="$PROJECT_DIR$/templates/main/uploadGenre.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/uploadTask.html" afterPath="$PROJECT_DIR$/templates/main/uploadTask.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/uploadTrack.html" afterPath="$PROJECT_DIR$/templates/main/uploadTrack.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/util/viewhelper.py" afterPath="$PROJECT_DIR$/util/viewhelper.py" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/templates/main/base.html" afterPath="$PROJECT_DIR$/templates/main/base.html" />
     </list>
     <ignored path="TREC.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -35,11 +24,33 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
-      <file leaf-file-name="manageGenre.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="base.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/templates/main/base.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-10.645162">
+              <caret line="56" column="61" selection-start-line="56" selection-start-column="61" selection-end-line="56" selection-end-column="61" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/trec/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="-0.0">
+              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+              <folding>
+                <element signature="e#0#51#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="manageGenre.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/templates/main/manageGenre.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.586369">
-              <caret line="28" column="106" selection-start-line="28" selection-start-column="106" selection-end-line="28" selection-end-column="106" />
+            <state vertical-scroll-proportion="-18.225807">
+              <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
               <folding />
             </state>
           </provider>
@@ -65,11 +76,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="uploadTask.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/templates/main/uploadTask.html">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/main/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-11.83871">
-              <caret line="21" column="56" selection-start-line="21" selection-start-column="56" selection-end-line="21" selection-end-column="56" />
+            <state vertical-scroll-proportion="0.70197046">
+              <caret line="35" column="17" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="17" />
               <folding />
             </state>
           </provider>
@@ -140,7 +151,6 @@
         <option value="$PROJECT_DIR$/templates/main/viewRun.html" />
         <option value="$PROJECT_DIR$/templates/main/browseTask.html" />
         <option value="$PROJECT_DIR$/util/dataparser.py" />
-        <option value="$PROJECT_DIR$/templates/main/base.html" />
         <option value="$PROJECT_DIR$/static/css/bootstrap.css" />
         <option value="$PROJECT_DIR$/templates/main/searchResults.html" />
         <option value="$PROJECT_DIR$/templates/main/viewProfile.html" />
@@ -162,6 +172,7 @@
         <option value="$PROJECT_DIR$/main/views.py" />
         <option value="$PROJECT_DIR$/templates/main/deleteConfirm.html" />
         <option value="$PROJECT_DIR$/templates/main/manageGenre.html" />
+        <option value="$PROJECT_DIR$/templates/main/base.html" />
       </list>
     </option>
   </component>
@@ -576,13 +587,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/static/js/ajaxBrowseTask.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/static/js/chart.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -695,14 +699,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/templates/main/base.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-0.7096774">
-          <caret line="15" column="8" selection-start-line="15" selection-start-column="8" selection-end-line="15" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -921,14 +917,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/main/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5589623">
-          <caret line="26" column="26" selection-start-line="26" selection-start-column="26" selection-end-line="26" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/main/models.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -973,8 +961,34 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/templates/main/manageGenre.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.586369">
-          <caret line="28" column="106" selection-start-line="28" selection-start-column="106" selection-end-line="28" selection-end-column="106" />
+        <state vertical-scroll-proportion="-18.225807">
+          <caret line="31" column="16" selection-start-line="31" selection-start-column="16" selection-end-line="31" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/templates/main/base.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-10.645162">
+          <caret line="56" column="61" selection-start-line="56" selection-start-column="61" selection-end-line="56" selection-end-column="61" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/trec/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#51#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/main/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.70197046">
+          <caret line="35" column="17" selection-start-line="35" selection-start-column="14" selection-end-line="35" selection-end-column="17" />
           <folding />
         </state>
       </provider>
