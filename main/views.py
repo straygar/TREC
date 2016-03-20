@@ -291,7 +291,6 @@ def profile(request):
     r =  Run.objects.filter(researcher__user=request.user)[:1]
 
     context_dict['user'] = u
-    context_dict['userprofile'] = up
     context_dict['run']=r
 
     return render_to_response('main/profile.html', context_dict, context)

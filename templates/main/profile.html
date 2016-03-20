@@ -10,11 +10,11 @@
     <div class="hero-unit">
    	   <h1> Profile </h1> <br/>
         <h2>{{ user.username }} </h2>
-        <p>Website: {{ userprofile.website }}</p>
-        <p>Name: {{ userprofile.display_name }}</p>
-        <p>Organization: {{ userprofile.organization }}</p>
-        {% if userprofile.profile_picture %}
-        <img src="{{ userprofile.profile_picture.url }}" alt="User profile picture" />
+        <p>Website: {{ userProfileObject.website }}</p>
+        <p>Name: {{ userProfileObject.display_name }}</p>
+        <p>Organization: {{ userProfileObject.organization }}</p>
+        {% if userProfileObject.profile_picture %}
+        <img src="{{ userProfileObject.profile_picture.url }}" alt="User profile picture" />
         {% endif %}
 		
 		<div id="chart_div"></div>
