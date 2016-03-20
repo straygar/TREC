@@ -1,0 +1,30 @@
+{% extends "main/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Manage tasks{% endblock %}
+
+{% block body_block %}
+    {% if deleted %}
+        <h3 class="alert alert-success">{{ element }} deleted successfully!</h3>
+        <a href="{{ returnUrl }}">Go back</a>
+    {% else %}
+        {% if fail %}
+            <h3 class="alert alert-success">{{ element }} could not be deleted. Please make sure that no other objects
+            rely on it</h3>
+            <a href="{{ returnUrl }}">Go back</a>
+        {% else %}
+            <h3>Confirm deletion</h3>
+            <hr/>
+                    <h4>Are you sure you want to delete this {{ element }}?</h4>
+                    <strong>Title: </strong>{{ element_name }}
+                    <br/>
+                    <strong>Description: </strong>{{ element_desc }}
+                    <form action="{{ url }}" method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <input type="submit" name="submit" value="Confirm" class="btn btn-info" />
+                        <a href="{{ returnUrl }}" class="btn btn-info">Cancel</a>
+                    </form>
+        {% endif %}
+    {% endif %}
+{% endblock %}

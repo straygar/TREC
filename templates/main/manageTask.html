@@ -1,0 +1,41 @@
+{% extends "main/base.html" %}
+
+{% load staticfiles %}
+
+{% block title %}Manage tasks{% endblock %}
+
+{% block body_block %}
+
+<h2>Manage tasks</h2>
+<h4>Details</h4>
+
+{% if list %}
+<table class="sortable table table-striped table-bordered table-hover">
+    <thead>
+        <th>Title</th>
+        <th>Description</th>
+        <th>Year</th>
+        <th>URL</th>
+        <th>Track</th>
+        <th>Judgement file</th>
+        <th>Edit</th>
+        <th>Delete</th>
+    </thead>
+    <tbody>
+        {% for task in list %}
+            <tr>
+                <td>{{ task.title }}</td>
+                <td>{{ task.description }}</td>
+                <td>{{ task.year }}</td>
+                <td><a href="{{ task.task_url }}">{{ task.task_url }}</a></td>
+                <td><a href="{% url 'view_track' trackid=task.track.id %}">{{ task.track.title }}</a></td>
+                <td><a href="{{ task.judgement_file.url }}" class="btn btn-info btn-block">Download</a></td>
+                <td><a href="{% url 'edit_task' taskid=task.id %}" class="btn btn-info btn-block">Edit</a></td>
+                <td><a href="{% url 'delete_task' taskid=task.id %}" class="btn btn-info btn-block">Delete</a></td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endif %}
+
+{% endblock %}

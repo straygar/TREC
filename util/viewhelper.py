@@ -1,5 +1,26 @@
 from django.shortcuts import render, get_object_or_404
 
+def deleteFormGeneric(request, template, model, id, item_display_name, returnUrl):
+    temp_object = get_object_or_404(model, id=id)
+    deleted = False
+    fail = False
+    if request.method == "POST":
+        try:
+            temp_object.delete()
+            deleted = True
+        except:
+            fail = True
+    context_dict = {}
+    context_dict["deleted"] = deleted
+    context_dict["fail"] = fail
+    context_dict["element"] = item_display_name
+    context_dict["element_name"] = temp_object.title
+    context_dict["element_desc"] = temp_object.description
+    context_dict["url"] = request.get_full_path()
+    context_dict["returnUrl"] = returnUrl
+    return render(request, template, context_dict)
+
+
 def editFormGeneric(request, template, model, formType, id):
     valid = False
     error = False
@@ -20,6 +41,7 @@ def editFormGeneric(request, template, model, formType, id):
     context_dict["error"] = error
     context_dict["new"] = False
     context_dict["title"] = currentElement.title
+    context_dict["retUrl"] = request.get_full_path()
     return render(request, template, context_dict)
 
 def uploadFormGeneric(request, template, formType, extraCallable, useFiles = False):
@@ -46,4 +68,5 @@ def uploadFormGeneric(request, template, formType, extraCallable, useFiles = Fal
     contextDict["valid"] = valid
     contextDict["error"] = error
     contextDict["new"] = True
+    context_dict["retUrl"] = request.get_full_path()
     return render(request, template, contextDict)

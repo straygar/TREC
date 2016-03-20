@@ -473,10 +473,18 @@ def getTaskInfoJson(request):
     return HttpResponse(returnData, content_type="application/json")
 
 def manageTask(request):
-    pass
+    task_list = Task.objects.all()
+    return render(request, "main/manageTask.html", {"list":task_list})
 
 def manageTrack(request):
-    pass
+    track_list = Track.objects.all()
+    return render(request, "main/manageTrack.html", {"list":track_list})
 
 def manageGenre(request):
     pass
+
+def deleteTask(request, taskid):
+    return viewhelper.deleteFormGeneric(request, "main/deleteConfirm.html", Task, taskid, "Task", reverse("manage_task"))
+
+def deleteTrack(request, trackid):
+    return viewhelper.deleteFormGeneric(request, "main/deleteConfirm.html", Track, trackid, "Track", reverse("manage_track"))
