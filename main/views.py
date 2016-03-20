@@ -4,7 +4,7 @@ from rolepermissions.decorators import has_permission_decorator
 
 from main.models import Task, Track, Run, Researcher, Genre
 from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm,\
-    TaskForm, TrackForm, GenreForm, ReturnUrlForm, BrowseForm
+    TaskForm, TrackForm, GenreForm, ReturnUrlForm, BrowseTrackForm, BrowseTaskForm, BrowseTaskSortForm
 
 from django.contrib.auth.models import User
 from django.template import RequestContext
@@ -20,6 +20,7 @@ from trec import roles
 import json
 from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
+from django.core.urlresolvers import reverse
 
 def index(request):
     context_dict = {}
@@ -33,32 +34,89 @@ def index(request):
 
 def browse(request):
     contextDict = {}
-    accepted = False
-    userRunsRequested = False
     if request.method == "GET":
-        browse_form = BrowseForm()
-        if request.GET.get('userRuns'):
-            userRunsRequested = True
-            user_runs = Run.objects.filter(researcher__user=request.user)
-            contextDict["userRuns"] = user_runs
+        browse_form = BrowseTrackForm()
     else:
-        browse_form = BrowseForm(request.POST)
+        browse_form = BrowseTrackForm(request.POST)
         if browse_form.is_valid():
-            selection = browse_form.save(commit=False)
-            accepted = True
-            contextDict["task"] = browse_form.cleaned_data["task"]
-            #contextDict["track"] = browse_form.cleaned_data["track"]
-            run_list = Run.objects.filter(task = browse_form.cleaned_data["task"])
-            contextDict["runs"] = run_list
-
-
-    contextDict["user"] = request.user
+            track = browse_form.cleaned_data["track"]
+            return HttpResponseRedirect(reverse("browseTrack", kwargs={"trackid":track.id}))
+    contextDict["action_url"] = reverse("browse")
+    contextDict["submit_msg"] = "Submit"
     contextDict["form"] = browse_form
-    contextDict["accepted"] = accepted
-    contextDict["userRunsRequested"] = userRunsRequested
-
-
     return render(request, 'main/browse.html', contextDict)
+
+def browseTrack(request, trackid):
+    contextDict = {}
+    thisTrack = get_object_or_404(Track, id=trackid)
+    sort_type = ""
+    sort_order = ""
+    if request.method == "GET":
+        browse_form = BrowseTaskForm(track=thisTrack)
+        sort_form = BrowseTaskSortForm()
+    else:
+        browse_form = BrowseTaskForm(request.POST, track=thisTrack)
+        sort_form = BrowseTaskSortForm(data=request.POST)
+        if browse_form.is_valid():
+            if sort_form.is_valid():
+                sort_type = sort_form.cleaned_data["sortOn"]
+                sort_order = sort_form.cleaned_data["sortOrd"]
+            returnUrl = reverse("browseComplete", kwargs={"taskid":thisTrack.id})
+            if len(sort_type) != 0:
+                returnUrl += "?Sort=" + sort_type.strip() + "&Order=" + sort_order.strip()
+            return HttpResponseRedirect(returnUrl)
+    contextDict["track"] = thisTrack
+    contextDict["action_url"] = reverse("browseTrack", kwargs={"trackid":trackid})
+    contextDict["submit_msg"] = "Browse runs for this task"
+    contextDict["form"] = browse_form
+    contextDict["sort_form"] = sort_form
+    return render(request, 'main/browse.html', contextDict)
+
+def browseComplete(request, taskid):
+    reverseLookup = {"DA": "datetime",
+                     "P1": "p10",
+                     "P2": "p20",
+                     "MA": "map",
+                     "FT": "feedback_type",
+                     "RT": "run_type",
+                     "QT": "query_type",
+                     "UO": "researcher__organization",
+                     "UU": "researcher__user_username",
+                     "UN": "researcher__display_name",
+                     "TL": "name"}
+    errorSorting = False
+    contextDict = {}
+    userRunsRequested = False
+    thisTask = get_object_or_404(Task, id=taskid)
+    filtered_objects = Run.objects.filter(task_id=taskid)
+    sortType = request.GET.get('Sort')
+    orderType = request.GET.get('Order')
+    if orderType is not None:
+        orderType = orderType.strip()
+    else:
+        orderType = "DE"
+    if sortType is not None:
+        sortType = sortType.strip()
+    else:
+        sortType = ""
+    if request.GET.get('userRuns'):
+        userRunsRequested = True
+        filtered_objects = filtered_objects.filter(researcher_user=request.user)
+    if len(sortType) > 0:
+        if reverseLookup.has_key(sortType):
+            sortStr = reverseLookup[sortType]
+            if orderType == "DE":
+                sortStr = "-" + sortStr
+            filtered_objects = filtered_objects.order_by(sortStr)
+        else:
+            errorSorting = True
+    contextDict["errorSorting"] = errorSorting
+    contextDict["task"] = thisTask
+    contextDict["track"] = thisTask.track
+    contextDict["user"] = request.user
+    contextDict["runs"] = filtered_objects
+    contextDict["userRunsRequested"] = userRunsRequested
+    return render(request, 'main/browseTask.html', contextDict)
 
 
 @login_required

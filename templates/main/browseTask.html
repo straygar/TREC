@@ -1,0 +1,52 @@
+{% extends "main/base.html" %}
+
+{% block title %}Browse{% endblock %}
+{% block h1 %}Browse{% endblock %}
+{% block body_block %}
+
+
+
+	<!-- Page card title !-->
+	<h2>Browsing {{ task }}</h2>
+	<hr/>
+	<!-- /Page card title !-->
+	{% if errorSorting %}
+		<h3 class="alert alert-warning">The items could not be sorted. Please, try again later</h3>
+	{% endif %}
+
+	{% if runs %}
+		<div class="table-responsive">
+		<h4>Runs on task <a href="{% url 'view_task' taskid=task.id %}">{{ task.title }}</a></h4>
+			<h5>This task is on track <a href="{% url 'view_track' trackid=track.id %}">{{ track.title }}</a></h5>
+			<table class="sortable table table-striped table-bordered table-hover">
+				<thead class="thead-inverse">
+					<tr>
+						<th>Uploaded on</th>
+						<th>Researcher</th>
+						<th>Organization</th>
+						<th>Run</th>
+						<th>Map</th>
+						<th>p10</th>
+						<th>p20</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for run in runs %}
+					<tr>
+						<td>{{ run.datetime|date:"d-m-Y H:m" }}</td>
+						<td>{{ run.researcher }}</td>
+						<td>{{ run.researcher.organization }}</td>
+						<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
+						<td>{{ run.map }}</td>
+						<td>{{ run.p10 }}</td>
+						<td>{{ run.p20 }}</td>
+					</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	{% else %}
+		<h3 class="alert alert-warning">There are no Runs for this Task</h3>
+	{% endif %}
+
+{% endblock %}
