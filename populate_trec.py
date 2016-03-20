@@ -18,10 +18,10 @@ def populate():
         up.profile_picture.save("jill.jpg",pic,save=True)
         return up
 
-    # def addRunFile(result_file):
-    #     file = File(open(result_file,"r"))
-    #     r = RunFile.objects.get_or_create()
-    #     r.result_file.save("aq.trec.bm25.0.50.res",r,save=True)
+    def addRunFile(result_file):
+        file = File(open(result_file,"r"))
+        r = RunFile.objects.get_or_create()[0]
+        r.result_file.save("aq.trec.bm25.0.50.res",file,save=True)
 
     def addGenre(title):
         g = Genre.objects.get_or_create(title=title)[0]
@@ -35,9 +35,9 @@ def populate():
         task = Task.objects.get_or_create(title=title, track=track, description = description, task_url=task_url,year=year)[0]
         return task
 
-    def addRun(name,description,run_type,query_type,feedback_type,researcher,task,result_file_id,map,p10,p20):
+    def addRun(name,description,run_type,query_type,feedback_type,researcher,task,result_file,map,p10,p20):
         r = Run.objects.get_or_create(name=name,description=description,run_type=run_type,query_type=query_type,
-                                      feedback_type=feedback_type,researcher=researcher,task=task,result_file_id=result_file_id,
+                                      feedback_type=feedback_type,researcher=researcher,task=task,result_file=result_file,
                                       map=map,p10=p10,p20=p20)[0]
         return r
     #need to add in pictures!
@@ -67,12 +67,24 @@ def populate():
 
     news_genre = addGenre('News')
 
-    # aq_run_file = addRunFile('aq.trec.bm25.0.50.res')
+    web_genre = addGenre('Web')
+
+    aq_run_file = addRunFile('aq.trec.bm25.0.50.res')
 
     robust_track = addTrack(title='Robust2004',
                                track_url='http://trec.nist.gov/data/t13_robust.html',
                                description = 'News Retrieval',
                                genre=news_genre)
+
+    million_query_track = addTrack(title='Million Query',
+                               track_url='http://ciir.cs.umass.edu/research/million/',
+                               description = 'Million Query',
+                               genre=web_genre)
+
+    terabyte_track = addTrack(title='Terabyte',
+                               track_url=' http://www-nlpir.nist.gov/projects/terabyte/',
+                               description = 'Terabyte',
+                               genre=web_genre)
     #add in file!
     robust_task = addTask(track=robust_track,
                              title = 'Robust2005',
@@ -81,14 +93,65 @@ def populate():
                              year=2005
                              )
 
+    web_task = addTask(track=million_query_track,
+                             title = 'Web2005',
+                             description='Ad Hoc Topic Retrieval',
+                             task_url='http://www-nlpir.nist.gov/projects/terabyte/',
+                             year=2005
+                             )
+
     first_run = addRun(name='first',
-                          description='first run ever',
+                          description='first run',
                           run_type='AU',
                           query_type='AF',
                           feedback_type='RF',
-                          researcher=bob_researcher,
+                          researcher=jill_researcher,
                           task=robust_task,
-                          result_file_id=1,
+                          result_file=aq_run_file,
+                          map=0.1,
+                          p10=0.3,
+                          p20=0.4)
+    second_run = addRun(name='second',
+                          description='second',
+                          run_type='MA',
+                          query_type='TD',
+                          feedback_type='RF',
+                          researcher=jill_researcher,
+                          task=robust_task,
+                          result_file=aq_run_file,
+                          map=0.1,
+                          p10=0.3,
+                          p20=0.4)
+    third_run = addRun(name='third',
+                          description='third',
+                          run_type='MA',
+                          query_type='TO',
+                          feedback_type='RF',
+                          researcher=jill_researcher,
+                          task=robust_task,
+                          result_file=aq_run_file,
+                          map=0.1,
+                          p10=0.3,
+                          p20=0.4)
+    forth_run = addRun(name='forth',
+                          description='forth',
+                          run_type='AU',
+                          query_type='TO',
+                          feedback_type='RF',
+                          researcher=jill_researcher,
+                          task=web_task,
+                          result_file=aq_run_file,
+                          map=0.1,
+                          p10=0.3,
+                          p20=0.4)
+    fifth_run = addRun(name='fifth',
+                          description='fifth',
+                          run_type='MA',
+                          query_type='TD',
+                          feedback_type='RF',
+                          researcher=jill_researcher,
+                          task=web_task,
+                          result_file=aq_run_file,
                           map=0.1,
                           p10=0.3,
                           p20=0.4)
