@@ -9,6 +9,10 @@
 <h2>Manage tasks</h2>
 <h4>Details</h4>
 
+<div class="col-lg-6 col-md-12 col-sm-12 col-lg-offset-3">
+    <a href="{% url 'new_task' %}" class="btn btn-info btn-block" role="button">Create new Task</a>
+</div>
+
 {% if list %}
 <table class="sortable table table-striped table-bordered table-hover">
     <thead>
@@ -36,6 +40,8 @@
         {% endfor %}
     </tbody>
 </table>
+{% else %}
+<h3 class="alert alert-warning">There are no Tasks yet</h3>
 {% endif %}
 
 {% endblock %}

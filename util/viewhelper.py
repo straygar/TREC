@@ -68,5 +68,5 @@ def uploadFormGeneric(request, template, formType, extraCallable, useFiles = Fal
     contextDict["valid"] = valid
     contextDict["error"] = error
     contextDict["new"] = True
-    context_dict["retUrl"] = request.get_full_path()
+    contextDict["retUrl"] = request.get_full_path()
     return render(request, template, contextDict)
