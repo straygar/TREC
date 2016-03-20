@@ -5,7 +5,6 @@ from parsley.decorators import parsleyfy
 from django.contrib.auth.models import User
 
 class BrowseForm(forms.ModelForm):
-    #track = forms.ModelChoiceField(queryset=Track.objects.all())
     task = forms.ModelChoiceField(queryset=Task.objects.all())
     class Meta:
         model = Task
