@@ -308,6 +308,10 @@ def viewTrack(request, trackid):
 def editTrack(request, trackid):
     return viewhelper.editFormGeneric(request, "main/uploadTrack.html", Track, TrackForm, trackid)
 
+@staff_member_required
+def editGenre(request, genreid):
+    return viewhelper.editFormGeneric(request, "main/uploadGenre.html", Genre, GenreForm, genreid)
+
 def viewTask(request, taskid):
     return render(request, "main/viewTask.html", {"task":get_object_or_404(Task, id=taskid)})
 
@@ -456,22 +460,33 @@ def getTaskInfoJson(request):
         returnData = json.dumps(returnData)
     return HttpResponse(returnData, content_type="application/json")
 
+@staff_member_required
 def manageTask(request):
     task_list = Task.objects.all()
     return render(request, "main/manageTask.html", {"list":task_list})
 
+@staff_member_required
 def manageTrack(request):
     track_list = Track.objects.all()
     return render(request, "main/manageTrack.html", {"list":track_list})
 
+@staff_member_required
 def manageGenre(request):
-    pass
+    genre_list = Genre.objects.all()
+    return render(request, "main/manageGenre.html", {"list":genre_list})
 
+@staff_member_required
 def deleteTask(request, taskid):
     return viewhelper.deleteFormGeneric(request, "main/deleteConfirm.html", Task, taskid, "Task", reverse("manage_task"))
 
+@staff_member_required
 def deleteTrack(request, trackid):
     return viewhelper.deleteFormGeneric(request, "main/deleteConfirm.html", Track, trackid, "Track", reverse("manage_track"))
+
+@staff_member_required
+def deleteGenre(request, genreid):
+    return viewhelper.deleteFormGeneric(request, "main/deleteConfirm.html", Genre, genreid, "Genre", reverse("manage_genre")
+                                        , False)
 
 def getTasksJson(request):
     query = request.GET.get("track", None)

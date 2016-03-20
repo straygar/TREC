@@ -10,7 +10,7 @@
         <a href="{{ returnUrl }}">Go back</a>
     {% else %}
         {% if fail %}
-            <h3 class="alert alert-success">{{ element }} could not be deleted. Please make sure that no other objects
+            <h3 class="alert alert-danger">{{ element }} could not be deleted. Please make sure that no other objects
             rely on it</h3>
             <a href="{{ returnUrl }}">Go back</a>
         {% else %}
@@ -19,7 +19,9 @@
                     <h4>Are you sure you want to delete this {{ element }}?</h4>
                     <strong>Title: </strong>{{ element_name }}
                     <br/>
-                    <strong>Description: </strong>{{ element_desc }}
+                    {% if element_desc %}
+                        <strong>Description: </strong>{{ element_desc }}
+                    {% endif %}
                     <form action="{{ url }}" method="post" enctype="multipart/form-data">
                         {% csrf_token %}
                         <input type="submit" name="submit" value="Confirm" class="btn btn-info" />

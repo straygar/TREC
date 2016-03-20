@@ -1,15 +1,34 @@
 {% extends "main/base_forms.html" %}
 
-{% block title %}{% block new_element %}Create new Genre{% endblock %}{% endblock %}
+{% block title %}
+    {% if new %}
+        {% block new_element %}Upload a new Genre{% endblock %}
+    {% else %}
+        {% block edit_element %}Edit Genre {{ title }}{% endblock %}
+    {% endif %}
+{% endblock %}
 
 {% block insert_block %}
-<h1>Upload a new Genre</h1>
+<h1>
+    {% if new %}
+        Upload a new Genre
+    {% else %}
+        Edit Genre {{ title }}
+    {% endif %}
+</h1>
 {% endblock %}
 
 {% block ok_upload %}
-<h3 class="alert alert-success">Successfully added the genre!</h3>
+<h3 class="alert alert-success">Successfully added the Genre!</h3>
 {% endblock %}
 {% block error_upload %}
+<h3 class="alert alert-warning">The data you entered is incorrect</h3>
+<h5>Please, check all the fields</h5>
+{% endblock %}
+{% block ok_edit %}
+<h3 class="alert alert-success">Successfully edited Genre!</h3>
+{% endblock %}
+{% block error_edit %}
 <h3 class="alert alert-warning">The data you entered is incorrect</h3>
 <h5>Please, check all the fields</h5>
 {% endblock %}
