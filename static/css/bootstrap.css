@@ -87,6 +87,28 @@ div.profile-img.profile-head {
     height: 100%;
     width: 100%;
 }
+#manage-table {
+	table-layout: fixed;
+	overflow-x: auto;
+}
+#manage-table > tbody > tr > td,
+#manage-table > thead > tr > th {
+	word-wrap: break-word;
+	max-height: 20px;
+}
+
+@media (max-width: 767px) {
+	#manage-table {
+		table-layout: initial;
+		overflow-x: auto;
+	}
+	#manage-table > tbody > tr > td,
+	#manage-table > thead > tr > th {
+	word-wrap: break-word;
+	max-height: 20px;
+	}
+}
+
 article,
 aside,
 details,
