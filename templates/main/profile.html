@@ -1,8 +1,9 @@
 {% extends 'main/base.html' %}
 
 {% load staticfiles %}
-
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% block head %}
+<script type="text/javascript" src="{% static 'js/chart.js' %}"></script>
+{% endblock %}
 
 {% block title %}Profile{% endblock %}
 
@@ -10,41 +11,16 @@
     <div class="hero-unit">
    	   <h1> Profile </h1> <br/>
         <h2>{{ user.username }} </h2>
-        <p>Website: {{ userProfileObject.website }}</p>
-        <p>Name: {{ userProfileObject.display_name }}</p>
-        <p>Organization: {{ userProfileObject.organization }}</p>
-        {% if userProfileObject.profile_picture %}
-        <img src="{{ userProfileObject.profile_picture.url }}" alt="User profile picture" />
+        <p>Website: {{ userprofile.website }}</p>
+        <p>Name: {{ userprofile.display_name }}</p>
+        <p>Organization: {{ userprofile.organization }}</p>
+        {% if userprofile.profile_picture %}
+        <img src="{{ userprofile.profile_picture.url }}" alt="User profile picture" />
         {% endif %}
-		
 		<div id="chart_div"></div>
-		
     </div>
-    {% load googlecharts %}
-    {# container #}
-    <div id="out"></div>
-		{% googlecharts %}
-			{# named data and options can be reused #}
-			{% data values "out_data" %}
-				{% col "string" "Run" %}"{{ r.title }}"{% endcol %}
-				{% col "number" "p10" %}{{ r.p10 }}{% endcol %}
-				{% col "number" "p20" %}{{ r.p20 }}{% endcol %}
-			{% enddata %}
-			{# you can also use global javascript variables here, #}
-			{# and call functions #}
-			{% options "out_options" %}
-				kind: "BarChart",
-				options: {
-					width: 300,
-					height: 240
-				}
-			{% endoptions %}
-			{# chart is assembled from container, data and options #}
-			{% graph "out" "out_data" "out_options" %}
-		{% endgooglecharts %}
+    <div id="chart_div">
+    </div>
 
-    <!--<script src="{#% static 'js/chart.js' %#}">
-    var p10_list = "{#  #}{ p10_json|safe }}"
-    var p20_list = "{#  #}{ p20_json|safe }}"
-    </script>-->
 {% endblock %}
+

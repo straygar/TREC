@@ -20,6 +20,7 @@ from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.urlresolvers import reverse
 from django.contrib.admin.views.decorators import staff_member_required
+from decimal import *
 
 def index(request):
     context_dict = {}
@@ -275,6 +276,31 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/main/')
 
+
+class DecimalEncoder(json.JSONEncoder):
+    def default(self, obj):
+        if isinstance(obj, Decimal):
+            return "%.2f" % obj
+        return json.JSONEncoder.default(self, obj)
+
+def return_result(request):
+    context = serializers.serialize("json", Run.objects.all().filter(researcher=request.user))
+    if request.method=='GET':
+        runs=json.loads(context)
+    else:
+        pass
+    return HttpResponse(json.dumps(context), content_type="application/json")
+
+
+# def return_result(request):
+#      runs = Run.objects.filter(researcher=request.user)[:5]
+#      context=[]
+#      for i in range(0,5):
+#         context.append(json.dumps(runs[i].p10,cls=DecimalEncoder))
+#         context.append(json.dumps(runs[i].p20,cls=DecimalEncoder))
+#
+#      HttpResponse(context,content_type="application/json")
+
 @login_required
 def profile(request):
     context = RequestContext(request)
@@ -283,15 +309,8 @@ def profile(request):
     up = get_object_or_404(Researcher, user=u)
     print up
 
-    #p10 = Run.objects.filter(researcher=request.user)[:5].values_list('p10')
-    #p20 = Run.objects.filter(researcher=request.user)[:5].values_list('p10')
-    #p10_json = json.dumps(list(p10),cls=DjangoJSONEncoder)
-    #p20_json = json.dumps(list(p20),cls=DjangoJSONEncoder)
-
-    r =  Run.objects.filter(researcher__user=request.user)[:1]
-
     context_dict['user'] = u
-    context_dict['run']=r
+    context_dict['userprofile'] = up
 
     return render_to_response('main/profile.html', context_dict, context)
 
