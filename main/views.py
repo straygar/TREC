@@ -1,6 +1,5 @@
 from django.shortcuts import render, render_to_response, redirect, get_object_or_404, get_list_or_404
 from django.contrib.auth.decorators import login_required
-from rolepermissions.decorators import has_permission_decorator
 
 from main.models import Task, Track, Run, Researcher, Genre
 from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm,\
@@ -15,12 +14,12 @@ from django.contrib.auth import authenticate, login, logout
 
 from util import trec, viewhelper
 from util.dataparser import *
-from trec import roles
 
 import json
 from django.core import serializers
 from django.core.serializers.json import DjangoJSONEncoder
 from django.core.urlresolvers import reverse
+from django.contrib.admin.views.decorators import staff_member_required
 
 def index(request):
     context_dict = {}
@@ -158,17 +157,17 @@ def uploadRun(request):
     contextDict["results"] = results
     return render(request, "main/uploadRun.html", contextDict)
 
-@has_permission_decorator("edit_tracks")
+@staff_member_required
 def uploadGenre(request):
     return viewhelper.uploadFormGeneric(request, "main/uploadGenre.html", GenreForm, None)
 
-@has_permission_decorator("edit_tracks")
+@staff_member_required
 def uploadTask(request):
     def extraCallable(data, form):
         data.track = form.cleaned_data["track"]
     return viewhelper.uploadFormGeneric(request, "main/uploadTask.html", TaskForm, extraCallable, True)
 
-@has_permission_decorator("edit_tracks")
+@staff_member_required
 def uploadTrack(request):
     def extraCallable(data, form):
         data.genre = form.cleaned_data["genre"]
@@ -184,7 +183,6 @@ def register(request):
         if user_form.is_valid() and profile_form.is_valid():
             user = user_form.save()
             user.set_password(user.password)
-            roles.Researcher.assign_role_to_user(user)
             user.save()
 
             profile = profile_form.save(commit=False)
@@ -317,12 +315,14 @@ def viewTrack(request, trackid):
     context_dict["tasks"] = tasks
     return render(request, "main/viewTrack.html", context_dict)
 
+@staff_member_required
 def editTrack(request, trackid):
     return viewhelper.editFormGeneric(request, "main/uploadTrack.html", Track, TrackForm, trackid)
 
 def viewTask(request, taskid):
     return render(request, "main/viewTask.html", {"task":get_object_or_404(Task, id=taskid)})
 
+@staff_member_required
 def editTask(request, taskid):
     return viewhelper.editFormGeneric(request, "main/uploadTask.html", Task, TaskForm, taskid)
 
@@ -466,3 +466,12 @@ def getTaskInfoJson(request):
         returnData.append(("Description",task.description,))
         returnData = json.dumps(returnData)
     return HttpResponse(returnData, content_type="application/json")
+
+def manageTask(request):
+    pass
+
+def manageTrack(request):
+    pass
+
+def manageGenre(request):
+    pass

@@ -43,7 +43,6 @@ INSTALLED_APPS = (
     'main',
     'captcha',
     'parsley',
-    'rolepermissions',
     'googlecharts',
 )
 

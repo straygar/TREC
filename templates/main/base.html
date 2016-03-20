@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 
 {% load staticfiles %}
+
 <html>
     <head>
         <title>tFeed {% block title %}{% endblock %}</title>
@@ -39,7 +40,13 @@
 					<li><a href="{% url 'browse' %}">Browse</a></li>
 				  	<li><a href="{% url 'search' %}">Search</a></li>
 					<li><a href="{% url 'about' %}">About</a></li>
+				  	{% if user.is_staff %}
+						<li><a href="{% url 'manage_track' %}">Manage tracks</a></li>
+				  		<li><a href="{% url 'manage_task' %}">Manage tasks</a></li>
+				  		<li><a href="{% url 'manage_genre' %}">Manage genres</a></li>
+					{% endif %}
 				{% if user.is_authenticated %}
+
 					<li><a href="{% url 'logout' %}">Logout</a></li>
 					<li>
 						<a href="{% url 'profile' %}" class="viewProfile">
