@@ -9,7 +9,7 @@
 
     <div class="container">
 
-        <form class="form-signin span8" id="user_form" method="post" action="/main/edit_profile/"
+        <form class="form-signin span8" id="user_form" method="post" action="{% url 'edit_profile' %}"
               enctype="multipart/form-data">
             {% csrf_token %}
             <h2 class="form-signin-heading">Edit your profile here</h2>

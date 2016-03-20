@@ -14,7 +14,7 @@
 		<h2 class="form-signin-heading">Please enter your details below</h2>
 		<hr />
 		<!-- /Page card title !-->
-        <form class="form-inline" id="user_form" method="post" action="/main/register/"
+        <form class="form-inline" id="user_form" method="post" action="{% url 'register' %}"
               enctype="multipart/form-data">
             {% csrf_token %}
             <!-- Display each form here -->

@@ -8,7 +8,7 @@
 		<h2 class="form-signin-heading">Please sign in</h2>
 		<hr />
 		<!-- /Page card title !-->
-        <form class="form-signin" id="login_form" method="post" action="/main/login/">
+        <form class="form-signin" id="login_form" method="post" action="{% url 'login' %}">
             {% if bad_details %}
             <p class="alert alert-danger">The username / password you provided are incorrect!</p>
             {% elif disabled_account %}
