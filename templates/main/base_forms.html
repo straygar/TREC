@@ -1,6 +1,7 @@
 {% extends "main/base.html" %}
 
 {% load staticfiles %}
+{% load widget_tweaks %}
 
 {% block body_block %}
 {% block insert_block %}{% endblock %}
@@ -21,10 +22,10 @@
     {% endif %}
 {% endif %}
 <!-- Action set as dot so we can call this on many forms without worrying for the URL to post to -->
-<form id="upload_generic" method="post" action="{{ retUrl }}" enctype="multipart/form-data" data-parsley-validate>
+<form id="upload_generic" method="post" action="." enctype="multipart/form-data" data-parsley-validate >
     {% csrf_token %}
     {{ form.as_p }}
-    <input type="submit" name="submit" value="{% if new %}Create{% else %}Update{% endif %}">
+    <input class="btn btn-info" type="submit" name="submit" value="{% if new %}Create{% else %}Update{% endif %}">
     {% block suggest_add %}{% endblock %}
 </form>
 

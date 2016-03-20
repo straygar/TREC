@@ -1,8 +1,43 @@
+      google.charts.load('current', {'packages':['line']});
+      google.charts.setOnLoadCallback(drawChart);
 
+    function drawChart() {
+
+		 $.getJSON("../../returnResults/", function(data){
+			alert(data);	// debug alert
+			runs=JSON.parse(data);
+			var dataTable = new google.visualization.DataTable();
+			dataTable.addColumn('number', 'Upload date');
+    	    dataTable.addColumn('number','MAP');
+    	    dataTable.addColumn('number','P10');
+    	    dataTable.addColumn('number','P20');
+
+			$.each(JSON.parse(data), function(val){
+                fields = data;
+				alert(data.length());	// debug alert
+                dataTable.addRow([fields["datetime"],fields["map"],fields["p10"],fields["p20"]]);
+            });
+
+			  var options = {
+				chart: {
+				  title: 'Box Office Earnings in First Two Weeks of Opening',
+				  subtitle: 'in millions of dollars (USD)'
+				},
+				width: 600,
+				height: 500
+			  };
+
+			  var chart = new google.charts.Line(document.getElementById('chart_div'));
+
+			  chart.draw(dataTable, options);
+			})
+	}
+
+/*
 $(document).ready(function() {
 	google.charts.load('current', {packages: ['corechart']});
 
-        $.get('/returnResults',function(data){
+        $(data).load('/returnResults',function(data){
 			runs=JSON.parse(data);
 
 			var dataTable= new google.visualization.DataTable();
@@ -20,7 +55,7 @@ $(document).ready(function() {
         });
 	});
 
-
+*/
     //// Load the Visualization API and the corechart package.
     //  google.charts.load('current', {'packages':['corechart']});
     //
