@@ -3021,7 +3021,7 @@ select[multiple].input-lg {
 }
   .form-inline .form-control {
     display: inline-block;
-    width: auto;
+    width: 100%;
     vertical-align: middle;
   }
   .form-inline .form-control-static {
@@ -5157,7 +5157,7 @@ a.thumbnail.active {
   padding: 15px;
   margin-bottom: 20px;
   border: 1px solid transparent;
-  border-radius: 4px;
+  border-left-width: 5px;
 }
 .alert h4 {
   margin-top: 0;

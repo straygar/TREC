@@ -62,8 +62,8 @@ class RunFileForm(forms.ModelForm):
         fields = ('result_file',)
 
 class UserForm(forms.ModelForm):
-    username = forms.CharField(help_text="Username")
-    email = forms.CharField(help_text="E-mail")
+    username = forms.CharField(help_text="Username", widget=forms.TextInput(attrs={'placeholder': 'Username'}))
+    email = forms.CharField(help_text="E-mail", widget=forms.TextInput(attrs={'placeholder': 'e-Mail'}))
     password = forms.CharField(widget=forms.PasswordInput(), help_text="Password")
 
     class Meta:
@@ -72,14 +72,14 @@ class UserForm(forms.ModelForm):
 		
 
 class UserProfileForm(forms.ModelForm):
-    website = forms.URLField(help_text="Website", required=False)
+    website = forms.URLField(help_text="Website", required=False, widget=forms.TextInput(attrs={'placeholder': 'Website'}))
     profile_picture = forms.ImageField(help_text="Profile picture", required=False)
-    display_name = forms.CharField(help_text="Name",required=False)
-    organization = forms.CharField(help_text="Organization",required=False)
+    display_name = forms.CharField(help_text="Name",required=False, widget=forms.TextInput(attrs={'placeholder': 'Name'}))
+    organisation = forms.CharField(help_text="Organisation",required=False, widget=forms.TextInput(attrs={'placeholder': 'Organisation'}))
 
     class Meta:
         model = Researcher
-        fields = ('website', 'profile_picture','display_name','organization')
+        fields = ('website', 'profile_picture','display_name','organisation')
 
 class TaskForm(forms.ModelForm):
     track = forms.ModelChoiceField(queryset=Track.objects.all())
