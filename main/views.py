@@ -307,19 +307,6 @@ def return_result(request):
 #
 #      HttpResponse(context,content_type="application/json")
 
-@login_required
-def profile(request):
-    context = RequestContext(request)
-    context_dict={}
-    u = User.objects.get(username=request.user)
-    up = get_object_or_404(Researcher, user=u)
-    print up
-
-    context_dict['user'] = u
-    context_dict['userprofile'] = up
-
-    return render_to_response('main/profile.html', context_dict, context)
-
 def about(request):
     return render(request,'main/about.html')
 
@@ -376,7 +363,7 @@ def search(request):
              genre, feedback_type, map_min,
              map_max, p10_min, p10_max,
              p20_min, p20_max, date_min,
-             date_max, name, description)):
+             date_max, name, description, organization,)):
         allNull = False
         try:
             date_min_c = getOrDefault(date_min, convertDate)
