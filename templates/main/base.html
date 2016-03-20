@@ -13,6 +13,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/parsley.js/2.3.5/parsley.js"></script>
         <script src="http://www.kryogenix.org/code/browser/sorttable/sorttable.js"></script>
          <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+		 <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 		{% block head %}
 		{% endblock %}
     </head>
@@ -42,9 +43,15 @@
 				  	<li><a href="{% url 'search' %}">Search</a></li>
 					<li><a href="{% url 'about' %}">About</a></li>
 				  	{% if user.is_staff %}
+					<li class="dropdown">
+					  <a href="#" type="button" data-toggle="dropdown">Manage tFeed
+					  <span class="caret"></span></a>
+					  <ul class="dropdown-menu">
 						<li><a href="{% url 'manage_track' %}">Manage tracks</a></li>
 				  		<li><a href="{% url 'manage_task' %}">Manage tasks</a></li>
 				  		<li><a href="{% url 'manage_genre' %}">Manage genres</a></li>
+					  </ul>
+					</li>
 					{% endif %}
 				{% if user.is_authenticated %}
 
