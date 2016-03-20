@@ -289,10 +289,11 @@ class DecimalEncoder(json.JSONEncoder):
             return "%.2f" % obj
         return json.JSONEncoder.default(self, obj)
 
-def return_result(request):
-    context = serializers.serialize("json", Run.objects.all().filter(researcher=request.user))
+@login_required
+def return_result(request, taskid):
+    task = get_object_or_404(Task, id=taskid)
+    context = serializers.serialize("json", Run.objects.all().filter(researcher=request.user).filter(task=task))
     return HttpResponse(json.dumps(context), content_type="application/json")
-
 
 # def return_result(request):
 #      runs = Run.objects.filter(researcher=request.user)[:5]
