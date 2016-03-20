@@ -22,6 +22,8 @@ from django.core.urlresolvers import reverse
 from django.contrib.admin.views.decorators import staff_member_required
 from decimal import *
 
+from chartit import *
+
 def index(request):
     context_dict = {}
 
@@ -118,6 +120,34 @@ def browseComplete(request, taskid):
     contextDict["user"] = request.user
     contextDict["runs"] = filtered_objects
     contextDict["userRunsRequested"] = userRunsRequested
+    ds = DataPool(
+       series=
+        [{'options': {
+            'source': Run.objects.all()},
+          'terms': [
+            'datetime',
+            'p10',
+            'p20']}
+         ])
+
+    cht = Chart(
+        datasource = ds,
+        series_options =
+          [{'options':{
+              'type': 'line',
+              'stacking': False},
+            'terms':{
+              'datetime': [
+                'p10',
+                'p20']
+              }}],
+        chart_options =
+          {'title': {
+               'text': 'My very swish graph'},
+           'xAxis': {
+                'title': {
+                   'text': 'Month number'}}})
+    contextDict["chart"] = cht
     return render(request, 'main/browseTask.html', contextDict)
 
 
@@ -455,7 +485,6 @@ def getTaskInfoJson(request):
         returnData.append(("Title",task.title,))
         returnData.append(("Description", task.description,))
         returnData.append(("URL",task.task_url,))
-        returnData.append(("Description",task.description,))
         returnData = json.dumps(returnData)
     return HttpResponse(returnData, content_type="application/json")
 

@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'captcha',
     'parsley',
     'googlecharts',
+    'chartit',
 	'widget_tweaks',
 )
 

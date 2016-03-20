@@ -2,8 +2,12 @@
 
 {% block title %}Browse{% endblock %}
 {% block h1 %}Browse{% endblock %}
+{% block head %}
+<script src="https://code.highcharts.com/highcharts.js"></script>
+{% load chartit %}
+{{ chart|load_charts:"chart" }}
+{% endblock %}
 {% block body_block %}
-
 
 
 	<!-- Page card title !-->
@@ -48,9 +52,11 @@
 				</tbody>
 			</table>
 		</div>
-		<div id="graph">
+		{% if chart %}
+		<div id="chart" class="chart">
 
 		</div>
+		{% endif %}
 	{% else %}
 		<h3 class="alert alert-warning">There are no Runs for this Task</h3>
 	{% endif %}
