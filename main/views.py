@@ -62,8 +62,9 @@ def browseTrack(request, trackid):
                 sort_type = sort_form.cleaned_data["sortOn"]
                 sort_order = sort_form.cleaned_data["sortOrd"]
             returnUrl = reverse("browseComplete", kwargs={"taskid":thisTrack.id})
+            returnUrl += "?userRuns=" + str("my_tracks" in request.POST)
             if len(sort_type) != 0:
-                returnUrl += "?Sort=" + sort_type.strip() + "&Order=" + sort_order.strip()
+                returnUrl += "&Sort=" + sort_type.strip() + "&Order=" + sort_order.strip()
             return HttpResponseRedirect(returnUrl)
     contextDict["track"] = thisTrack
     contextDict["action_url"] = reverse("browseTrack", kwargs={"trackid":trackid})
@@ -99,9 +100,10 @@ def browseComplete(request, taskid):
         sortType = sortType.strip()
     else:
         sortType = ""
-    if request.GET.get('userRuns'):
-        userRunsRequested = True
-        filtered_objects = filtered_objects.filter(researcher_user=request.user)
+    if request.user.is_authenticated():
+        if request.GET.get('userRuns') == "True":
+            userRunsRequested = True
+            filtered_objects = filtered_objects.filter(researcher__user=request.user)
     if len(sortType) > 0:
         if reverseLookup.has_key(sortType):
             sortStr = reverseLookup[sortType]

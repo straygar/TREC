@@ -18,6 +18,9 @@
 		<div class="table-responsive">
 		<h4>Runs on task <a href="{% url 'view_task' taskid=task.id %}">{{ task.title }}</a></h4>
 			<h5>This task is on track <a href="{% url 'view_track' trackid=track.id %}">{{ track.title }}</a></h5>
+			{% if userRunsRequested %}
+				<h5>You are only seeing your own runs</h5>
+			{% endif %}
 			<table class="sortable table table-striped table-bordered table-hover">
 				<thead class="thead-inverse">
 					<tr>

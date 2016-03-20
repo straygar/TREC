@@ -44,6 +44,12 @@
 			</div>
 		{% endif %}
         <input type="submit" name="submit" value="{{ submit_msg }}">
+		<!-- We only want to show the option to 'show my runs' when selecting a task -->
+		{% if user.is_authenticated %}
+			{% if track %}
+				<input type="submit" name="my_tracks" value="Find my own runs">
+			{% endif %}
+		{% endif %}
     </form>
 </div>
 {% endblock %}
