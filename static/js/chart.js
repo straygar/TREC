@@ -1,15 +1,24 @@
-        $(document).ready(function() {
-            var values;
-	         $.ajax({
-				 type:'GET',
-				 url: '/main/returnResults/',
-                 data:values,
-				 dataType:"json",
-			 	success:function(json){
-					$.('#chart_div').innerHTML()
-				}
-			 });
-	    });
+
+$(document).ready(function() {
+	google.charts.load('current', {packages: ['corechart']});
+
+        $.get('/returnResults',function(data){
+			runs=JSON.parse(data);
+
+			var dataTable= new google.visualization.DataTable();
+			dataTable.addColumn('string','Name');
+    	    dataTable.addColumn('number','MAP');
+    	    dataTable.addColumn('number','P10');
+    	    dataTable.addColumn('number','P20');
+			$.each(data, function(val){
+                fields = data[val]["fields"];
+                dataTable.addRow([fields["name"],fields["map"],fields["p10"],fields["p20"]]);
+            });
+			var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    		chart.draw(data, options);
+
+        });
+	});
 
 
     //// Load the Visualization API and the corechart package.

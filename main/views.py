@@ -291,10 +291,6 @@ class DecimalEncoder(json.JSONEncoder):
 
 def return_result(request):
     context = serializers.serialize("json", Run.objects.all().filter(researcher=request.user))
-    if request.method=='GET':
-        runs=json.loads(context)
-    else:
-        pass
     return HttpResponse(json.dumps(context), content_type="application/json")
 
 
