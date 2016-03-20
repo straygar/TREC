@@ -174,6 +174,14 @@ def uploadTrack(request):
         data.genre = form.cleaned_data["genre"]
     return viewhelper.uploadFormGeneric(request, "main/uploadTrack.html", TrackForm, extraCallable)
 
+@login_required
+def viewProfile(request, userId):
+    print userId
+    this_user = get_object_or_404(User, id=userId)
+    this_profile = get_object_or_404(Researcher, user=this_user)
+    runs = Run.objects.filter(researcher=this_profile).order_by("-datetime")[:5]
+    return render(request, "main/viewProfile.html", {"user":this_user, "profile":this_profile, "runs":runs})
+
 def register(request):
     context_dict = {}
     registered = False
@@ -190,8 +198,6 @@ def register(request):
             if 'profile_picture' in request.FILES:
                 profile.profile_picture = request.FILES['profile_picture']
             profile.save()
-            print profile
-            print "SAVED!"
             registered = True
     else:
         user_form = UserForm()

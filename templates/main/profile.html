@@ -11,9 +11,9 @@
     <div class="hero-unit">
    	   <h1> Profile </h1> <br/>
         <h2>{{ user.username }} </h2>
-        <p>Website: {{ userprofile.website }}</p>
+        <p>Website: <a href="{{ userprofile.website|default:'#' }}">{{ userprofile.website|default:"Not provided" }}</a></p>
         <p>Name: {{ userprofile.display_name }}</p>
-        <p>Organization: {{ userprofile.organization }}</p>
+        <p>Organization: {{ userprofile.organization|default:"Not provided" }}</p>
         {% if userprofile.profile_picture %}
         <img src="{{ userprofile.profile_picture.url }}" alt="User profile picture" />
         {% endif %}

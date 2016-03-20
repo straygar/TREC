@@ -15,9 +15,14 @@
         <td>{{ profile.display_name }}</td>
     </tr>
     <tr>
+        <td>Researcher organization</td>
+        <td>{{ profile.organization|default:"Not provided" }}</td>
+    </tr>
+    <tr>
         <td>Title</td>
         <td>{{ run.name }}</td>
     </tr>
+
     <tr>
         <td>Description</td>
         <td>{{ run.description }}</td>
@@ -52,7 +57,7 @@
             <table class="table-striped table-bordered table-hover">
                 <tr>
                     <th>Measure</th>
-                    <th>Your score</th>
+                    <th>Score</th>
                 </tr>
                 <tr>
                     <td>Precision at 10 (P_10)</td>

@@ -37,8 +37,8 @@
 					{% for run in runs %}
 					<tr>
 						<td>{{ run.datetime|date:"d-m-Y H:m" }}</td>
-						<td>{{ run.researcher }}</td>
-						<td>{{ run.researcher.organization }}</td>
+						<td><a href="{% url 'view_profile' userId=run.researcher.user.id %}">{{ run.researcher }}</a></td>
+						<td>{{ run.researcher.organization|default:"Not provided" }}</td>
 						<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
 						<td>{{ run.map }}</td>
 						<td>{{ run.p10 }}</td>

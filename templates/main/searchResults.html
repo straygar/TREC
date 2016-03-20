@@ -27,7 +27,7 @@
         {% for run in objects %}
             <tr>
                 <td>{{ run.datetime|date:"d-m-Y" }}</td>
-                <td>{{ run.researcher }}</td>
+                <td><a href="{% url 'view_profile' userId=run.researcher.user.id %}">{{ run.researcher }}</a></td>
                 <td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
                 <td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
                 <td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>

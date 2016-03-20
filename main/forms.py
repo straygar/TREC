@@ -74,7 +74,7 @@ class UserForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
     website = forms.URLField(help_text="Website", required=False, widget=forms.TextInput(attrs={'placeholder': 'Website'}))
     profile_picture = forms.ImageField(help_text="Profile picture", required=False)
-    display_name = forms.CharField(help_text="Name",required=False, widget=forms.TextInput(attrs={'placeholder': 'Name'}))
+    display_name = forms.CharField(help_text="Name",required=True, widget=forms.TextInput(attrs={'placeholder': 'Name'}))
     organisation = forms.CharField(help_text="Organisation",required=False, widget=forms.TextInput(attrs={'placeholder': 'Organisation'}))
 
     class Meta:
