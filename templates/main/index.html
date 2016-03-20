@@ -16,7 +16,7 @@ Welcome to tFeed
 <hr />
 <!-- /Page card title !-->
 <div class="col-lg-6 col-md-12 col-sm-12 col-lg-offset-3">
-	<a href="/main/run/new/" class="btn btn-info btn-block" role="button">Upload Run</a>
+	<a href="{% url 'new_run' %}" class="btn btn-info btn-block" role="button">Upload Run</a>
 </div>
 
 {% if can_edit_tracks %}

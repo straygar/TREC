@@ -176,11 +176,11 @@ def uploadTrack(request):
 
 @login_required
 def viewProfile(request, userId):
-    print userId
     this_user = get_object_or_404(User, id=userId)
     this_profile = get_object_or_404(Researcher, user=this_user)
     runs = Run.objects.filter(researcher=this_profile).order_by("-datetime")[:5]
-    return render(request, "main/viewProfile.html", {"user":this_user, "profile":this_profile, "runs":runs})
+    myProfile = this_user == request.user
+    return render(request, "main/viewProfile.html", {"user":this_user, "profile":this_profile, "runs":runs, "thisUser":myProfile})
 
 def register(request):
     context_dict = {}
@@ -218,14 +218,13 @@ def edit_profile(request):
     if request.method == 'POST':
         profile_form = UserProfileForm(data=request.POST)
         if profile_form.is_valid():
-            profile = profile_form.save(commit=False)
-            profile.user = request.user
             if 'profile_picture' in request.FILES:
-                profile.profile_picture = request.FILES['profile_picture']
-
-            profile.save()
-
-            return HttpResponseRedirect('/main/profile/')
+                old_profile.profile_picture = request.FILES['profile_picture']
+            old_profile.website = profile_form.cleaned_data["website"]
+            old_profile.display_name = profile_form.cleaned_data["display_name"]
+            old_profile.organization = profile_form.cleaned_data["organization"]
+            old_profile.save()
+            return HttpResponseRedirect(reverse("view_profile", kwargs={"userId":request.user.id}))
         else:
             print profile_form.errors
     else:

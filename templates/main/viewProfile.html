@@ -6,6 +6,11 @@
 {% endblock %}
 
 {% block body_block %}
+{% if thisUser %}
+<div class="col-lg-6 col-md-12 col-sm-12 col-lg-offset-3">
+	<a href="{% url 'edit_profile' %}" class="btn btn-info btn-block" role="button">Edit my profile</a>
+</div>
+{% endif %}
 <div class="col-lg-6 col-md-12 col-sm-12 col-lg-offset-3 text-center">
 	<h2>{{ profile.display_name }}'s profile</h2>
 	<div class="profile-img">

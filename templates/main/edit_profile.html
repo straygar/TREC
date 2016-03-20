@@ -14,11 +14,7 @@
             {% csrf_token %}
             <h2 class="form-signin-heading">Edit your profile here</h2>
 
-            {% for field in profile_form.visible_fields %}
-            {{ field.errors }}
-            {{ field.help_text}}<br/>
-            {{ field }}<br/>
-            {% endfor %}
+            {{ profile_form.as_p }}
 
             <br/>
             <!-- Provide a button to click to submit the form. -->

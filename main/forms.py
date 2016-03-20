@@ -75,11 +75,11 @@ class UserProfileForm(forms.ModelForm):
     website = forms.URLField(help_text="Website", required=False, widget=forms.TextInput(attrs={'placeholder': 'Website'}))
     profile_picture = forms.ImageField(help_text="Profile picture", required=False)
     display_name = forms.CharField(help_text="Name",required=True, widget=forms.TextInput(attrs={'placeholder': 'Name'}))
-    organisation = forms.CharField(help_text="Organisation",required=False, widget=forms.TextInput(attrs={'placeholder': 'Organisation'}))
+    organization = forms.CharField(help_text="Organisation",required=False, widget=forms.TextInput(attrs={'placeholder': 'Organisation'}))
 
     class Meta:
         model = Researcher
-        fields = ('website', 'display_name','organisation', 'profile_picture')
+        fields = ('website', 'display_name','organization', 'profile_picture')
 
 class TaskForm(forms.ModelForm):
     track = forms.ModelChoiceField(queryset=Track.objects.all())
