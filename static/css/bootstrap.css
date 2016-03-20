@@ -55,8 +55,7 @@ body {
 	border-left: 5px solid #2196F3!important;
 	margin-top: 20px;
 }
-#form.search-forms > h3 > a,
-#form.search-forms > h3 > a:hover {
+#form.search-forms a {
 	text-decoration: none;
 	padding-left: 10px;
 	color: #2196F3;
