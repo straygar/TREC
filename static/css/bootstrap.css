@@ -3663,7 +3663,8 @@ tbody.collapse.in {
           background-clip: padding-box;
   border: 1px solid #ccc;
   border: 1px solid rgba(0, 0, 0, .15);
-  border-radius: 4px;
+  border-left-width: 5px;
+  border-left-color: #245580;
   -webkit-box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
           box-shadow: 0 6px 12px rgba(0, 0, 0, .175);
 }
@@ -3762,8 +3763,8 @@ tbody.collapse.in {
 }
 @media (min-width: 768px) {
   .navbar-right .dropdown-menu {
-    right: 0;
-    left: auto;
+    right: auto;
+	left: 0;
   }
   .navbar-right .dropdown-menu-left {
     right: auto;
@@ -4693,8 +4694,8 @@ select[multiple].input-group-sm > .input-group-btn > .btn {
 .navbar-default .navbar-nav > .open > a,
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
-  color: #555;
-  background-color: #e7e7e7;
+  color: #fff;
+  background-color: #245580;
 }
 @media (max-width: 767px) {
   .navbar-default .navbar-nav .open .dropdown-menu > li > a {
