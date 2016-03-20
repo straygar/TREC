@@ -35,4 +35,5 @@ urlpatterns = patterns('',
     url(r'^getTrackInfoJson/$', views.getTrackInfoJson),
     url(r'^getTaskInfoJson/$', views.getTaskInfoJson),
     url(r'^returnResults/(?P<taskid>[0-9]+)/',views.return_result, name="view_results_user"),
+    url(r'^getTasksJson/$', views.getTasksJson),
     )

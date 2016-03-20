@@ -489,3 +489,12 @@ def deleteTask(request, taskid):
 
 def deleteTrack(request, trackid):
     return viewhelper.deleteFormGeneric(request, "main/deleteConfirm.html", Track, trackid, "Track", reverse("manage_track"))
+
+def getTasksJson(request):
+    query = request.GET.get("track", None)
+    if query is None or len(query.strip()) == 0:
+        returnData = json.dumps([()])
+    else:
+        tasks = Task.objects.filter(track__id=query).values_list("title", "description", "task_url")
+        returnData = json.dumps(list(tasks))
+    return HttpResponse(returnData, content_type="application/json")
