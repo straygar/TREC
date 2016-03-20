@@ -1,8 +1,19 @@
 from django.test import TestCase
 from django.core.files import File
 import datetime
+from util import trec
 
 from main.models import Run, Task, Track, Genre, Researcher, RunFile
+
+class TrecEvalTests(TestCase):
+    def test_getRating(self):
+        judgement_file = File(open("qrels/aq.trec2005.qrels"))
+        result_file = File(open("qrels/aq.trec.bm25.0.50.res"))
+        results = trec.getRating("qrels/aq.trec2005.qrels", "qrels/aq.trec.bm25.0.50.res")
+        self.assertEqual(results["P_10"], 0.3469)
+        self.assertEqual(results["P_20"], 0.3367)
+        self.assertEqual(results["map"], 0.1764)
+
 
 class GenreModelTests(TestCase):
     def create_genre(self, title="testGenre"):
@@ -71,25 +82,26 @@ class RunFileModelTests(TestCase):
          self.assertTrue(isinstance(rf,RunFile))
          self.assertTrue(rf.result_file, test_file)
 
-class RunModelTests(TestCase):
-
-    def create_run(self, name="testRun", description="test", run_type="AU",query_type="TO",
-                   feedback_type="NF", map=0.5, p10=0.5, p20=0.5):
-
-        researcher = Researcher.objects.create(display_name="basicHuman",organization="Uni", website="test")
-        rf = RunFileModelTests.create_runfile()
-        judgement_file= File(open("qrels/aq.trec2005.qrels"))
-        time = datetime.date.today()
-        genre = Genre.objects.create(title="testGenre3")
-        track = Track.objects.create(title="test", track_url="testURL",description="test", genre=genre)
-        task = Task.objects.create(title="test", task_url="test",description=description, year=2016,judgement_file=judgement_file, track=track)
-
-        return Run.objects.create(name=name, researcher=researcher, datetime = time,
-                                  result_file=rf, description=description, run_type=run_type,
-                                  query_type=query_type, feedback_type=feedback_type, map=map,
-                                  p10=p10, p20=p20, task=task)
-
-    def test_run_creation(self):
-        r = self.create_run()
-        self.assertTrue(isinstance(r,Run))
+# class RunModelTests(TestCase):
+#
+#     def create_run(self, name="testRun", description="test", run_type="AU",query_type="TO",
+#                    feedback_type="NF", map=0.5, p10=0.5, p20=0.5):
+#
+#         researcher = Researcher.objects.create(display_name="basicHuman",organization="Uni", website="test")
+#         test_file=File(open("qrels/aq.trec.bm25.0.50.res"))
+#         rf = RunFile.objects.create(result_file=test_file)
+#         judgement_file= File(open("qrels/aq.trec2005.qrels"))
+#         time = datetime.date.today()
+#         genre = Genre.objects.create(title="testGenre3")
+#         track = Track.objects.create(title="test", track_url="testURL",description="test", genre=genre)
+#         task = Task.objects.create(title="test", task_url="test",description=description, year=2016,judgement_file=judgement_file, track=track)
+#
+#         return Run.objects.create(name=name, researcher=researcher, datetime = time,
+#                                   result_file=rf, description=description, run_type=run_type,
+#                                   query_type=query_type, feedback_type=feedback_type, map=map,
+#                                   p10=p10, p20=p20, task=task)
+#
+#     def test_run_creation(self):
+#         r = self.create_run()
+#         self.assertTrue(isinstance(r,Run))
 
