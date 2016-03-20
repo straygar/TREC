@@ -1,11 +1,15 @@
-      google.charts.load('current', {'packages':['line']});
-      google.charts.setOnLoadCallback(drawChart);
+$(document).ready(function() {
+    google.charts.load('current', {'packages':['line']});
+    google.charts.setOnLoadCallback(drawChart);
 
+    var taskId = 0;
+    var taskTitle = "";
     function drawChart() {
 
-		 $.getJSON("../../returnResults/", function(data){
+		 $.getJSON("../../returnResults/" + taskId + "/", function(data){
 			alert(data);	// debug alert
 			runs=JSON.parse(data);
+			alert(runs);
 			var dataTable = new google.visualization.DataTable();
 			dataTable.addColumn('number', 'Upload date');
     	    dataTable.addColumn('number','MAP');
@@ -32,6 +36,8 @@
 			  chart.draw(dataTable, options);
 			})
 	}
+});
+
 
 /*
 $(document).ready(function() {
