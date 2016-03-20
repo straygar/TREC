@@ -1,108 +1,37 @@
 {% extends "main/base.html" %}
 
+{% load staticfiles %}
+
 {% block title %}Browse{% endblock %}
 {% block h1 %}Browse{% endblock %}
 {% block body_block %}
-
-
+	{% if sort_form %}
+		<script src="{% static 'js/jquery.collapse.js' %}"></script>
+    	<script src="{% static 'js/jquery.collapse_cookie_storage.js' %}"></script>
+    	<script src="{% static 'js/jquery.collapse_storage.js' %}"></script>
+		<script src="{% static 'js/browseForm.js' %}"></script>
+	{% endif %}
 
 	<!-- Page card title !-->
 	<h2>Please select search criteria</h2>
 	<hr/>
 	<!-- /Page card title !-->
-
+	{% if track %}
+		<h5 class="alert alert-info">You are selecting tasks for <a href="{% url 'view_track' trackid=track.id %}">track {{ track.title }}</a>. You can go back and
+			<a href="{% url 'browse' %}">select another track</a></h5>
+	{% endif %}
 <div>
-    <form id="browse" method="post" action="{% url 'browse' %}" enctype="multipart/form-data">
+    <form id="browse" method="post" action="{{ action_url }}" enctype="multipart/form-data">
         {% csrf_token %}
         {{ form.as_p }}
-        <input type="submit" name="submit" value="Get Runs for this Task">
+		{% if sort_form %}
+			<h3><a href="#" id="toggle"><span class="glyphicon glyphicon-plus"></span>Sorting options</a></h3>
+			<div id="sortForm">
+				<h5 class="alert alert-info">Tip: You can also sort by clicking on the headers of the table</h5>
+				{{ sort_form.as_p }}
+			</div>
+		{% endif %}
+        <input type="submit" name="submit" value="{{ submit_msg }}">
     </form>
 </div>
-
-{% if user.is_authenticated %}
-<div>
-    <form id="user_runs" method="get" action="{% url 'browse' %}">
-        <input type="submit" name="userRuns" value="Get My Runs">
-    </form>
-</div>
-{% endif %}
-
-{% if accepted %}
-
-    {% if runs %}
-        <div class="table-responsive">
-		<h4>Runs on Task: {{ task }} </h4>
-		<table class="sortable table table-striped table-bordered table-hover">
-			<thead class="thead-inverse">
-				<tr>
-					<th>Uploaded</th>
-					<th>Researcher</th>
-					<th>Run</th>
-					<th>Track</th>
-					<th>Map</th>
-					<th>p10</th>
-					<th>p20</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for run in runs %}
-				<tr>
-					<td>{{ run.datetime|date:"d-m-Y" }}</td>
-					<td>{{ run.researcher }}</td>
-					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
-					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
-					<td>{{ run.map }}</td>
-					<td>{{ run.p10 }}</td>
-					<td>{{ run.p20 }}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		</div>
-    {% else %}
-        <h3 class="alert alert-warning">There are no Runs for this Task</h3>
-    {% endif %}
-{% endif %}
-
-
-
-{% if userRunsRequested %}
-    {% if userRuns %}
-        <div class="table-responsive">
-		<h4>Runs by {{ user }} </h4>
-		<table class="sortable table table-striped table-bordered table-hover">
-			<thead class="thead-inverse">
-				<tr>
-					<th>Uploaded</th>
-					<th>Researcher</th>
-					<th>Run</th>
-					<th>Task</th>
-					<th>Track</th>
-					<th>Map</th>
-					<th>p10</th>
-					<th>p20</th>
-				</tr>
-			</thead>
-			<tbody>
-				{% for run in userRuns %}
-				<tr>
-					<td>{{ run.datetime|date:"d-m-Y" }}</td>
-					<td>{{ run.researcher }}</td>
-					<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
-					<td><a href="{% url 'view_task' taskid=run.task.id %}">{{ run.task.title }}</a></td>
-					<td><a href="{% url 'view_track' trackid=run.task.track.id %}">{{ run.task.track }}</a></td>
-					<td>{{ run.map }}</td>
-					<td>{{ run.p10 }}</td>
-					<td>{{ run.p20 }}</td>
-				</tr>
-				{% endfor %}
-			</tbody>
-		</table>
-		</div>
-    {% else %}
-        <h3 class="alert alert-warning">There are no Runs for this Task</h3>
-    {% endif %}
-{% endif %}
-
-
 {% endblock %}

@@ -4,13 +4,43 @@ from captcha.fields import CaptchaField
 from parsley.decorators import parsleyfy
 from django.contrib.auth.models import User
 
-class BrowseForm(forms.ModelForm):
-    #track = forms.ModelChoiceField(queryset=Track.objects.all())
-    task = forms.ModelChoiceField(queryset=Task.objects.all())
+class BrowseTrackForm(forms.ModelForm):
+    track = forms.ModelChoiceField(queryset=Track.objects.all())
+    class Meta:
+        model = Track
+        fields = ('track',)
+
+class BrowseTaskForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        thisTask = kwargs.pop("track", None)
+        super(BrowseTaskForm, self).__init__(*args, **kwargs)
+        self.fields['task'].queryset = Task.objects.filter(track=thisTask)
+    task = forms.ModelChoiceField(queryset=Track.objects.all())
     class Meta:
         model = Task
         fields = ('task',)
 
+class BrowseTaskSortForm(forms.Form):
+    sortChoices = (
+        ("", "Do not sort"),
+        ("DA", "Date uploaded"),
+        ("P1", "P10 score"),
+        ("P2", "P20 score"),
+        ("MA", "Map score"),
+        ("FT", "Feedback type"),
+        ("RT", "Run type"),
+        ("QT", "Query type"),
+        ("UO", "Uploader organization"),
+        ("UU", "Uploader username"),
+        ("UN", "Uploader name"),
+        ("TL", "Title"),
+    )
+    sortOrder = (
+        ("DE", "Descending"),
+        ("AS", "Ascending"),
+    )
+    sortOn = forms.ChoiceField(choices=sortChoices, label="Sort by...")
+    sortOrd = forms.ChoiceField(choices=sortOrder, label="Sort order")
 
 @parsleyfy
 class RunForm(forms.ModelForm):
@@ -37,7 +67,6 @@ class UserForm(forms.ModelForm):
 		
 
 class UserProfileForm(forms.ModelForm):
-
     website = forms.URLField(help_text="Please enter your website.", required=False)
     profile_picture = forms.ImageField(help_text="Select a profile image to upload.", required=False)
     display_name = forms.CharField(help_text="Please enter your name",required=False)
