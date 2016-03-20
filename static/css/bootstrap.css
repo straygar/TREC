@@ -43,9 +43,6 @@ body {
 .table-responsive {
 	max-height: 500px;
 }
-a>img.img-circle.avatar {
-	height:35px;
-}
 .navbar-nav > li > a.viewProfile {
 	padding-top: 8px;
 	padding-left: 0;
@@ -68,7 +65,29 @@ a>img.img-circle.avatar {
 #form.search-forms > div {
 	padding-left: 30px;
 }
-
+div.profile-img {
+    width: 200px;
+    height: 200px;
+    overflow: hidden;
+    margin: 0 auto;
+    position: relative;
+}
+div.profile-img.profile-head {
+    width: 35px;
+	height:35px;
+	margin-top:0;
+	
+}
+.profile-img > img{
+    position: absolute;
+    left: -100%;
+    right: -100%;
+    top: -100%;
+    bottom: -100%;
+    margin: auto; 
+    height: 100%;
+    width: 100%;
+}
 article,
 aside,
 details,
@@ -1223,6 +1242,8 @@ img {
 }
 .img-circle {
   border-radius: 50%;
+  object-fit: cover;
+  object-position: center;
 }
 hr {
   margin-top: 20px;
