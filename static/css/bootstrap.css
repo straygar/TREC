@@ -3012,6 +3012,13 @@ select[multiple].input-lg {
     margin-bottom: 0;
     vertical-align: middle;
   }
+ .form-group{  
+	padding-bottom: 15px;
+	height: 30px;
+}
+.form-group.register {
+	padding-bottom: 45px;
+}
   .form-inline .form-control {
     display: inline-block;
     width: auto;

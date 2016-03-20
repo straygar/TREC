@@ -45,6 +45,7 @@ INSTALLED_APPS = (
     'captcha',
     'parsley',
     'googlecharts',
+	'widget_tweaks',
 )
 
 MIDDLEWARE_CLASSES = (

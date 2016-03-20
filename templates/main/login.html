@@ -4,15 +4,15 @@
 {% block h1 %}Login{% endblock %}
 {% block body_block %}
 	<div class="col-lg-6 col-md-6 col-sm-12">
-        <form class="form-signin span4" id="login_form" method="post" action="/main/login/">
-            <!-- Page card title !-->
-            <h2 class="form-signin-heading">Please sign in</h2>
-			<hr />
-			<!-- /Page card title !-->
+		<!-- Page card title !-->
+		<h2 class="form-signin-heading">Please sign in</h2>
+		<hr />
+		<!-- /Page card title !-->
+        <form class="form-signin" id="login_form" method="post" action="/main/login/">
             {% if bad_details %}
-            <h3 class="alert alert-danger">The username / password you provided are incorrect!</h3>
+            <p class="alert alert-danger">The username / password you provided are incorrect!</p>
             {% elif disabled_account %}
-            <h3 class="alert alert-danger">Your account is currently disabled; we can't log you in!</h3>
+            <p class="alert alert-danger">Your account is currently disabled; we can't log you in!</p>
             {% endif %}
 			
 			{% csrf_token %}

@@ -72,10 +72,10 @@ class UserForm(forms.ModelForm):
 		
 
 class UserProfileForm(forms.ModelForm):
-    website = forms.URLField(help_text="Please enter your website.", required=False)
-    profile_picture = forms.ImageField(help_text="Select a profile image to upload.", required=False)
-    display_name = forms.CharField(help_text="Please enter your name",required=False)
-    organization = forms.CharField(help_text="Please enter the name of your organization",required=False)
+    website = forms.URLField(help_text="Website", required=False)
+    profile_picture = forms.ImageField(help_text="Profile picture", required=False)
+    display_name = forms.CharField(help_text="Name",required=False)
+    organization = forms.CharField(help_text="Organization",required=False)
 
     class Meta:
         model = Researcher

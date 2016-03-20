@@ -1,5 +1,5 @@
 {% extends "main/base.html" %}
-
+{% load widget_tweaks %}
 {% block title %}Register{% endblock %}
 {% block h1 %}Register{% endblock %}
 
@@ -9,28 +9,38 @@
         <p><a href="/main/login/">Login</a> when you are ready.</p>
         
 		{% else %}
+		<div class="col-lg-6 col-md-6 col-sm-12">
+		<!-- Page card title !-->
+		<h2 class="form-signin-heading">Please enter your details below</h2>
+		<hr />
+		<!-- /Page card title !-->
         <form class="form-inline" id="user_form" method="post" action="/main/register/"
               enctype="multipart/form-data">
             {% csrf_token %}
-			<!-- Page card title !-->
-            <h2 class="form-signin-heading">Please enter your details below</h2>
-			<hr />
-			<!-- /Page card title !-->
             <!-- Display each form here -->
-			<div class="col-lg-6 col-md-6 col-lg-12">
 				{% for field in user_form.visible_fields %}
-				
-					{{ field.help_text}}<br/>
-					{{ field }}<br/>
-					{{ field.errors }}
-				
+					<div class="form-group col-lg-12 col-md-12 col-sm-12 register">
+						<label class="control-label col-sm-3">{{ field.help_text }}</label>
+						<div class="col-sm-9">
+						{{ field|add_class:"form-control" }}
+						</div>
+						{{ field.errors }}
+					</div><br/>
 				{% endfor %}
 
 
 				{% for field in profile_form.visible_fields %}
-				{{ field.errors }}
-				{{ field.help_text}}<br/>
-				{{ field }}<br/>
+					<div class="form-group col-lg-12 col-md-12 col-sm-12 register">
+						<label class="control-label col-sm-3">{{ field.help_text }}</label>
+						<div class="col-sm-9">
+						{% if field.label == "profile_picture" %}
+							{{ field|add_class:"form-control" }} <!-- TODO - style pic upload field !-->
+						{% else %}
+							{{ field|add_class:"form-control" }}
+						{% endif %}
+						</div>
+						{{ field.errors }}
+					</div><br/>
 				{% endfor %}
 
             <!-- Provide a button to click to submit the form. -->

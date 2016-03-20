@@ -9,3 +9,4 @@ wheel==0.26.0
 django-google-charts==0.1.1
 django-qsstats-magic==0.7.2
 python-dateutil==2.5.1
+django-widget-tweaks==1.4.1
