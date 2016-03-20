@@ -6,7 +6,15 @@
 
 
 
-
+<!-- Page card title !-->
+<h2 class="form-signin-heading">
+Welcome to tFeed
+{% if user.is_authenticated %}
+	, {{ user.username }}
+{% endif %}
+</h2>
+<hr />
+<!-- /Page card title !-->
 <div class="col-lg-6 col-md-12 col-sm-12 col-lg-offset-3">
 	<a href="/main/run/new/" class="btn btn-info btn-block" role="button">Upload Run</a>
 </div>
