@@ -131,7 +131,6 @@ def browseComplete(request, taskid):
             otherRuns = allRuns
 
         if len(myRuns) > 0:
-            print "USING BOTH"
             ds = DataPool(
                series=
                 [{'options': {
@@ -145,9 +144,9 @@ def browseComplete(request, taskid):
                     'source': myRuns},
                   'terms': [
                       {'your_datetime':'datetime'},
-                      {'your_map':'map'},
-                      {'your_p10':'p10'},
-                      {'your_p20':'p20'}]}
+                      {'Your map':'map'},
+                      {'Your p10':'p10'},
+                      {'Your p20':'p20'}]}
                  ])
             cht = Chart(
             datasource = ds,
@@ -161,9 +160,9 @@ def browseComplete(request, taskid):
                     'p20',
                     'map'],
                     'your_datetime': [
-                        'your_p10',
-                        'your_p20',
-                        'your_map'
+                        'Your p10',
+                        'Your p20',
+                        'Your map'
                     ]
                   }}],
             chart_options =
@@ -380,8 +379,6 @@ def edit_profile(request):
             old_profile.organization = profile_form.cleaned_data["organization"]
             old_profile.save()
             return HttpResponseRedirect(reverse("view_profile", kwargs={"userId":request.user.id}))
-        else:
-            print profile_form.errors
     else:
         profile_form = UserProfileForm(instance=old_profile)
 
