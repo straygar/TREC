@@ -1,7 +1,7 @@
 {% extends "main/base.html" %}
 
 {% block title %}Edit Profile{% endblock %}
-
+{% block h1 %}Profile Editor{% endblock %}
 {% load static %}
 
 {% block head %}
@@ -10,15 +10,14 @@
 
 {% block body_block %}
 
-    <h1>Edit Profile</h1>
-    <br/>
+    <h2 class="form-signin-heading">Edit your profile here</h2>
+    <hr/>
 
 
 		<div class="col-lg-12 col-md-12 col-sm-12">
 			<form class="form-signin span8" id="user_form" method="post" action="{% url 'edit_profile' %}"
 				  enctype="multipart/form-data">
 				{% csrf_token %}
-				<h2 class="form-signin-heading">Edit your profile here</h2>
 
 				{{ profile_form.as_p }}
 

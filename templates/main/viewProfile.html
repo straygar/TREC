@@ -11,7 +11,7 @@
 	{{ chart|load_charts:"chart" }}
 {% endif %}
 {% endblock %}
-
+{% block h1 %}Profile Viewing{% endblock %}
 {% block body_block %}
 <div class="col-lg-6 col-md-12 col-sm-12 col-lg-offset-3 text-center">
 	<h2>{{ profile.display_name }}'s profile</h2>
