@@ -3,8 +3,6 @@ django-chartit2==0.2.2
 django-discover-runner==1.0
 django-parsley==0.6
 django-qsstats-magic==0.7.2
-django-registration-redux==1.4
-django-role-permissions==1.0
 django-simple-captcha==0.5.1
 django-widget-tweaks==1.4.1
 Pillow==3.1.1
