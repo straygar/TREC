@@ -3,7 +3,7 @@ from django.core.files import File
 import datetime
 from util import trec
 
-from main.models import Run, Task, Track, Genre, Researcher, RunFile
+from main.models import Run, Task, Track, Genre, Researcher, RunFile, User
 
 class TrecEvalTests(TestCase):
     def test_getRating(self):
@@ -84,24 +84,36 @@ class RunFileModelTests(TestCase):
 
 class RunModelTests(TestCase):
 
-    def create_run(self, name="testRun", description="test", run_type="AU",query_type="TO",
-                   feedback_type="NF", map=0.5, p10=0.5, p20=0.5):
+     def create_run(self,name,description,run_type,query_type,feedback_type,researcher,task,result_file,map,p10,p20):
 
-        researcher = Researcher.objects.create(display_name="tester", organization="uni", website="testsite")
-        test_file=File(open("qrels/aq.trec.bm25.0.50.res"))
-        rf = RunFile.objects.create(result_file=test_file)
-        judgement_file= File(open("qrels/aq.trec2005.qrels"))
-        time = datetime.date.today()
-        genre = Genre.objects.create(title="testGenre3")
-        track = Track.objects.create(title="test", track_url="testURL",description="test", genre=genre)
-        task = Task.objects.create(title="test", task_url="test",description=description, year=2016,judgement_file=judgement_file, track=track)
+        r = Run.objects.get_or_create(name=name,description=description,run_type=run_type,query_type=query_type,
+                                      feedback_type=feedback_type,researcher=researcher,task=task,result_file=result_file,
+                                      map=map,p10=p10,p20=p20)[0]
+        return r
 
-        return Run.objects.create(name=name, researcher=researcher, datetime = time,
-                                  result_file=rf, description=description, run_type=run_type,
-                                  query_type=query_type, feedback_type=feedback_type, map=map,
-                                  p10=p10, p20=p20, task=task)
+     def test_run_creation(self):
 
-    def test_run_creation(self):
-        r = self.create_run()
-        self.assertTrue(isinstance(r,Run))
+         run_file = RunFile.objects.create(result_file=File(open('qrels/aq.trec.bm25.0.50.res')))
+         judgement_file= File(open("qrels/aq.trec2005.qrels"))
+         genre = Genre.objects.create(title="testGenre3")
+         track = Track.objects.create(title="test", track_url="testURL",description="test", genre=genre)
+         task = Task.objects.create(title="test", task_url="test",description="test", year=2016,judgement_file=judgement_file, track=track)
+         u = User.objects.create_user(username = "testUser",email = "test",password= "test")
+         researcher = Researcher.objects.create(user=u,display_name="testUser",website="test",organization="test")
+
+         testRun = self.create_run(name='test',description='test run',run_type='AU',query_type='AF',feedback_type='RF',
+                              researcher=researcher,task=task,result_file=run_file,map=0.1,p10=0.3,p20=0.4)
+
+         self.assertTrue(isinstance(testRun,Run))
+         self.assertEqual(testRun.name, 'test')
+         self.assertEqual(testRun.description, 'test run')
+         self.assertEqual(testRun.run_type, 'AU')
+         self.assertEqual(testRun.query_type, 'AF')
+         self.assertEqual(testRun.feedback_type, 'RF')
+         self.assertEqual(testRun.researcher.__unicode__(), "testUser")
+         self.assertEqual(testRun.task, task)
+         self.assertEqual(testRun.result_file, run_file)
+         self.assertEqual(testRun.map, 0.1)
+         self.assertEqual(testRun.p10,0.3)
+         self.assertEqual(testRun.p20,0.4)
 
