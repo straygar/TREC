@@ -1,11 +1,17 @@
 {% extends "main/base_forms.html" %}
 
+{% load static %}
+
 {% block title %}
     {% if new %}
         {% block new_element %}Upload a new Track{% endblock %}
     {% else %}
         {% block edit_element %}Edit Track {{ title }}{% endblock %}
     {% endif %}
+{% endblock %}
+
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/autoform.css' %}">
 {% endblock %}
 
 {% block insert_block %}

@@ -1,0 +1,41 @@
+input[type="text"], select, input[type="url"], input[type="number"] {
+  display: block;
+  width: 100%;
+  height: 34px;
+  padding: 6px 12px;
+  font-size: 14px;
+  line-height: 1.42857143;
+  color: #555;
+  background-color: #fff;
+  background-image: none;
+  border: 1px solid #ccc;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+          box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+  -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+       -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+          transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+}
+input[type="text"]:focus, select:focus, input[type="url"]:focus {
+  border-color: #66afe9;
+  outline: 0;
+  -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+          box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102, 175, 233, .6);
+}
+input[type="text"]::-moz-placeholder, select::-moz-placeholder, input[type="url"]::-moz-placeholder, input[type="number"]::-moz-placeholder {
+  color: #999;
+  opacity: 1;
+}
+input[type="text"]:-ms-input-placeholder, select:-ms-input-placeholder, input[type="url"]::-ms-input-placeholder, input[type="number"]::-ms-input-placeholder {
+  color: #999;
+}
+input[type="text"]::-webkit-input-placeholder, select::-webkit-input-placeholder, input[type="url"]::-webkit-input-placeholder, input[type="number"]::-webkit-input-placeholder {
+  color: #999;
+}
+input[type="text"]::-ms-expand, select::-ms-expand, input[type="url"]::-ms-expand, input[type="number"]::-ms-expand {
+  background-color: transparent;
+  border: 0;
+}
+
+textarea {
+  height: auto;
+}
