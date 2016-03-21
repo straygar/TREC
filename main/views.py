@@ -23,6 +23,7 @@ from django.contrib.admin.views.decorators import staff_member_required
 from decimal import *
 
 from chartit import *
+from django.db.models import Avg
 
 def index(request):
     context_dict = {}
@@ -285,7 +286,8 @@ def viewProfile(request, userId):
     context_dict = {}
     if taskQuery is not None:
         thisTask = get_object_or_404(Task, id=taskQuery)
-        myRuns = Run.objects.filter(researcher=this_profile).filter(task=thisTask)
+        Runs = Run.objects.filter(task=thisTask)
+        myRuns = Runs.filter(researcher=this_profile)
         ds = DataPool(
                series=
                 [{'options': {
