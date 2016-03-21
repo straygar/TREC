@@ -62,9 +62,12 @@ class RunFileForm(forms.ModelForm):
         fields = ('result_file',)
 
 class UserForm(forms.ModelForm):
-    username = forms.CharField(help_text="Username", widget=forms.TextInput(attrs={'placeholder': 'Username'}))
-    email = forms.CharField(help_text="E-mail", widget=forms.TextInput(attrs={'placeholder': 'e-Mail'}))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password'}), help_text="Password")
+    username = forms.CharField(help_text="Username", widget=forms.TextInput(attrs={'placeholder': 'Username *'}), 
+		error_messages={'required':"Please enter a username"})
+    email = forms.CharField(help_text="E-mail", widget=forms.TextInput(attrs={'placeholder': 'e-Mail *'}),
+		error_messages={'required':"Please enter an e-mail address",'invalid':"Enter a valid e-mail address (e.g. 'user@gmail.com')"})
+    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Password *'}), help_text="Password",
+		error_messages={'required':"Please enter a password"})
 
     class Meta:
         model = User
@@ -72,14 +75,16 @@ class UserForm(forms.ModelForm):
 		
 
 class UserProfileForm(forms.ModelForm):
-    website = forms.URLField(help_text="Website", required=False, widget=forms.TextInput(attrs={'placeholder': 'Website'}))
+    website = forms.URLField(help_text="Website", required=False, widget=forms.TextInput(attrs={'placeholder': 'Website'}),
+		error_messages={'invalid':"Please enter a valid website (e.g. 'http://www.google.com/)'"})
     profile_picture = forms.ImageField(help_text="Profile picture", required=False)
-    display_name = forms.CharField(help_text="Name",required=True, widget=forms.TextInput(attrs={'placeholder': 'Name'}))
+    display_name = forms.CharField(help_text="Name",required=True, widget=forms.TextInput(attrs={'placeholder': 'Name *'}),
+		error_messages={'required':"Please enter a name"})
     organization = forms.CharField(help_text="Organisation",required=False, widget=forms.TextInput(attrs={'placeholder': 'Organisation'}))
 
     class Meta:
         model = Researcher
-        fields = ('website', 'display_name','organization', 'profile_picture')
+        fields = ('display_name','website','organization', 'profile_picture')
 
 class TaskForm(forms.ModelForm):
     track = forms.ModelChoiceField(queryset=Track.objects.all())

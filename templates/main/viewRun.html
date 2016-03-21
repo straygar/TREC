@@ -2,11 +2,12 @@
 
 {% load staticfiles %}
 
-{% block title %}View run by {{ profile.display_name }}{% endblock %}
+{% block title %}Run Viewer{% endblock %}
+{% block h1%}Run Viewer{% endblock %}
 
 {% block body_block %}
 
-<h2>Run by {{ profile.display_name }}</h2>
+<h2>Run "{{ run.name }}" by {{ profile.display_name }}</h2><hr/>
 <h4>Details</h4>
 
 <table class="table table-striped table-bordered table-hover">

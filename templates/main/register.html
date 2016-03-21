@@ -15,31 +15,35 @@
 		<h2 class="form-signin-heading">Please enter your details below</h2>
 		<hr />
 		<!-- /Page card title !-->
+		<h4>Fields marked with an asterisk (*) are required</h4>
         <form class="form-inline" id="user_form" method="post" action="{% url 'register' %}"
               enctype="multipart/form-data">
             {% csrf_token %}
             <!-- Display each form here -->
 				{% for field in user_form.visible_fields %}
 					<div class="form-group col-lg-12 col-md-12 col-sm-12 register">
-						<div>
-						{{ field|add_class:"form-control"|attr:"{'size': 10, 'placeholder': 'Your name',}"}}
-						</div>
-						{{ field.errors }}
+
+							{{ field|add_class:"form-control"|attr:"{'size': 10, 'placeholder': 'Your name',}"}}
+
+								{% if field.errors %}
+								<div class="alert alert-danger">{{ field.errors }}</div>
+							{% endif %}
 					</div>
 				{% endfor %}
 
 
 				{% for field in profile_form.visible_fields %}
 					<div class="form-group col-lg-12 col-md-12 col-sm-12 register">
-						<div>
+						
 							{% if field == "profile_picture" %}
 								{{ field|attr:"class:'btn btn-prim'" }} <!-- TODO - style pic upload field !-->
 							{% else %}
 								{{ field|add_class:"form-control" }}
 							{% endif %}
-						</div>
-						<br/>
-						{{ field.errors }}
+							{% if field.errors %}
+								<div class="alert alert-danger">{{ field.errors }}</div>
+							{% endif %}
+
 					</div>
 				{% endfor %}
             <!-- Provide a button to click to submit the form. -->
@@ -47,7 +51,7 @@
 			</div>
         </form>
 		<div class="col-lg-6 col-md-6 col-sm-12 customer">
-			<img src="{% static 'images/customer.jpg' %}">
-			<h4>11.3% of our customers were left very satisfied using tFeed.</h4>
+			<img src="{% static 'images/customer.jpg' %}" alt="Satisfied customer" />
+			<h4>11.3% of our customers were very satisfied with their experience using tFeed.</h4>
         {% endif %}
 {% endblock %}

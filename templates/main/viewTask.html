@@ -2,11 +2,11 @@
 
 {% load staticfiles %}
 
-{% block title %}View task: {{ task.title }}{% endblock %}
-
+{% block title %}Task Viewer{% endblock %}
+{% block h1 %}Task Viewer{% endblock %}
 {% block body_block %}
 
-<h2>Task: {{ task.title }}</h2>
+<h2>Task "{{ task.title }}"</h2><hr/>
 <h4>Details</h4>
 
 <table class="table table-striped table-bordered table-hover">
@@ -34,6 +34,29 @@
         <td>Track</td>
         <td><a href="{% url 'view_track' trackid=task.track.id %}">{{ task.track.title }}</a></td>
     </tr>
+	<tr>
+		<td>Runs</td>
+		<td>
+			{% if runs %} 
+				<table class="table table-striped table-bordered table-hover">
+					<tr>
+						<th>Title</th>
+						<th>Description</th>
+						<th>Year</th>
+					</tr>
+					{% for run in runs %}
+						<tr>
+							<td><a href="{% url 'view_run' run=run.id %}">{{ run.title }}</a></td>
+							<td>{{ run.description }}</td>
+							<td>{{ run.year }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				This task has no runs
+			{% endif %}
+		</td>
+	</tr>
 </table>
 
 {% endblock %}
