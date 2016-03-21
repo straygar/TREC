@@ -22,13 +22,16 @@ def deleteFormGeneric(request, template, model, id, item_display_name, returnUrl
     return render(request, template, context_dict)
 
 
-def editFormGeneric(request, template, model, formType, id):
+def editFormGeneric(request, template, model, formType, id, useFiles=False):
     valid = False
     error = False
     currentElement = get_object_or_404(model,id=id)
     context_dict = {}
     if request.method == "POST":
-        form = formType(request.POST, instance = currentElement)
+        if useFiles:
+            form = formType(request.POST, request.FILES, instance = currentElement)
+        else:
+            form = formType(request.POST, instance = currentElement)
         if form.is_valid():
             form.save()
             valid = True

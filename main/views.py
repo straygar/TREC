@@ -471,7 +471,7 @@ def viewTask(request, taskid):
 
 @staff_member_required
 def editTask(request, taskid):
-    return viewhelper.editFormGeneric(request, "main/uploadTask.html", Task, TaskForm, taskid)
+    return viewhelper.editFormGeneric(request, "main/uploadTask.html", Task, TaskForm, taskid, True)
 
 def search(request):
     error = False
