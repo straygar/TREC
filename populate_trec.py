@@ -8,6 +8,7 @@ from main.models import Researcher, Genre, Track, Task, Run, User, RunFile
 from django.core.files import File
 from django.core.files.images import ImageFile
 from django.contrib.staticfiles.templatetags.staticfiles import static
+from util import trec
 
 def populate():
 
@@ -22,6 +23,7 @@ def populate():
         file = File(open(result_file,"r"))
         r = RunFile.objects.get_or_create()[0]
         r.result_file.save("aq.trec.bm25.0.50.res",file,save=True)
+        return r
 
     def addGenre(title):
         g = Genre.objects.get_or_create(title=title)[0]
@@ -31,8 +33,10 @@ def populate():
         track = Track.objects.get_or_create(title=title,description=description,genre=genre,track_url=track_url)[0]
         return track
 
-    def addTask(track,title,description,task_url,year):
+    def addTask(track,title,description,task_url,year,judgement_file):
         task = Task.objects.get_or_create(title=title, track=track, description = description, task_url=task_url,year=year)[0]
+        file = File(open(judgement_file,"r"))
+        task.judgement_file.save("aq.trec2005.qrels",file,save=True)
         return task
 
     def addRun(name,description,run_type,query_type,feedback_type,researcher,task,result_file,map,p10,p20):
@@ -90,15 +94,16 @@ def populate():
                              title = 'Robust2005',
                              description='Ad Hoc Topic Retrieval',
                              task_url='http://trec.nist.gov/data/t14_robust.html',
-                             year=2005
+                             year=2005,
+                             judgement_file='aq.trec2005.qrels'
                              )
 
-    web_task = addTask(track=million_query_track,
-                             title = 'Web2005',
-                             description='Ad Hoc Topic Retrieval',
-                             task_url='http://www-nlpir.nist.gov/projects/terabyte/',
-                             year=2005
-                             )
+    # web_task = addTask(track=million_query_track,
+    #                          title = 'Web2005',
+    #                          description='Ad Hoc Topic Retrieval',
+    #                          task_url='http://www-nlpir.nist.gov/projects/terabyte/',
+    #                          year=2005
+    #                          )
 
     first_run = addRun(name='first',
                           description='first run',
@@ -111,50 +116,50 @@ def populate():
                           map=0.1,
                           p10=0.3,
                           p20=0.4)
-    second_run = addRun(name='second',
-                          description='second',
-                          run_type='MA',
-                          query_type='TD',
-                          feedback_type='RF',
-                          researcher=jill_researcher,
-                          task=robust_task,
-                          result_file=aq_run_file,
-                          map=0.1,
-                          p10=0.3,
-                          p20=0.4)
-    third_run = addRun(name='third',
-                          description='third',
-                          run_type='MA',
-                          query_type='TO',
-                          feedback_type='RF',
-                          researcher=jill_researcher,
-                          task=robust_task,
-                          result_file=aq_run_file,
-                          map=0.1,
-                          p10=0.3,
-                          p20=0.4)
-    forth_run = addRun(name='forth',
-                          description='forth',
-                          run_type='AU',
-                          query_type='TO',
-                          feedback_type='RF',
-                          researcher=jill_researcher,
-                          task=web_task,
-                          result_file=aq_run_file,
-                          map=0.1,
-                          p10=0.3,
-                          p20=0.4)
-    fifth_run = addRun(name='fifth',
-                          description='fifth',
-                          run_type='MA',
-                          query_type='TD',
-                          feedback_type='RF',
-                          researcher=jill_researcher,
-                          task=web_task,
-                          result_file=aq_run_file,
-                          map=0.1,
-                          p10=0.3,
-                          p20=0.4)
+    # second_run = addRun(name='second',
+    #                       description='second',
+    #                       run_type='MA',
+    #                       query_type='TD',
+    #                       feedback_type='RF',
+    #                       researcher=jill_researcher,
+    #                       task=robust_task,
+    #                       result_file=aq_run_file,
+    #                       map=0.1,
+    #                       p10=0.3,
+    #                       p20=0.4)
+    # third_run = addRun(name='third',
+    #                       description='third',
+    #                       run_type='MA',
+    #                       query_type='TO',
+    #                       feedback_type='RF',
+    #                       researcher=jill_researcher,
+    #                       task=robust_task,
+    #                       result_file=aq_run_file,
+    #                       map=0.1,
+    #                       p10=0.3,
+    #                       p20=0.4)
+    # forth_run = addRun(name='forth',
+    #                       description='forth',
+    #                       run_type='AU',
+    #                       query_type='TO',
+    #                       feedback_type='RF',
+    #                       researcher=jill_researcher,
+    #                       task=web_task,
+    #                       result_file=aq_run_file,
+    #                       map=0.1,
+    #                       p10=0.3,
+    #                       p20=0.4)
+    # fifth_run = addRun(name='fifth',
+    #                       description='fifth',
+    #                       run_type='MA',
+    #                       query_type='TD',
+    #                       feedback_type='RF',
+    #                       researcher=jill_researcher,
+    #                       task=web_task,
+    #                       result_file=aq_run_file,
+    #                       map=0.1,
+    #                       p10=0.3,
+    #                       p20=0.4)
 
 
 if __name__ == '__main__':
