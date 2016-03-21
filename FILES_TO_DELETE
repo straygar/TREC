@@ -6,3 +6,4 @@ main/tests.py
 Specification 1
 Specification 2
 templates/base (not templates/main/base!)
+set up a fresh database and populate

@@ -6,7 +6,6 @@ place trec_eval in the root directory
 create a fresh database: python manage.py migrate
 
 
-
 Developed by:
 
 Pablo Arteaga - 2144641A
