@@ -279,11 +279,61 @@ def uploadTrack(request):
 
 @login_required
 def viewProfile(request, userId):
+    taskQuery = request.GET.get("task", None)
     this_user = get_object_or_404(User, id=userId)
     this_profile = get_object_or_404(Researcher, user=this_user)
+    context_dict = {}
+    if taskQuery is not None:
+        thisTask = get_object_or_404(Task, id=taskQuery)
+        myRuns = Run.objects.filter(researcher=this_profile).filter(task=thisTask)
+        ds = DataPool(
+               series=
+                [{'options': {
+                    'source': myRuns},
+                  'terms': [
+                    'datetime',
+                    'map',
+                    'p10',
+                    'p20']}])
+        cht = Chart(
+            datasource = ds,
+            series_options =
+              [{'options':{
+                  'type': 'line',
+                  'stacking': False},
+                'terms':{
+                  'datetime': [
+                    'p10',
+                    'p20',
+                    'map'],
+                  }}],
+            chart_options =
+              {'title': {
+                   'text': 'P10, P20 and Map scores over time'},
+               'xAxis': {
+                    'title': {
+                       'text': 'Date & time'},
+                    'labels': {
+                        'formatter':'formatter'
+                    }},
+                'tooltip': {
+                    'formatter':'tooltipFormatter'
+                },
+               'yAxis': {
+                   'title': {
+                       'text': 'Score'
+                   }
+               }})
+        context_dict["chart"] = cht
     runs = Run.objects.filter(researcher=this_profile).order_by("-datetime")[:5]
     myProfile = this_user == request.user
-    return render(request, "main/viewProfile.html", {"user":this_user, "profile":this_profile, "runs":runs, "thisUser":myProfile})
+    taskList = Run.objects.filter(researcher=this_profile).values("task","task__title").distinct()
+    context_dict["user"] = this_user
+    context_dict["profile"] = this_profile
+    context_dict["runs"] = runs
+    context_dict["thisUser"] = myProfile
+    context_dict["taskList"] = taskList
+    return render(request, "main/viewProfile.html", context_dict)
 
 def register(request):
     context_dict = {}
