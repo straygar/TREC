@@ -2,7 +2,14 @@
 {% load static %}
 
 {% block head %}
-<script type="text/javascript" src="{% static 'js/chart.js' %}"></script>
+<link rel="stylesheet" href="{% static 'css/search.css' %}">
+<script src="{% static 'js/jquery-dateFormat.min.js' %}"></script>
+<script src="{% static 'js/graphFormatter.js' %}"></script>
+<script src="{% static 'js/highcharts.js' %}"></script>
+{% if chart %}
+	{% load chartit %}
+	{{ chart|load_charts:"chart" }}
+{% endif %}
 {% endblock %}
 
 {% block body_block %}
@@ -84,8 +91,24 @@
 			</td>
 		</tr>
 	</table>
-	<div>
-
-	</div>
+	{% if taskList %}
+		<script type="text/javascript" src="{% static 'js/chart.js' %}"></script>
+		<div>
+			<h4 id="noCrit" class="alert alert-warning">Please, select a task</h4>
+			<h3>Evolution over time</h3>
+			<h5 class="alert alert-info">Note you can only see the tasks for which this user has runs</h5>
+			<select class="form-control" id="taskSelect">
+				{% for task in taskList %}
+					<option value="task={{ task.task }}">{{ task.task__title }}</option>
+				{% endfor %}
+			</select>
+			<div class="col-lg-6 col-md-12 col-sm-12 col-lg-offset-3">
+				<a href="#" class="btn btn-info btn-block" role="button" id="graphbtn">View evolution over time</a>
+			</div>
+		</div>
+	{% endif %}
+	{% if chart %}
+		<div id="chart"></div>
+	{% endif %}
 </div>
 {% endblock %}
