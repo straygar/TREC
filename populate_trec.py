@@ -17,8 +17,8 @@ def populate():
 
     def addRunFile(result_file):
         file = File(open(result_file,"r"))
-        r = RunFile.objects.get_or_create()[0]
-        r.result_file.save(result_file,file,save=True)
+        r = RunFile(result_file=file)
+        r.save()
         return r
 
     def addGenre(title):
@@ -35,10 +35,10 @@ def populate():
         task.judgement_file.save(judgement_file,file,save=True)
         return task
 
-    def addRun(name,description,run_type,query_type,feedback_type,researcher,task,map,p10,p20,result_file_id):
+    def addRun(name,description,run_type,query_type,feedback_type,researcher,task,map,p10,p20,result_file):
         r = Run.objects.get_or_create(name=name,description=description,run_type=run_type,query_type=query_type,
                                       feedback_type=feedback_type,researcher=researcher,task=task,
-                                      map=map,p10=p10,p20=p20,result_file_id=result_file_id)[0]
+                                      map=map,p10=p10,p20=p20,result_file=result_file)[0]
         return r
     #need to add in pictures!
     jill_researcher = addUser(username='jill',
@@ -67,6 +67,26 @@ def populate():
     web_genre = addGenre('Web')
 
     aq_run_file = addRunFile(result_file='aq.trec.bm25.0.50.res')
+
+    ap_run_file = addRunFile(result_file='ap.trec.bm25.0.70.res')
+
+    ap1_run_file = addRunFile(result_file='ap.trec.bm25.0.50.res')
+
+    ap2_run_file = addRunFile(result_file = 'ap.trec.pl2.2.00.res')
+
+    ap3_run_file = addRunFile(result_file = 'ap.trec.pl2.5.00.res')
+
+    aq1_run_file=addRunFile(result_file='aq.trec.bm25.0.70.res')
+
+    aq2_run_file=addRunFile(result_file='aq.trec.pl2.2.00.res')
+
+    aq3_run_file=addRunFile(result_file='aq.trec.pl2.5.00.res')
+
+    dg_run_file=addRunFile(result_file='dg.trec.bm25.0.50.res')
+
+    dg1_run_file=addRunFile(result_file='dg.trec.bm25.0.70.res')
+
+    dg2_run_file=addRunFile(result_file='dg.trec.pl2.2.00.res')
 
     robust_track = addTrack(title='Robust2004',
                                track_url='http://trec.nist.gov/data/t13_robust.html',
@@ -109,7 +129,7 @@ def populate():
                           map=0.1,
                           p10=0.3,
                           p20=0.1,
-                          result_file_id=1)
+                          result_file=aq_run_file)
     second_run = addRun(name='second',
                           description='second',
                           run_type='MA',
@@ -117,7 +137,7 @@ def populate():
                           feedback_type='RF',
                           researcher=jill_researcher,
                           task=robust_task,
-                          result_file_id=2,
+                          result_file=ap_run_file,
                           map=0.2,
                           p10=0.4,
                           p20=0.3)
@@ -128,7 +148,7 @@ def populate():
                           feedback_type='RF',
                           researcher=jill_researcher,
                           task=robust_task,
-                          result_file_id=3,
+                          result_file=ap1_run_file,
                           map=0.1,
                           p10=0.3,
                           p20=0.1)
@@ -139,7 +159,7 @@ def populate():
                           feedback_type='RF',
                           researcher=jill_researcher,
                           task=web_task,
-                          result_file_id=4,
+                          result_file=ap2_run_file,
                           map=0.1,
                           p10=0.3,
                           p20=0.2)
@@ -150,7 +170,7 @@ def populate():
                           feedback_type='RF',
                           researcher=jill_researcher,
                           task=web_task,
-                          result_file_id=5,
+                          result_file=ap3_run_file,
                           map=0.1,
                           p10=0.3,
                           p20=0.1)
@@ -161,7 +181,7 @@ def populate():
                           feedback_type='RF',
                           researcher=bob_researcher,
                           task=web_task,
-                          result_file_id=6,
+                          result_file=aq1_run_file,
                           map=0.6,
                           p10=0.3,
                           p20=0.2)
@@ -172,7 +192,7 @@ def populate():
                           feedback_type='RF',
                           researcher=jen_researcher,
                           task=robust_task,
-                          result_file_id=7,
+                          result_file=aq2_run_file,
                           map=0.2,
                           p10=0.8,
                           p20=0.7)
@@ -183,7 +203,7 @@ def populate():
                           feedback_type='RF',
                           researcher=jen_researcher,
                           task=web_task,
-                          result_file_id=8,
+                          result_file=aq3_run_file,
                           map=0.4,
                           p10=0.6,
                           p20=0.4)
@@ -194,7 +214,7 @@ def populate():
                           feedback_type='RF',
                           researcher=bob_researcher,
                           task=robust_task,
-                          result_file_id=9,
+                          result_file=dg_run_file,
                           map=0.6,
                           p10=0.2,
                           p20=0.1)
@@ -205,7 +225,7 @@ def populate():
                           feedback_type='RF',
                           researcher=jen_researcher,
                           task=web_task,
-                          result_file_id=10,
+                          result_file=dg1_run_file,
                           map=0.5,
                           p10=0.3,
                           p20=0.2)
@@ -216,7 +236,7 @@ def populate():
                           feedback_type='RF',
                           researcher=bob_researcher,
                           task=robust_task,
-                          result_file_id=11,
+                          result_file=dg2_run_file,
                           map=0.2,
                           p10=0.8,
                           p20=0.7)
