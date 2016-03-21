@@ -1,0 +1,8 @@
+Make sure to double check each one beforehand just incase!
+
+htmlcov
+main/tests.py
+.coverage
+Specification 1
+Specification 2
+templates/base (not templates/main/base!)

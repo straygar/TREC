@@ -1,25 +1,15 @@
-HomePage (TREC Button, Search, Leaderboards for Recent and Top)
+To Set Up tFeed:
 
-About
+install requirements: pip install -r reqs.txt
+compile trec_eval (see readme within trec_eval.9.0)
+place trec_eval in the root directory
+create a fresh database: python manage.py migrate
 
-Profile Page 
-	
-Edit Profile (Form)
-	
-Register (Form)
-	
-Login (Logout Functionality)
-	
-Results Page per Run (results of run, placed in leaderboard of others on that track)
-	
-Rankings Page (results chart, can sort by tracks, scores etc)	
 
-TASKS:
 
-Pablo - Trec/Models
+Developed by:
 
-Aigars - Styling
-
-Shaun/Maria - Views/Templates/Forms
-Shaun - home + ranking + results
-Maria - registration + login/out + profile + edit
+Pablo Arteaga - 2144641A
+Maria-Luiza Koleva - 2127555k
+Shaun Macdonald - 1005872M
+Aigars Reiters -
