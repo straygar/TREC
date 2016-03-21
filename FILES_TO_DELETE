@@ -7,3 +7,4 @@ Specification 1
 Specification 2
 templates/base (not templates/main/base!)
 set up a fresh database and populate
+empty the media folders from all the .res and .qrels copies?
