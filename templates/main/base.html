@@ -4,7 +4,13 @@
 
 <html>
     <head>
+		<!-- TITLE !-->
         <title>tFeed - {% block title %}TREC Evaluator{% endblock %}</title>
+		<!-- METADATA !-->
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="Upload runs and compare your IR algorithm  with other users.">
+		<meta name="author" content="The Swish Group (group D)">
 		<!-- CSS !-->
 		<link href="{% static 'css/bootstrap.css' %}" rel="stylesheet">
 
@@ -32,7 +38,7 @@
 			  </button>
 			  <div  class="navbar-brand">
 				  <a href="{% url 'index' %}">
-					<img style="brand-logo" src="{% static 'images/logo.png' %}"/>
+					<img style="brand-logo" src="{% static 'images/logo.png' %}" alt="tFeed logo"/>
 					<span class="brand-name">TREC evaluator</span>
 				  </a>
 			  </div>
