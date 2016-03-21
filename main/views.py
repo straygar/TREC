@@ -403,7 +403,7 @@ def user_login(request):
         if user is not None:
             if user.is_active:
                 login(request, user)
-                return HttpResponseRedirect('/main/')
+                return HttpResponseRedirect(reverse("index"))
             else:
                 context_dict['disabled_account'] = True
         else:
