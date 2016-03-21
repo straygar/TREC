@@ -91,7 +91,7 @@ def browseComplete(request, taskid):
     contextDict = {}
     userRunsRequested = False
     thisTask = get_object_or_404(Task, id=taskid)
-    filtered_objects = Run.objects.filter(task_id=taskid)
+    allRuns = filtered_objects = Run.objects.filter(task__id=taskid)
     sortType = request.GET.get('Sort')
     orderType = request.GET.get('Order')
     if orderType is not None:
@@ -120,36 +120,109 @@ def browseComplete(request, taskid):
     contextDict["user"] = request.user
     contextDict["runs"] = filtered_objects
     contextDict["userRunsRequested"] = userRunsRequested
-    ds = DataPool(
-       series=
-        [{'options': {
-            'source': Run.objects.all()},
-          'terms': [
-            'datetime',
-            'p10',
-            'p20']}
-         ])
+    # Don't show a graph if no results will be shown
+    if len(filtered_objects) > 0:
+        if request.user.is_authenticated():
+            myRuns = allRuns.filter(researcher__user=request.user)
+            otherRuns = allRuns.exclude(researcher__user=request.user)
+        else:
+            myRuns = []
+            otherRuns = allRuns
 
-    cht = Chart(
-        datasource = ds,
-        series_options =
-          [{'options':{
-              'type': 'line',
-              'stacking': False},
-            'terms':{
-              'datetime': [
-                'p10',
-                'p20']
-              }}],
-        chart_options =
-          {'title': {
-               'text': 'My very swish graph'},
-           'xAxis': {
-                'title': {
-                   'text': 'Month number'}}})
+        if len(myRuns) > 0:
+            print "USING BOTH"
+            ds = DataPool(
+               series=
+                [{'options': {
+                    'source': otherRuns},
+                  'terms': [
+                    'datetime',
+                    'map',
+                    'p10',
+                    'p20']},
+                 {'options': {
+                    'source': myRuns},
+                  'terms': [
+                      {'your_datetime':'datetime'},
+                      {'your_map':'map'},
+                      {'your_p10':'p10'},
+                      {'your_p20':'p20'}]}
+                 ])
+            cht = Chart(
+            datasource = ds,
+            series_options =
+              [{'options':{
+                  'type': 'line',
+                  'stacking': False},
+                'terms':{
+                  'datetime': [
+                    'p10',
+                    'p20',
+                    'map'],
+                    'your_datetime': [
+                        'your_p10',
+                        'your_p20',
+                        'your_map'
+                    ]
+                  }}],
+            chart_options =
+              {'title': {
+                   'text': 'P10, P20 and Map scores over time'},
+               'xAxis': {
+                    'title': {
+                       'text': 'Date & time'},
+                    'labels': {
+                        'formatter':'formatter'
+                    }},
+                'tooltip': {
+                    'formatter':'tooltipFormatter'
+                },
+               'yAxis': {
+                   'title': {
+                       'text': 'Score'
+                   }}})
+        else:
+            ds = DataPool(
+               series=
+                [{'options': {
+                    'source': otherRuns},
+                  'terms': [
+                    'datetime',
+                    'map',
+                    'p10',
+                    'p20']}])
+            cht = Chart(
+            datasource = ds,
+            series_options =
+              [{'options':{
+                  'type': 'line',
+                  'stacking': False},
+                'terms':{
+                  'datetime': [
+                    'p10',
+                    'p20',
+                    'map'],
+                  }}],
+            chart_options =
+              {'title': {
+                   'text': 'P10, P20 and Map scores over time'},
+               'xAxis': {
+                    'title': {
+                       'text': 'Date & time'},
+                    'labels': {
+                        'formatter':'formatter'
+                    }},
+                'tooltip': {
+                    'formatter':'tooltipFormatter'
+                },
+               'yAxis': {
+                   'title': {
+                       'text': 'Score'
+                   }
+               }})
+
     contextDict["chart"] = cht
     return render(request, 'main/browseTask.html', contextDict)
-
 
 @login_required
 def uploadRun(request):

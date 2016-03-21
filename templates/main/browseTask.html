@@ -1,9 +1,11 @@
 {% extends "main/base.html" %}
-
+{% load staticfiles %}
 {% block title %}Browse{% endblock %}
 {% block h1 %}Browse{% endblock %}
 {% block head %}
-<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="{% static 'js/jquery-dateFormat.min.js' %}"></script>
+<script src="{% static 'js/graphFormatter.js' %}"></script>
+<script src="{% static 'js/highcharts.js' %}"></script>
 {% load chartit %}
 {{ chart|load_charts:"chart" }}
 {% endblock %}
