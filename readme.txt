@@ -1,7 +1,7 @@
 To Set Up tFeed:
 
 install requirements: pip install -r reqs.txt
-compile trec_eval (see readme within trec_eval.9.0)
+compile trec_eval (see readme within trec_eval.9.0, incompatible with windows)
 place trec_eval in the root directory
 create a fresh database: python manage.py migrate
 
