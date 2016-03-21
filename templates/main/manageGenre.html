@@ -2,18 +2,21 @@
 
 {% load staticfiles %}
 
-{% block title %}Manage genres{% endblock %}
-
+{% block title %}Genre Manager{% endblock %}
+{% block h1 %}Genre Manager{% endblock %}
 {% block body_block %}
 
 <h2>Manage Genres</h2>
-<h4>Details</h4>
+<hr />
+
 
 <div class="col-lg-6 col-md-12 col-sm-12 col-lg-offset-3">
     <a href="{% url 'new_genre' %}" class="btn btn-info btn-block" role="button">Create new Genre</a>
 </div>
-
 {% if list %}
+<div class="col-lg-12 col-md-12 col-sm-12">
+	<h4>These are the current genres</h4>
+</div>
 <div class="col-lg-12 col-md-12 col-sm-12">
 	<table class="table table-responsive table-borderless" id="manage-table">
         <thead>

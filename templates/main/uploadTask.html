@@ -4,12 +4,19 @@
 
 {% block title %}
     {% if new %}
-        {% block new_element %}Upload a new Task{% endblock %}
+        {% block new_element %}New Task{% endblock %}
     {% else %}
         {% block edit_element %}Edit Task {{ title }}{% endblock %}
     {% endif %}
 {% endblock %}
 
+{% block h1 %}
+    {% if new %}
+        New Task
+    {% else %}
+        Task Editor
+    {% endif %}
+{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/autoform.css' %}">
 {% endblock %}

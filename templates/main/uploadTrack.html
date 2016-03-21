@@ -4,9 +4,17 @@
 
 {% block title %}
     {% if new %}
-        {% block new_element %}Upload a new Track{% endblock %}
+        {% block new_element %}New Track{% endblock %}
     {% else %}
         {% block edit_element %}Edit Track {{ title }}{% endblock %}
+    {% endif %}
+{% endblock %}
+
+{% block h1 %}
+    {% if new %}
+        New Track
+    {% else %}
+        Track Editor
     {% endif %}
 {% endblock %}
 
@@ -15,7 +23,6 @@
 {% endblock %}
 
 {% block insert_block %}
-<h1>
 <!-- Page card title !-->
 <h2 class="form-signin-heading">
     {% if new %}
@@ -25,7 +32,6 @@
     {% endif %}
 </h2>
 <hr />
-</h1>
 {% endblock %}
 
 {% block ok_upload %}

@@ -1,6 +1,6 @@
 /*!
  * Bootstrap v3.3.6 (http://getbootstrap.com)
- * Copyright 2011-2015 Twitter, Inc.
+ * Copyright 2011-2015 Twitter, Inc.x
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
 /*! normalize.css v3.0.3 | MIT License | github.com/necolas/normalize.css */
@@ -63,6 +63,13 @@ body {
 }
 #form.search-forms > div {
 	padding-left: 30px;
+}
+div.makers-of {
+	text-align: center;
+	padding-bottom: 30px;
+}
+div.makers-of > img {
+	height: 250px;
 }
 div.profile-img {
     width: 200px;

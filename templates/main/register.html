@@ -32,8 +32,8 @@
 				{% for field in profile_form.visible_fields %}
 					<div class="form-group col-lg-12 col-md-12 col-sm-12 register">
 						<div>
-							{% if field.label == "profile_picture" %}
-								{{ field }} <!-- TODO - style pic upload field !-->
+							{% if field == "profile_picture" %}
+								{{ field|attr:"class:'btn btn-prim'" }} <!-- TODO - style pic upload field !-->
 							{% else %}
 								{{ field|add_class:"form-control" }}
 							{% endif %}
@@ -48,5 +48,6 @@
         </form>
 		<div class="col-lg-6 col-md-6 col-sm-12 customer">
 			<img src="{% static 'images/customer.jpg' %}">
+			<h4>11.3% of our customers were left very satisfied using tFeed.</h4>
         {% endif %}
 {% endblock %}

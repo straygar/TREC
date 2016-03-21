@@ -4,9 +4,17 @@
 
 {% block title %}
     {% if new %}
-        {% block new_element %}Upload a new Genre{% endblock %}
+        {% block new_element %}New Genre{% endblock %}
     {% else %}
         {% block edit_element %}Edit Genre {{ title }}{% endblock %}
+    {% endif %}
+{% endblock %}
+
+{% block h1 %}
+    {% if new %}
+        New Genre
+    {% else %}
+        Genre Editor
     {% endif %}
 {% endblock %}
 

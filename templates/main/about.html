@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 
+{% load staticfiles %}
 
 {% block title %} About{% endblock %}
 
@@ -19,14 +20,24 @@
 		<h5>Compare it to others' performance</h5>
 		<h5>Get information about each track, task and run</h5>
 	</div>
-	<br/>
-	<h4>Developed by...</h4>
-	
-	<ul>
-		<li>Pablo Arteaga - 2144641A</li>
-        <li>Maria-Luiza Koleva - 2127555K</li>
-		<li>Shaun Macdonald - 1005872M</li>
-		<li>Aigars Reiters - 2148261R</li>
-	</ul>
-
+	<br/><br/>
+	<h3>Developed by...</h3><hr/>
+	<div class="col-lg-12 col-md-12 col-sm-12">
+		<div class="col-lg-3 col-md-6 col-sm-6 makers-of">
+			<img class="img-circle img" src="{% static 'images/pablo.jpg' %}" alt="Image of Pablo" /><br/>
+			<h4>Pablo Arteaga - 2144641A</h4>
+		</div>
+		<div class="col-lg-3 col-md-6 col-sm-6 makers-of">
+			<img class="img-circle img" src="{% static 'images/maria.jpg' %}" alt="Image of Maria" /><br/>
+			<h4>Maria-Luiza Koleva - 2127555K</h4>
+		</div>
+		<div class="col-lg-3 col-md-6 col-sm-6 makers-of">
+			<img class="img-circle img" src="{% static 'images/shaun.jpg' %}" alt="Image of Shaun" /><br/>
+			<h4>Shaun Macdonald - 1005872M</h4>
+		</div>
+		<div class="col-lg-3 col-md-6 col-sm-6 makers-of">
+			<img class="img-circle img" src="{% static 'images/aigars.jpg' %}" alt="Image of Aigars" /><br/>
+			<h4>Aigars Reiters - 2148261R</h4>
+		</div>
+	</div>
 {% endblock %}

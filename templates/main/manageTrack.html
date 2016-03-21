@@ -2,7 +2,9 @@
 
 {% load staticfiles %}
 
-{% block title %}Manage tracks{% endblock %}
+{% block title %}Track Manager{% endblock %}
+{% block h1%}Track Manager{% endblock %}
+
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/manageTracks.css' %}">
 {% endblock %}
@@ -18,8 +20,8 @@
 </div>
 
 {% if list %}
-<div class="col-lg-12 col-md-12 col-sm-12 table-responsive">
-    <table class="sortable table table-striped table-bordered table-hover" id="manage-table">
+<div class="col-lg-12 col-md-12 col-sm-12">
+    <table class="sortable table table-borderless table-hover" id="manage-table">
         <thead>
             <th>Title</th>
             <th>Description</th>
@@ -48,7 +50,7 @@
 <h3 class="alert alert-warning">There are no Tracks yet</h3>
 {% endif %}
 <div id="popup" class="popup">
-    <table id="tableInfo" class="sortable table table-striped table-bordered table-hover">
+    <table id="tableInfo" class="sortable table table-borderless table-hover">
         <thead>
             <tr>
                 <th>Title</th>
