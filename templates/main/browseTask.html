@@ -59,6 +59,26 @@
 
 		</div>
 		{% endif %}
+		{% if averages %}
+			<h4>Aggregated results from other participants</h4>
+			<table class="sortable table table-striped table-bordered table-hover order-column">
+				<thead class="thead-inverse">
+					<tr>
+						<th>Measure</th>
+						<th>Value</th>
+					</tr>
+				</thead>
+
+				<tbody>
+					{% for average in averages %}
+						<tr>
+							<td>{{ average.0 }}</td>
+							<td>{{ average.1 }}</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		{% endif %}
 	{% else %}
 		<h3 class="alert alert-warning">There are no Runs for this Task</h3>
 	{% endif %}

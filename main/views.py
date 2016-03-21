@@ -23,7 +23,6 @@ from django.contrib.admin.views.decorators import staff_member_required
 from decimal import *
 
 from chartit import *
-from django.db.models import Avg
 
 def index(request):
     context_dict = {}
@@ -115,6 +114,8 @@ def browseComplete(request, taskid):
             filtered_objects = filtered_objects.order_by(sortStr)
         else:
             errorSorting = True
+    averages = trec.getMaximums(filtered_objects)
+    contextDict["averages"] = averages
     contextDict["errorSorting"] = errorSorting
     contextDict["task"] = thisTask
     contextDict["track"] = thisTask.track
@@ -230,6 +231,7 @@ def uploadRun(request):
     finish = False
     fail = False
     results = {}
+    averages = []
     if request.method == "GET":
         upl_form = RunForm()
         upl_file_form = RunFileForm()
@@ -248,12 +250,13 @@ def uploadRun(request):
                 temp_data.p20 = results["P_20"]
                 temp_data.map = results["map"]
                 run_list = Run.objects.filter(task=temp_data.task).order_by('p10')
+                averages = trec.getMaximums(run_list)
                 contextDict["runs"] = run_list
                 temp_data.save()
                 finish = True
             except:
                 fail = True
-
+    contextDict["averages"] = averages
     contextDict["form"] = upl_form
     contextDict["form_file"] = upl_file_form
     contextDict["finish"] = finish
