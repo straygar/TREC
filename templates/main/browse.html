@@ -40,19 +40,21 @@
         {% csrf_token %}
         {{ form.as_p }}
 		{% if sort_form %}
-			<h3><a href="#" id="toggle"><span class="glyphicon glyphicon-plus"></span>Sorting options</a></h3>
+			<h3 id="form" class="search-forms"><a href=#" id="toggle"><span class="glyphicon glyphicon-plus"></span>Sorting options</a></h3>
 			<div id="sortForm">
 				<h5 class="alert alert-info">Tip: You can also sort by clicking on the headers of the table</h5>
 				{{ sort_form.as_p }}
 			</div>
 		{% endif %}
+		<div class="col-lg-6 col-lg-offset-3">
         <input type="submit" name="submit" value="{{ submit_msg }}" class="btn btn-info btn-block">
 		<!-- We only want to show the option to 'show my runs' when selecting a task -->
 		{% if user.is_authenticated %}
 			{% if track %}
-				<input type="submit" name="my_tracks" value="Find my own runs">
+				<input type="submit" name="my_tracks" value="Find my own runs" class="btn btn-info btn-block">
 			{% endif %}
 		{% endif %}
+		</div>
     </form>
 </div>
 {% endblock %}

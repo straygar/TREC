@@ -1,5 +1,6 @@
 {% extends "main/base.html" %}
 {% load widget_tweaks %}
+{% load staticfiles %}
 {% block title %}Register{% endblock %}
 {% block h1 %}Register{% endblock %}
 
@@ -32,18 +33,20 @@
 					<div class="form-group col-lg-12 col-md-12 col-sm-12 register">
 						<div>
 							{% if field.label == "profile_picture" %}
-								{{ field|add_class:"form-control" }} <!-- TODO - style pic upload field !-->
+								{{ field }} <!-- TODO - style pic upload field !-->
 							{% else %}
 								{{ field|add_class:"form-control" }}
 							{% endif %}
 						</div>
+						<br/>
 						{{ field.errors }}
 					</div>
 				{% endfor %}
-
             <!-- Provide a button to click to submit the form. -->
 				<input class="btn btn-primary" type="submit" name="submit" value="Register"/>
 			</div>
         </form>
+		<div class="col-lg-6 col-md-6 col-sm-12 customer">
+			<img src="{% static 'images/customer.jpg' %}">
         {% endif %}
 {% endblock %}

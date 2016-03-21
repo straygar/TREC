@@ -15,13 +15,15 @@
 {% endblock %}
 
 {% block insert_block %}
-<h1>
+<!-- Page card title !-->
+<h2 class="form-signin-heading">
     {% if new %}
         Upload a new Task
     {% else %}
         Edit Task {{ title }}
     {% endif %}
-</h1>
+</h2>
+<hr />
 {% endblock %}
 
 {% block ok_upload %}

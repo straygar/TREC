@@ -24,8 +24,13 @@
 <form id="upload_generic" method="post" action="{{ retUrl }}" enctype="multipart/form-data" data-parsley-validate >
     {% csrf_token %}
     {{ form.as_p }}
-    <input class="btn btn-info" type="submit" name="submit" value="{% if new %}Create{% else %}Update{% endif %}">
-    {% block suggest_add %}{% endblock %}
+	<div class="alert alert-info col-lg-12 col-md-12 col-sm-12">
+		{% block suggest_add %}Enter the information above and press the button below when you're done.{% endblock %}
+	</div>
+	<div class="col-lg-6 col-md-12 col-sm-12 col-lg-offset-3">
+		<input class="btn btn-info btn-block" type="submit" name="submit" value="{% if new %}Create{% else %}Update{% endif %}">
+	</div>
+
 </form>
 
 {% endblock %}

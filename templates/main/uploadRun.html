@@ -3,13 +3,16 @@
 {% load staticfiles %}
 
 {% block title %}New run{% endblock %}
-
+{% block h1 %}New run{% endblock %}
 {% block head %}
 <link rel="stylesheet" href="{% static 'css/autoform.css' %}">
 {% endblock %}
 
 {% block body_block %}
-
+<!-- Page card title !-->
+<h2 class="form-signin-heading">Upload a new run</h2>
+<hr />
+<!-- /Page card title !-->
 {% if finish %}
 <h3 class="alert success">Run uploaded successfully!</h3>
 <h4>Your results:</h4><br/>
@@ -87,8 +90,10 @@
 
 {% endif %}
 {% if fail %}
-<h3>Oops... Something went wrong</h3>
-<h5>Please try again later</h5>
+<div class="alert alert-danger">
+	<h3>Oops... Something went wrong</h3>
+	<h5>Please try again later</h5>
+</div>
 {% endif %}
 {% if finish %}
 <br/>
@@ -98,7 +103,9 @@
     {% csrf_token %}
     {{ form_file.as_p }}
     {{ form.as_p }}
-    <input type="submit" name="submit" value="Submit run">
+	<div class="col-lg-6 col-lg-offset-3">
+		<input type="submit" name="submit" value="Submit run" class="btn btn-info btn-block">
+	</div>
 </form>
 {% if can_edit_tracks %}
 <p>Want to add a new task? <a href="{% url 'new_task' %}">Click here</a></p>

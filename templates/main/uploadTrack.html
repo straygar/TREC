@@ -16,11 +16,15 @@
 
 {% block insert_block %}
 <h1>
+<!-- Page card title !-->
+<h2 class="form-signin-heading">
     {% if new %}
         Upload a new Track
     {% else %}
         Edit Track {{ title }}
     {% endif %}
+</h2>
+<hr />
 </h1>
 {% endblock %}
 
