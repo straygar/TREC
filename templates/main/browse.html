@@ -3,6 +3,9 @@
 {% load staticfiles %}
 
 {% block title %}Browse{% endblock %}
+{% block head %}
+<link rel="stylesheet" href="{% static 'css/autoform.css' %}">
+{% endblock %}
 {% block h1 %}Browse{% endblock %}
 {% block body_block %}
 	{% if sort_form %}
@@ -43,7 +46,7 @@
 				{{ sort_form.as_p }}
 			</div>
 		{% endif %}
-        <input type="submit" name="submit" value="{{ submit_msg }}">
+        <input type="submit" name="submit" value="{{ submit_msg }}" class="btn btn-info btn-block">
 		<!-- We only want to show the option to 'show my runs' when selecting a task -->
 		{% if user.is_authenticated %}
 			{% if track %}
