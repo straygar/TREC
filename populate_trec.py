@@ -37,11 +37,11 @@ def populate():
         task.judgement_file.save(judgement_file,file,save=True)
         return task
 
-    def addRun(name,description,run_type,query_type,feedback_type,researcher,task,result_file):
-        results = trec.getRating(task.judgement_file,result_file.result_file)
+    def addRun(name,description,run_type,query_type,feedback_type,researcher,task,run_file,judgement_file,result_file):
+        results = trec.getRating(judgement_file,result_file)
         r = Run.objects.get_or_create(name=name,description=description,run_type=run_type,query_type=query_type,
                                       feedback_type=feedback_type,researcher=researcher,task=task,
-                                      map=results['map'],p10=results['p10'],p20=results['p20'],result_file=result_file)[0]
+                                      map=results['map'],p10=results['p10'],p20=results['p20'],result_file=run_file)[0]
         return r
     #need to add in pictures!
     jill_researcher = addUser(username='jill',
@@ -145,7 +145,9 @@ def populate():
                           feedback_type='RF',
                           researcher=jill_researcher,
                           task=robust_task,
-                          result_file=aq_run_file)
+                          run_file=aq_run_file,
+                          result_file='aq.trec.bm25.0.50.res',
+                          judgement_file ='aq.trec2005.qrels' )
     second_run = addRun(name='second',
                           description='second',
                           run_type='MA',
@@ -153,79 +155,81 @@ def populate():
                           feedback_type='RF',
                           researcher=jill_researcher,
                           task=news_task,
-                          result_file=ap_run_file)
-    third_run = addRun(name='third',
-                          description='third',
-                          run_type='MA',
-                          query_type='TO',
-                          feedback_type='RF',
-                          researcher=jill_researcher,
-                          task=news_task,
-                          result_file=ap1_run_file)
-    forth_run = addRun(name='forth',
-                          description='forth',
-                          run_type='AU',
-                          query_type='TO',
-                          feedback_type='RF',
-                          researcher=jill_researcher,
-                          task=news_task,
-                          result_file=ap2_run_file)
-    fifth_run = addRun(name='fifth',
-                          description='fifth',
-                          run_type='MA',
-                          query_type='TD',
-                          feedback_type='RF',
-                          researcher=jill_researcher,
-                          task=news_task,
-                          result_file=ap3_run_file)
-    sixth_run = addRun(name='sixth',
-                          description='sixth',
-                          run_type='MA',
-                          query_type='TD',
-                          feedback_type='RF',
-                          researcher=bob_researcher,
-                          task=robust_task,
-                          result_file=aq1_run_file)
-    seventh_run = addRun(name='seventh',
-                          description='seventh',
-                          run_type='AU',
-                          query_type='TD',
-                          feedback_type='RF',
-                          researcher=jen_researcher,
-                          task=robust_task,
-                          result_file=aq2_run_file)
-    eight_run = addRun(name='eight',
-                          description='eight',
-                          run_type='MA',
-                          query_type='TO',
-                          feedback_type='RF',
-                          researcher=jen_researcher,
-                          task=robust_task,
-                          result_file=aq3_run_file)
-    ninth_run = addRun(name='ninth',
-                          description='ninth',
-                          run_type='AU',
-                          query_type='TD',
-                          feedback_type='RF',
-                          researcher=bob_researcher,
-                          task=web_task,
-                          result_file=dg_run_file)
-    tenth_run = addRun(name='tenth',
-                          description='tenth',
-                          run_type='MA',
-                          query_type='AF',
-                          feedback_type='RF',
-                          researcher=jen_researcher,
-                          task=web_task,
-                          result_file=dg1_run_file)
-    eleventh_run = addRun(name='eleventh',
-                          description='eleventh',
-                          run_type='AU',
-                          query_type='AF',
-                          feedback_type='RF',
-                          researcher=bob_researcher,
-                          task=web_task,
-                          result_file=dg2_run_file)
+                          run_file=ap_run_file,
+                          result_file = 'ap.trec.bm25.0.70.res',
+                          judgement_file = 'ap.trec.qrels')
+    # third_run = addRun(name='third',
+    #                       description='third',
+    #                       run_type='MA',
+    #                       query_type='TO',
+    #                       feedback_type='RF',
+    #                       researcher=jill_researcher,
+    #                       task=news_task,
+    #                       result_file=ap1_run_file)
+    # forth_run = addRun(name='forth',
+    #                       description='forth',
+    #                       run_type='AU',
+    #                       query_type='TO',
+    #                       feedback_type='RF',
+    #                       researcher=jill_researcher,
+    #                       task=news_task,
+    #                       result_file=ap2_run_file)
+    # fifth_run = addRun(name='fifth',
+    #                       description='fifth',
+    #                       run_type='MA',
+    #                       query_type='TD',
+    #                       feedback_type='RF',
+    #                       researcher=jill_researcher,
+    #                       task=news_task,
+    #                       result_file=ap3_run_file)
+    # sixth_run = addRun(name='sixth',
+    #                       description='sixth',
+    #                       run_type='MA',
+    #                       query_type='TD',
+    #                       feedback_type='RF',
+    #                       researcher=bob_researcher,
+    #                       task=robust_task,
+    #                       result_file=aq1_run_file)
+    # seventh_run = addRun(name='seventh',
+    #                       description='seventh',
+    #                       run_type='AU',
+    #                       query_type='TD',
+    #                       feedback_type='RF',
+    #                       researcher=jen_researcher,
+    #                       task=robust_task,
+    #                       result_file=aq2_run_file)
+    # eight_run = addRun(name='eight',
+    #                       description='eight',
+    #                       run_type='MA',
+    #                       query_type='TO',
+    #                       feedback_type='RF',
+    #                       researcher=jen_researcher,
+    #                       task=robust_task,
+    #                       result_file=aq3_run_file)
+    # ninth_run = addRun(name='ninth',
+    #                       description='ninth',
+    #                       run_type='AU',
+    #                       query_type='TD',
+    #                       feedback_type='RF',
+    #                       researcher=bob_researcher,
+    #                       task=web_task,
+    #                       result_file=dg_run_file)
+    # tenth_run = addRun(name='tenth',
+    #                       description='tenth',
+    #                       run_type='MA',
+    #                       query_type='AF',
+    #                       feedback_type='RF',
+    #                       researcher=jen_researcher,
+    #                       task=web_task,
+    #                       result_file=dg1_run_file)
+    # eleventh_run = addRun(name='eleventh',
+    #                       description='eleventh',
+    #                       run_type='AU',
+    #                       query_type='AF',
+    #                       feedback_type='RF',
+    #                       researcher=bob_researcher,
+    #                       task=web_task,
+    #                       result_file=dg2_run_file)
 
 
 if __name__ == '__main__':
