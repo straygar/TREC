@@ -41,7 +41,7 @@ def populate():
         results = trec.getRating(judgement_file,result_file)
         r = Run.objects.get_or_create(name=name,description=description,run_type=run_type,query_type=query_type,
                                       feedback_type=feedback_type,researcher=researcher,task=task,
-                                      map=results['map'],p10=results['p10'],p20=results['p20'],result_file=run_file)[0]
+                                      map=results['map'],p10=results['P_10'],p20=results['P_20'],result_file=run_file)[0]
         return r
     #need to add in pictures!
     jill_researcher = addUser(username='jill',
