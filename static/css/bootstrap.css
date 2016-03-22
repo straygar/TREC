@@ -107,6 +107,8 @@ div.profile-img.profile-head {
 	max-width: 100%;
 	padding-top: 50px;
 	padding-bottom: 20px;
+	display: block;
+	margin: auto;
 }
 .captcha {
 	padding-top: 20px;
@@ -170,6 +172,9 @@ ul.errorlist > li {
 }
 .table-responsive {
 	max-height: 300px;
+}
+.register > div.alert {
+	margin-bottom: 0;
 }
 article,
 aside,
@@ -443,6 +448,7 @@ div.content {
 	transition: all 0.2s ease-in-out;
 	padding: 20px;
 	margin: auto;
+	margin-bottom: 60px;
 	padding-bottom: 40px;
 	background-color: #fff;
 }
