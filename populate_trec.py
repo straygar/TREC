@@ -88,6 +88,8 @@ def populate():
 
     dg2_run_file=addRunFile(result_file='dg.trec.pl2.2.00.res')
 
+
+
     robust_track = addTrack(title='Robust2004',
                                track_url='http://trec.nist.gov/data/t13_robust.html',
                                description = 'News Retrieval',
@@ -102,7 +104,13 @@ def populate():
                                track_url=' http://www-nlpir.nist.gov/projects/terabyte/',
                                description = 'Terabyte',
                                genre=web_genre)
-    #add in file!
+
+    ap_news_track = addTrack(title='APNews',
+                               track_url=' http://www-nlpir.nist.gov/projects/terabyte/',
+                               description = 'APNews',
+                               genre=news_genre)
+
+
     robust_task = addTask(track=robust_track,
                              title = 'Robust2005',
                              description='Ad Hoc Topic Retrieval',
@@ -116,8 +124,16 @@ def populate():
                              description='Ad Hoc Topic Retrieval',
                              task_url='http://www-nlpir.nist.gov/projects/terabyte/',
                              year=2005,
-                             judgement_file='aq.trec2005.qrels'
+                             judgement_file='dg.trec.qrels'
                              )
+    news_task = addTask(track=ap_news_track,
+                        title = 'APNews',
+                        description='Ad Hoc Topic Retrieval',
+                        task_url='http://www-nlpir.nist.gov/projects/terabyte/',
+                        year=2005,
+                        judgement_file='ap.trec.qrels'
+                        )
+
 
     first_run = addRun(name='first',
                           description='first run',
@@ -136,7 +152,7 @@ def populate():
                           query_type='TD',
                           feedback_type='RF',
                           researcher=jill_researcher,
-                          task=robust_task,
+                          task=news_task,
                           result_file=ap_run_file,
                           map=0.2,
                           p10=0.4,
@@ -147,7 +163,7 @@ def populate():
                           query_type='TO',
                           feedback_type='RF',
                           researcher=jill_researcher,
-                          task=robust_task,
+                          task=news_task,
                           result_file=ap1_run_file,
                           map=0.1,
                           p10=0.3,
@@ -158,7 +174,7 @@ def populate():
                           query_type='TO',
                           feedback_type='RF',
                           researcher=jill_researcher,
-                          task=web_task,
+                          task=news_task,
                           result_file=ap2_run_file,
                           map=0.1,
                           p10=0.3,
@@ -169,7 +185,7 @@ def populate():
                           query_type='TD',
                           feedback_type='RF',
                           researcher=jill_researcher,
-                          task=web_task,
+                          task=news_task,
                           result_file=ap3_run_file,
                           map=0.1,
                           p10=0.3,
@@ -180,7 +196,7 @@ def populate():
                           query_type='TD',
                           feedback_type='RF',
                           researcher=bob_researcher,
-                          task=web_task,
+                          task=robust_task,
                           result_file=aq1_run_file,
                           map=0.6,
                           p10=0.3,
@@ -202,7 +218,7 @@ def populate():
                           query_type='TO',
                           feedback_type='RF',
                           researcher=jen_researcher,
-                          task=web_task,
+                          task=robust_task,
                           result_file=aq3_run_file,
                           map=0.4,
                           p10=0.6,
@@ -213,7 +229,7 @@ def populate():
                           query_type='TD',
                           feedback_type='RF',
                           researcher=bob_researcher,
-                          task=robust_task,
+                          task=web_task,
                           result_file=dg_run_file,
                           map=0.6,
                           p10=0.2,
@@ -235,7 +251,7 @@ def populate():
                           query_type='AF',
                           feedback_type='RF',
                           researcher=bob_researcher,
-                          task=robust_task,
+                          task=web_task,
                           result_file=dg2_run_file,
                           map=0.2,
                           p10=0.8,
