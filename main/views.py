@@ -145,6 +145,7 @@ def browseComplete(request, taskid):
     contextDict["runs"] = page
     contextDict["userRunsRequested"] = userRunsRequested
     contextDict["pageSize"] = pageSize
+    cht = None
     # Don't show a graph if no results will be shown
     if len(filtered_objects) > 0:
         if request.user.is_authenticated():
@@ -247,8 +248,8 @@ def browseComplete(request, taskid):
                        'text': 'Score'
                    }
                }})
-
-    contextDict["chart"] = cht
+    if cht is not None:
+        contextDict["chart"] = cht
     return render(request, 'main/browseTask.html', contextDict)
 
 @login_required
