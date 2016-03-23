@@ -4,6 +4,7 @@
 
 {% block title %}Task Viewer{% endblock %}
 {% block h1 %}Task Viewer{% endblock %}
+
 {% block body_block %}
 
 <h2>Task "{{ task.title }}"</h2><hr/>
@@ -38,7 +39,7 @@
 		<td>Last 10 runs</td>
 		<td>
 			{% if runs %}
-                <a href="{% url 'browseComplete' taskid=task.id %}" class="btn btn-info btn-block">View all runs and the charts for this graph</a>
+                <a href="{% url 'browseComplete' taskid=task.id %}" class="btn btn-info btn-block">View all runs and the chart for this task</a>
 				<table class="table table-striped table-bordered table-hover">
 					<tr>
                         <th>Uploaded by</th>
