@@ -64,7 +64,7 @@ def browseTrack(request, trackid):
             if sort_form.is_valid():
                 sort_type = sort_form.cleaned_data["sortOn"]
                 sort_order = sort_form.cleaned_data["sortOrd"]
-            returnUrl = reverse("browseComplete", kwargs={"taskid":thisTrack.id})
+            returnUrl = reverse("browseComplete", kwargs={"taskid":browse_form.cleaned_data["task"].id})
             returnUrl += "?userRuns=" + str("my_tracks" in request.POST)
             returnUrl += "&pageSize=" + browse_form.cleaned_data["size"]
             if len(sort_type) != 0:
