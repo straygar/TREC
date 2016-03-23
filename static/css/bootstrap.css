@@ -176,6 +176,9 @@ ul.errorlist > li {
 .register > div.alert {
 	margin-bottom: 0;
 }
+tbody > tr.your-run {
+	background-color: #dff0d8 !important;
+}
 article,
 aside,
 details,
