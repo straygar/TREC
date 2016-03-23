@@ -16,7 +16,9 @@ Please see whats_new.txt to see what we have added since the day of our presenta
 
 Developed by:
 
-Pablo Arteaga - 2144641A
-Maria-Luiza Koleva - 2127555k
-Shaun Macdonald - 1005872M
-Aigars Reiters - 2148261R
+Maria-Luiza Koleva - 2127555k - mKoleva
+Shaun Macdonald - 1005872M - Torquoal
+Aigars Reiters - 2148261R - nastyguard
+Pablo Arteaga - 2144641A  -- I got commits with 3 different usernames, sorry about that. pablo96@gmail.com , pablo@pabloarteaga.es and another one without email address. All of them have "Pablo Arteaga" as the commiter's name
+
+The form is in the root folder as Participation-form.jpg
