@@ -593,6 +593,7 @@ def searchForm(request):
     context_dict["tracks"] = Track.objects.all()
     context_dict["tasks"] = Task.objects.all()
     context_dict["genres"] = Genre.objects.all()
+    context_dict["sizes"] = BrowseTaskForm.sizeChoices
     context_dict["run_type_choices"] = Run.Run_type_choices
     context_dict["feedback_type_choices"] = Run.Feedback_type_choices
     return render(request, "main/searchForm.html", context_dict)

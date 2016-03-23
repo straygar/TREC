@@ -33,9 +33,8 @@ $(document).ready(function() {
                     queryString += "&";
                 }
             });
-            // Remove last character
-            queryString = queryString.substring(0, queryString.length - 1);
             if ($.trim(queryString).length > 1) {
+                queryString += $("#pageSize").val();
                 window.location.href=$(this).attr("href") + queryString;
             } else {
                 $("#noCrit").slideDown(150);
