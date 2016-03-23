@@ -20,7 +20,13 @@ class BrowseTaskForm(forms.ModelForm):
         super(BrowseTaskForm, self).__init__(*args, **kwargs)
         self.fields['task'].queryset = Task.objects.filter(track=thisTask)
     task = forms.ModelChoiceField(queryset=Track.objects.all())
-
+    sizeChoices = (
+        ("10", "10 items"),
+        ("25", "25 items"),
+        ("40", "40 items"),
+        ("all", "Get all items"),
+    )
+    size = forms.ChoiceField(choices=sizeChoices, label="Results per page")
     class Meta:
         model = Task
         fields = ('task',)

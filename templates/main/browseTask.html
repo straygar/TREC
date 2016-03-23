@@ -6,8 +6,10 @@
 <script src="{% static 'js/jquery-dateFormat.min.js' %}"></script>
 <script src="{% static 'js/graphFormatter.js' %}"></script>
 <script src="{% static 'js/highcharts.js' %}"></script>
+{% if chart %}
 {% load chartit %}
 {{ chart|load_charts:"chart" }}
+{% endif %}
 {% endblock %}
 {% block body_block %}
 
@@ -27,6 +29,17 @@
 			{% if userRunsRequested %}
 				<h5>You are only seeing your own runs</h5>
 			{% endif %}
+			{% if runs.has_previous %}
+	            <a href="?page={{ runs.previous_page_number }}&pageSize={{ pageSize }}&userRuns={{ userRunsRequested }}">previous</a>
+	        {% endif %}
+
+	        <span class="current">
+	            Page {{ runs.number }} of {{ runs.paginator.num_pages }}.
+        	</span>
+
+    	    {% if runs.has_next %}
+	            <a href="?page={{ runs.next_page_number }}&pageSize={{ pageSize }}&userRuns={{ userRunsRequested }}">next</a>
+        	{% endif %}
 			<table class="sortable table table-striped table-bordered table-hover">
 				<thead class="thead-inverse">
 					<tr>

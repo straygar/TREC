@@ -5,6 +5,7 @@ from main.models import Task, Track, Run, Researcher, Genre
 from main.forms import RunForm, RunFileForm, UserForm, UserProfileForm,\
     TaskForm, TrackForm, GenreForm, ReturnUrlForm, BrowseTrackForm, BrowseTaskForm, BrowseTaskSortForm
 
+from django.core.paginator import Paginator, EmptyPage, PageNotAnInteger
 from django.contrib.auth.models import User
 from django.template import RequestContext
 from django.utils import timezone
@@ -65,6 +66,7 @@ def browseTrack(request, trackid):
                 sort_order = sort_form.cleaned_data["sortOrd"]
             returnUrl = reverse("browseComplete", kwargs={"taskid":thisTrack.id})
             returnUrl += "?userRuns=" + str("my_tracks" in request.POST)
+            returnUrl += "&pageSize=" + browse_form.cleaned_data["size"]
             if len(sort_type) != 0:
                 returnUrl += "&Sort=" + sort_type.strip() + "&Order=" + sort_order.strip()
             return HttpResponseRedirect(returnUrl)
@@ -87,11 +89,28 @@ def browseComplete(request, taskid):
                      "UU": "researcher__user_username",
                      "UN": "researcher__display_name",
                      "TL": "name"}
+    pageNo = request.GET.get("page", "1")
+    pageSize = request.GET.get("pageSize", "10")
+    needToPage = False
     errorSorting = False
     contextDict = {}
     userRunsRequested = False
     thisTask = get_object_or_404(Task, id=taskid)
-    allRuns = filtered_objects = Run.objects.filter(task__id=taskid)
+    if request.user.is_authenticated():
+        if request.GET.get('userRuns') == "True":
+            userRunsRequested = True
+    filtered_objects = Run.objects.filter(task__id=taskid)
+    # Get averages BEFORE paginating and limiting results
+    averages = trec.getMaximums(filtered_objects)
+    if userRunsRequested:
+        filtered_objects = filtered_objects.filter(researcher__user=request.user)
+    try:
+        if pageSize != "all":
+            pageSize = int(pageSize)
+        else:
+            pageSize = filtered_objects.count()
+    except:
+        pageSize = 2
     sortType = request.GET.get('Sort')
     orderType = request.GET.get('Order')
     if orderType is not None:
@@ -102,10 +121,7 @@ def browseComplete(request, taskid):
         sortType = sortType.strip()
     else:
         sortType = ""
-    if request.user.is_authenticated():
-        if request.GET.get('userRuns') == "True":
-            userRunsRequested = True
-            filtered_objects = filtered_objects.filter(researcher__user=request.user)
+
     if len(sortType) > 0:
         if reverseLookup.has_key(sortType):
             sortStr = reverseLookup[sortType]
@@ -114,22 +130,34 @@ def browseComplete(request, taskid):
             filtered_objects = filtered_objects.order_by(sortStr)
         else:
             errorSorting = True
-    averages = trec.getMaximums(filtered_objects)
+    paginator = Paginator(filtered_objects, pageSize)
+    try:
+        page = paginator.page(pageNo)
+    except PageNotAnInteger:
+        page = paginator.page(1)
+    except EmptyPage:
+        page = paginator.page(paginator.num_pages)
+    filtered_objects = page.object_list
     contextDict["averages"] = averages
     contextDict["errorSorting"] = errorSorting
     contextDict["task"] = thisTask
     contextDict["track"] = thisTask.track
     contextDict["user"] = request.user
-    contextDict["runs"] = filtered_objects
+    contextDict["runs"] = page
     contextDict["userRunsRequested"] = userRunsRequested
+    contextDict["needToPage"] = needToPage
+    contextDict["pageSize"] = pageSize
     # Don't show a graph if no results will be shown
     if len(filtered_objects) > 0:
         if request.user.is_authenticated():
-            myRuns = allRuns.filter(researcher__user=request.user)
-            otherRuns = allRuns.exclude(researcher__user=request.user)
+            # Need to get the IDs in our current list since Django does not allow to filter after slicing
+            our_id = filtered_objects.values_list("id", flat=True)
+            our_runs = Run.objects.filter(id__in=our_id)
+            myRuns = our_runs.filter(researcher__user=request.user)
+            otherRuns = our_runs.exclude(researcher__user=request.user)
         else:
             myRuns = []
-            otherRuns = allRuns
+            otherRuns = filtered_objects
 
         if len(myRuns) > 0:
             ds = DataPool(
