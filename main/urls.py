@@ -1,4 +1,4 @@
-from django.conf.urls import url, patterns
+from django.conf.urls import url, patterns, handler404
 import views
 
 urlpatterns = patterns('',
@@ -36,6 +36,5 @@ urlpatterns = patterns('',
     url(r'^getRunNameJson/$', views.getRunNameJson),
     url(r'^getTrackInfoJson/$', views.getTrackInfoJson),
     url(r'^getTaskInfoJson/$', views.getTaskInfoJson),
-    url(r'^returnResults/(?P<taskid>[0-9]+)/',views.return_result, name="view_results_user"),
     url(r'^getTasksJson/$', views.getTasksJson),
     )

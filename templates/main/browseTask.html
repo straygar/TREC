@@ -30,7 +30,7 @@
 				<h5>You are only seeing your own runs</h5>
 			{% endif %}
 			{% if runs.has_previous %}
-	            <a href="?page={{ runs.previous_page_number }}&pageSize={{ pageSize }}&userRuns={{ userRunsRequested }}">previous</a>
+	            <a href="?page={{ runs.previous_page_number }}&pageSize={{ pageSize }}&userRuns={{ userRunsRequested }}">&#8592; prev</a>
 	        {% endif %}
 
 	        <span class="current">
@@ -38,7 +38,7 @@
         	</span>
 
     	    {% if runs.has_next %}
-	            <a href="?page={{ runs.next_page_number }}&pageSize={{ pageSize }}&userRuns={{ userRunsRequested }}">next</a>
+	            <a href="?page={{ runs.next_page_number }}&pageSize={{ pageSize }}&userRuns={{ userRunsRequested }}">next &#8594;</a>
         	{% endif %}
 			<table class="sortable table table-striped table-bordered table-hover">
 				<thead class="thead-inverse">

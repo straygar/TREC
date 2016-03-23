@@ -447,28 +447,6 @@ def user_logout(request):
     logout(request)
     return HttpResponseRedirect('/main/')
 
-
-class DecimalEncoder(json.JSONEncoder):
-    def default(self, obj):
-        if isinstance(obj, Decimal):
-            return "%.2f" % obj
-        return json.JSONEncoder.default(self, obj)
-
-@login_required
-def return_result(request, taskid):
-    task = get_object_or_404(Task, id=taskid)
-    context = serializers.serialize("json", Run.objects.all().filter(researcher=request.user).filter(task=task))
-    return HttpResponse(json.dumps(context), content_type="application/json")
-
-# def return_result(request):
-#      runs = Run.objects.filter(researcher=request.user)[:5]
-#      context=[]
-#      for i in range(0,5):
-#         context.append(json.dumps(runs[i].p10,cls=DecimalEncoder))
-#         context.append(json.dumps(runs[i].p20,cls=DecimalEncoder))
-#
-#      HttpResponse(context,content_type="application/json")
-
 def about(request):
     return render(request,'main/about.html')
 
@@ -521,6 +499,7 @@ def search(request):
     date_min = request.GET.get("date_min", None)
     date_max = request.GET.get("date_max", None)
     name = request.GET.get("name", None)
+    perPage = request.GET.get("pageSize", "10")
     description = request.GET.get("desc", None)
     filtered_objects = Run.objects.all()
     if checkNotAllNull(
@@ -579,6 +558,7 @@ def search(request):
             if organization is not None:
                 filtered_objects = filtered_objects.filter(researcher__organization=organization)
             error = False
+
             context_dict["objects"] = filtered_objects
         except:
             error = True
