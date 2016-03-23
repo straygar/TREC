@@ -47,23 +47,28 @@ def populate():
     jill_researcher = addUser(username='jill',
                                email='jill@gmail.com',
                                password='jill',
-                               website='http://jsonmyfeet@tumblr.com',
+                               website='http://jsonmyfeet.tumblr.com',
                                display_name='Jill',
                                organization = 'University of Glasgow')
 
     jen_researcher = addUser(username='jen',
                                email='jen@gmail.com',
                                password='jen',
-                               website='http://allthispurple@tumblr.com',
+                               website='http://allthispurple.tumblr.com',
                                display_name='Jen',
                                organization = 'University of Strathclyde')
 
     bob_researcher = addUser(username='bob',
                                email='bob@gmail.com',
                                password='bob',
-                               website='http://youknowit@tumblr.com',
+                               website='http://youknowit.tumblr.com',
                                display_name='Bob',
                                organization = 'University of Glasgow')
+
+    # Make bob staff
+    bob = User.objects.get(username="bob")
+    bob.is_staff = True
+    bob.save()
 
     news_genre = addGenre('News')
 

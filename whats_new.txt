@@ -1,0 +1,9 @@
+From the moment of the presentation, we have added some extra features:
+
+- Added pagination to browse results and browse search results
+    - On pages where there is a graph, the graph will only be shown for the current page of the table
+- Added last 10 results to task view, and best 10 results (ordered by p10, p20 and map)
+- Coloured your own runs in green if you are logged in
+- Now you can select to get the results ordered by overall best (that is p10, p20 and map altogether) in the "Browse" section
+- Added option to select "page size" for browse and search results so you can choose how many results to get at once
+- Changed the layout of the home page. Now the lists take up the whole width of the page.
