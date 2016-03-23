@@ -53,8 +53,16 @@
 					</tr>
 				</thead>
 				<tbody>
-					{% for run in runs %}
-					<tr>
+				{% for run in runs %}
+					{% if user %}
+						{% if user = run.researcher.user %}
+							<tr class="your-run">
+						{% else %}
+							<tr>
+						{% endif %}
+					{% else %}
+						<tr>
+					{% endif %}
 						<td>{{ run.datetime|date:"d-m-Y H:m" }}</td>
 						<td><a href="{% url 'view_profile' userId=run.researcher.user.id %}">{{ run.researcher }}</a></td>
 						<td>{{ run.researcher.organization|default:"Not provided" }}</td>

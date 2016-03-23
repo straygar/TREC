@@ -65,6 +65,35 @@
 			{% endif %}
 		</td>
 	</tr>
+    <tr>
+		<td>Best 10 runs</td>
+		<td>
+			{% if best_runs %}
+				<table class="table table-striped table-bordered table-hover">
+					<tr>
+                        <th>Uploaded by</th>
+						<th>Title</th>
+						<th>Description</th>
+						<th>P10</th>
+                        <th>P20</th>
+                        <th>Map</th>
+					</tr>
+					{% for run in best_runs %}
+						<tr>
+                            <td><a href="{% url 'view_profile' userId=run.researcher.user.id %}">{{ run.researcher }}</a></td>
+							<td><a href="{% url 'view_run' runid=run.id %}">{{ run.name }}</a></td>
+							<td>{{ run.description }}</td>
+                            <td>{{ run.p10 }}</td>
+                            <td>{{ run.p20 }}</td>
+                            <td>{{ run.map }}</td>
+						</tr>
+					{% endfor %}
+				</table>
+			{% else %}
+				This task has no runs
+			{% endif %}
+		</td>
+	</tr>
 </table>
 
 {% endblock %}

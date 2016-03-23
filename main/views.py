@@ -88,7 +88,7 @@ def browseComplete(request, taskid):
                      "UO": "researcher__organization",
                      "UU": "researcher__user_username",
                      "UN": "researcher__display_name",
-                     "TL": "name"}
+                     "TL": "name",}
     pageNo = request.GET.get("page", "1")
     pageSize = request.GET.get("pageSize", "10")
     errorSorting = False
@@ -128,7 +128,13 @@ def browseComplete(request, taskid):
                 sortStr = "-" + sortStr
             filtered_objects = filtered_objects.order_by(sortStr)
         else:
-            errorSorting = True
+            if sortType == "AL":
+                if orderType == "DE":
+                    filtered_objects = filtered_objects.order_by("-p10", "-p20", "-map")
+                else:
+                    filtered_objects = filtered_objects.order_by("p10", "p20", "map")
+            else:
+                errorSorting = True
     paginator = Paginator(filtered_objects, pageSize)
     try:
         page = paginator.page(pageNo)
@@ -276,7 +282,7 @@ def uploadRun(request):
                 temp_data.p10 = results["P_10"]
                 temp_data.p20 = results["P_20"]
                 temp_data.map = results["map"]
-                run_list = Run.objects.filter(task=temp_data.task).order_by('p10')
+                run_list = Run.objects.filter(task=temp_data.task).order_by('p10', 'p20', 'map')[:10]
                 averages = trec.getMaximums(run_list)
                 contextDict["runs"] = run_list
                 temp_data.save()
@@ -289,6 +295,7 @@ def uploadRun(request):
     contextDict["finish"] = finish
     contextDict["fail"] = fail
     contextDict["results"] = results
+    contextDict["user"] = request.user
     return render(request, "main/uploadRun.html", contextDict)
 
 @staff_member_required
@@ -473,7 +480,8 @@ def editGenre(request, genreid):
 
 def viewTask(request, taskid):
     runs = Run.objects.filter(task__id=taskid).order_by("-datetime")[:10]
-    return render(request, "main/viewTask.html", {"task":get_object_or_404(Task, id=taskid), "runs":runs})
+    best_runs = Run.objects.filter(task__id=taskid).order_by('p10', 'p20', 'map')[:10]
+    return render(request, "main/viewTask.html", {"task":get_object_or_404(Task, id=taskid), "runs":runs, "best_runs":best_runs})
 
 @staff_member_required
 def editTask(request, taskid):

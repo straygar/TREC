@@ -38,6 +38,7 @@ class BrowseTaskSortForm(forms.Form):
         ("P1", "P10 score"),
         ("P2", "P20 score"),
         ("MA", "Map score"),
+        ("AL", "All three scores - get best (or worst) runs"),
         ("FT", "Feedback type"),
         ("RT", "Run type"),
         ("QT", "Query type"),
@@ -45,6 +46,7 @@ class BrowseTaskSortForm(forms.Form):
         ("UU", "Uploader username"),
         ("UN", "Uploader name"),
         ("TL", "Title"),
+
     )
     sortOrder = (
         ("DE", "Descending"),
