@@ -91,7 +91,6 @@ def browseComplete(request, taskid):
                      "TL": "name"}
     pageNo = request.GET.get("page", "1")
     pageSize = request.GET.get("pageSize", "10")
-    needToPage = False
     errorSorting = False
     contextDict = {}
     userRunsRequested = False
@@ -110,7 +109,7 @@ def browseComplete(request, taskid):
         else:
             pageSize = filtered_objects.count()
     except:
-        pageSize = 2
+        pageSize = 10
     sortType = request.GET.get('Sort')
     orderType = request.GET.get('Order')
     if orderType is not None:
@@ -145,7 +144,6 @@ def browseComplete(request, taskid):
     contextDict["user"] = request.user
     contextDict["runs"] = page
     contextDict["userRunsRequested"] = userRunsRequested
-    contextDict["needToPage"] = needToPage
     contextDict["pageSize"] = pageSize
     # Don't show a graph if no results will be shown
     if len(filtered_objects) > 0:
@@ -473,7 +471,8 @@ def editGenre(request, genreid):
     return viewhelper.editFormGeneric(request, "main/uploadGenre.html", Genre, GenreForm, genreid)
 
 def viewTask(request, taskid):
-    return render(request, "main/viewTask.html", {"task":get_object_or_404(Task, id=taskid)})
+    runs = Run.objects.filter(task__id=taskid).order_by("-datetime")[:10]
+    return render(request, "main/viewTask.html", {"task":get_object_or_404(Task, id=taskid), "runs":runs})
 
 @staff_member_required
 def editTask(request, taskid):
@@ -499,7 +498,15 @@ def search(request):
     date_min = request.GET.get("date_min", None)
     date_max = request.GET.get("date_max", None)
     name = request.GET.get("name", None)
-    perPage = request.GET.get("pageSize", "10")
+    pageSize = request.GET.get("pageSize", "10")
+    pageNo = request.GET.get("page", "1")
+    try:
+        if pageSize != "all":
+            pageSize = int(pageSize)
+        else:
+            pageSize = filtered_objects.count()
+    except:
+        pageSize = 10
     description = request.GET.get("desc", None)
     filtered_objects = Run.objects.all()
     if checkNotAllNull(
@@ -558,13 +565,25 @@ def search(request):
             if organization is not None:
                 filtered_objects = filtered_objects.filter(researcher__organization=organization)
             error = False
-
-            context_dict["objects"] = filtered_objects
+            paginator = Paginator(filtered_objects, pageSize)
+            try:
+                page = paginator.page(pageNo)
+            except PageNotAnInteger:
+                page = paginator.page(1)
+            except EmptyPage:
+                page = paginator.page(paginator.num_pages)
+            context_dict["objects"] = page
         except:
             error = True
             context_dict["objects"] = None
     else:
         allNull = True
+    # get complete URL querystring without rewriting it
+    urlparams = request.GET.copy()
+    if urlparams.has_key("page"):
+        del (urlparams["page"])
+    queryString = urlparams.urlencode()
+    context_dict["querystring"] = queryString
     context_dict["error"] = error
     context_dict["allnull"] = allNull
     return render(request, "main/searchResults.html", context_dict)

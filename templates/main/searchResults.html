@@ -11,6 +11,17 @@
 	{% if objects %}
         <h3>These are the runs matching your query</h3>
     	<hr />
+    	{% if objects.has_previous %}
+            <a href="?page={{ objects.previous_page_number }}&{{ queryString }}">&#8592; prev</a>
+        {% endif %}
+
+        <span class="current">
+            Page {{ objects.number }} of {{ objects.paginator.num_pages }}.
+        </span>
+
+        {% if objects.has_next %}
+            <a href="?page={{ objects.next_page_number }}&{{ querystring }}">next &#8594;</a>
+        {% endif %}
 	    <table class="sortable table table-hover table-striped">
             <thead class="thead-inverse">
                     <tr>
