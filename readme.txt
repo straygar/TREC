@@ -1,6 +1,7 @@
 To Set Up tFeed:
 
 IMPORTANT: Only the user bob (password bob) is an "Admin", so bob is the only one that can edit tasks, tracks... All the other users are not
+Please see whats_new.txt to see what we have added since the day of our presentation.
 
 - Git clone the repo.
 - Install requirements: pip install -r reqs.txt
