@@ -63,7 +63,7 @@ body {
 	padding-left: 30px;
 }
 #chart { 
-	clear; both;
+	clear: both;
 }
 div.makers-of {
 	text-align: center;
