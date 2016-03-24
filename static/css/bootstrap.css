@@ -62,6 +62,9 @@ body {
 #form.search-forms > div {
 	padding-left: 30px;
 }
+#chart { 
+	clear; both;
+}
 div.makers-of {
 	text-align: center;
 	padding-bottom: 30px;
