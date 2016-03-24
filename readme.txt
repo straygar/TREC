@@ -19,6 +19,6 @@ Developed by:
 Maria-Luiza Koleva - 2127555k - mKoleva
 Shaun Macdonald - 1005872M - Torquoal
 Aigars Reiters - 2148261R - nastyguard
-Pablo Arteaga - 2144641A  -- I got commits with 3 different usernames, sorry about that. pablo96@gmail.com , pablo@pabloarteaga.es and another one without email address. All of them have "Pablo Arteaga" as the commiter's name
+Pablo Arteaga - 2144641A  - pablo96   ---  I got commits with 3 different names or email addresses; however they all seem to be with the same pablo96 user, sorry about that. pablo96@gmail.com , pablo@pabloarteaga.es and another one without email address. All of them have "Pablo Arteaga" as the commiter's name
 
 The form is in the root folder as Participation-form.jpg
