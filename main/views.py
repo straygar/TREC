@@ -28,9 +28,9 @@ from chartit import *
 def index(request):
     context_dict = {}
 
-    best_list = Run.objects.all().order_by('p10')
+    best_list = Run.objects.all().order_by('-p10', '-p20', '-map')[:10]
     context_dict["best"] = best_list
-    recent_list = Run.objects.all().order_by('-datetime')
+    recent_list = Run.objects.all().order_by('-datetime')[:10]
     context_dict["recent"] = recent_list
 
     return render(request, 'main/index.html', context_dict)
@@ -480,7 +480,7 @@ def editGenre(request, genreid):
 
 def viewTask(request, taskid):
     runs = Run.objects.filter(task__id=taskid).order_by("-datetime")[:10]
-    best_runs = Run.objects.filter(task__id=taskid).order_by('p10', 'p20', 'map')[:10]
+    best_runs = Run.objects.filter(task__id=taskid).order_by('-p10', '-p20', '-map')[:10]
     return render(request, "main/viewTask.html", {"task":get_object_or_404(Task, id=taskid), "runs":runs, "best_runs":best_runs})
 
 @staff_member_required
