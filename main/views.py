@@ -282,7 +282,7 @@ def uploadRun(request):
                 temp_data.p10 = results["P_10"]
                 temp_data.p20 = results["P_20"]
                 temp_data.map = results["map"]
-                run_list = Run.objects.filter(task=temp_data.task).order_by('p10', 'p20', 'map')[:10]
+                run_list = Run.objects.filter(task=temp_data.task).order_by('-p10', '-p20', '-map')[:10]
                 averages = trec.getMaximums(run_list)
                 contextDict["runs"] = run_list
                 temp_data.save()
