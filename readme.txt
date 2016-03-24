@@ -13,6 +13,7 @@ Please see whats_new.txt to see what we have added since the day of our presenta
 - If you opt for the first option, then you will need to run the population script: python populate_trec.py
 - Take into account that for the population script to work you will need to have the trec_eval executable working.
 
+Our webapp is responsive, so feel free to test it on a phone.
 
 Developed by:
 
